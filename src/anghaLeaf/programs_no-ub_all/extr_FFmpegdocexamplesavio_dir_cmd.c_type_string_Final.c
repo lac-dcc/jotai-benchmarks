@@ -1,0 +1,135 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            big-arr\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+#define  AVIO_ENTRY_BLOCK_DEVICE 138 
+#define  AVIO_ENTRY_CHARACTER_DEVICE 137 
+#define  AVIO_ENTRY_DIRECTORY 136 
+#define  AVIO_ENTRY_FILE 135 
+#define  AVIO_ENTRY_NAMED_PIPE 134 
+#define  AVIO_ENTRY_SERVER 133 
+#define  AVIO_ENTRY_SHARE 132 
+#define  AVIO_ENTRY_SOCKET 131 
+#define  AVIO_ENTRY_SYMBOLIC_LINK 130 
+#define  AVIO_ENTRY_UNKNOWN 129 
+#define  AVIO_ENTRY_WORKGROUP 128 
+
+__attribute__((used)) static const char *type_string(int type)
+{
+    switch (type) {
+    case AVIO_ENTRY_DIRECTORY:
+        return "<DIR>";
+    case AVIO_ENTRY_FILE:
+        return "<FILE>";
+    case AVIO_ENTRY_BLOCK_DEVICE:
+        return "<BLOCK DEVICE>";
+    case AVIO_ENTRY_CHARACTER_DEVICE:
+        return "<CHARACTER DEVICE>";
+    case AVIO_ENTRY_NAMED_PIPE:
+        return "<PIPE>";
+    case AVIO_ENTRY_SYMBOLIC_LINK:
+        return "<LINK>";
+    case AVIO_ENTRY_SOCKET:
+        return "<SOCKET>";
+    case AVIO_ENTRY_SERVER:
+        return "<SERVER>";
+    case AVIO_ENTRY_SHARE:
+        return "<SHARE>";
+    case AVIO_ENTRY_WORKGROUP:
+        return "<WORKGROUP>";
+    case AVIO_ENTRY_UNKNOWN:
+    default:
+        break;
+    }
+    return "<UNKNOWN>";
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // big-arr
+    case 0:
+    {
+          int type = 255;
+          const char * benchRet = type_string(type);
+          printf("{{other_type}} %p\n", &benchRet); 
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

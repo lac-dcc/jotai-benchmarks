@@ -1,0 +1,127 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            big-arr\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int __u32 ;
+
+/* Variables and functions */
+ unsigned long F2FS_APPEND_FL ; 
+ unsigned long F2FS_IMMUTABLE_FL ; 
+ unsigned long F2FS_NOATIME_FL ; 
+ unsigned long F2FS_NODUMP_FL ; 
+ unsigned long F2FS_PROJINHERIT_FL ; 
+ unsigned long F2FS_SYNC_FL ; 
+ int FS_XFLAG_APPEND ; 
+ int FS_XFLAG_IMMUTABLE ; 
+ int FS_XFLAG_NOATIME ; 
+ int FS_XFLAG_NODUMP ; 
+ int FS_XFLAG_PROJINHERIT ; 
+ int FS_XFLAG_SYNC ; 
+
+__attribute__((used)) static inline unsigned long f2fs_xflags_to_iflags(__u32 xflags)
+{
+	unsigned long iflags = 0;
+
+	if (xflags & FS_XFLAG_SYNC)
+		iflags |= F2FS_SYNC_FL;
+	if (xflags & FS_XFLAG_IMMUTABLE)
+		iflags |= F2FS_IMMUTABLE_FL;
+	if (xflags & FS_XFLAG_APPEND)
+		iflags |= F2FS_APPEND_FL;
+	if (xflags & FS_XFLAG_NODUMP)
+		iflags |= F2FS_NODUMP_FL;
+	if (xflags & FS_XFLAG_NOATIME)
+		iflags |= F2FS_NOATIME_FL;
+	if (xflags & FS_XFLAG_PROJINHERIT)
+		iflags |= F2FS_PROJINHERIT_FL;
+
+	return iflags;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // big-arr
+    case 0:
+    {
+          int xflags = 255;
+          unsigned long benchRet = f2fs_xflags_to_iflags(xflags);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

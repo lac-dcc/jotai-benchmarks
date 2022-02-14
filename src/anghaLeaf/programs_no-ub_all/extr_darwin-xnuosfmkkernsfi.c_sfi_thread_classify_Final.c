@@ -1,0 +1,120 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            big-arr\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  TYPE_1__* thread_t ;
+typedef  scalar_t__ task_t ;
+typedef  int /*<<< orphan*/  sfi_class_id_t ;
+typedef  int boolean_t ;
+struct TYPE_3__ {scalar_t__ task; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  SFI_CLASS_KERNEL ; 
+ int /*<<< orphan*/  SFI_CLASS_OPTED_OUT ; 
+ scalar_t__ kernel_task ; 
+
+sfi_class_id_t sfi_thread_classify(thread_t thread)
+{
+	task_t task = thread->task;
+	boolean_t is_kernel_thread = (task == kernel_task);
+
+	if (is_kernel_thread) {
+		return SFI_CLASS_KERNEL;
+	}
+
+	return SFI_CLASS_OPTED_OUT;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // big-arr
+    case 0:
+    {
+          int _len_thread0 = 1;
+          struct TYPE_3__ * thread = (struct TYPE_3__ *) malloc(_len_thread0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
+            thread->task = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = sfi_thread_classify(thread);
+          printf("%d\n", benchRet); 
+          free(thread);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

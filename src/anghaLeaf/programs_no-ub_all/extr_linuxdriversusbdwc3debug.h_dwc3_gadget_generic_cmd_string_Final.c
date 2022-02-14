@@ -1,0 +1,131 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            big-arr\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int u8 ;
+
+/* Variables and functions */
+#define  DWC3_DGCMD_ALL_FIFO_FLUSH 136 
+#define  DWC3_DGCMD_RUN_SOC_BUS_LOOPBACK 135 
+#define  DWC3_DGCMD_SELECTED_FIFO_FLUSH 134 
+#define  DWC3_DGCMD_SET_ENDPOINT_NRDY 133 
+#define  DWC3_DGCMD_SET_LMP 132 
+#define  DWC3_DGCMD_SET_PERIODIC_PAR 131 
+#define  DWC3_DGCMD_SET_SCRATCHPAD_ADDR_HI 130 
+#define  DWC3_DGCMD_SET_SCRATCHPAD_ADDR_LO 129 
+#define  DWC3_DGCMD_XMIT_FUNCTION 128 
+
+__attribute__((used)) static inline const char *
+dwc3_gadget_generic_cmd_string(u8 cmd)
+{
+	switch (cmd) {
+	case DWC3_DGCMD_SET_LMP:
+		return "Set LMP";
+	case DWC3_DGCMD_SET_PERIODIC_PAR:
+		return "Set Periodic Parameters";
+	case DWC3_DGCMD_XMIT_FUNCTION:
+		return "Transmit Function Wake Device Notification";
+	case DWC3_DGCMD_SET_SCRATCHPAD_ADDR_LO:
+		return "Set Scratchpad Buffer Array Address Lo";
+	case DWC3_DGCMD_SET_SCRATCHPAD_ADDR_HI:
+		return "Set Scratchpad Buffer Array Address Hi";
+	case DWC3_DGCMD_SELECTED_FIFO_FLUSH:
+		return "Selected FIFO Flush";
+	case DWC3_DGCMD_ALL_FIFO_FLUSH:
+		return "All FIFO Flush";
+	case DWC3_DGCMD_SET_ENDPOINT_NRDY:
+		return "Set Endpoint NRDY";
+	case DWC3_DGCMD_RUN_SOC_BUS_LOOPBACK:
+		return "Run SoC Bus Loopback Test";
+	default:
+		return "UNKNOWN";
+	}
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // big-arr
+    case 0:
+    {
+          int cmd = 255;
+          const char * benchRet = dwc3_gadget_generic_cmd_string(cmd);
+          printf("{{other_type}} %p\n", &benchRet); 
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}
