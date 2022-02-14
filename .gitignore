@@ -1,0 +1,31 @@
+
+# Common build directory names
+/cmake-build*
+/build
+/bin
+
+# Local specific editor configs
+/.idea*
+/.sublime*
+/.vscode*
+/.venv
+
+# Old/temp. data and local output/results
+/output
+/archive
+/tmp
+/util/output
+
+# Common binary extensions
+*.o
+*.exe
+*.bin
+
+# Python cache, compiled files, etc.
+.ipynb_checkpoints
+__pycache__
+*.pyc
+*.pyo
+
+# CFGgrind might create these files
+vgcore*
