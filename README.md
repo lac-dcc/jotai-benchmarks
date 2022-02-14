@@ -6,6 +6,31 @@ git clone git://github.com/lac-dcc/jotai-benchmarks.git
 
 This repository contains executable benchmarks. Each benchmark consists of a single function, plus a driver to run that function. These functions have been mined from the AnghaBench repository, and have been augmented with code to generate inputs for them.
 
+#### Project Structure
+
+A small sample showing how this project is organized. It won't be kept up to date, use it as reference when adding new benchmarks.
+
+```
+# ================================ dirs only ================================ #
+.
+├── assets
+│  └── img
+├── data
+│  ├── anghaLeaf
+│  │  ├── programs_no-ub_all
+│  │  ├── programs_no-ub_dynInstCnt-greaterThan-staticInstCnt
+│  │  └── programs_no-ub_printableRetVal
+│  └── SPEC_CPU_2017
+├── src
+│  └── anghaLeaf
+│     ├── programs_no-ub_all
+│     ├── programs_no-ub_dynInstCnt-greaterThan-staticInstCnt
+│     └── programs_no-ub_printableRetVal
+├── tmp
+└── util
+   └── notebooks
+```
+
 ## Sample Results
 
 Inputs for these 15,305 programs have been produced with an strategy called "BigArray", which consists in assigning each pointer to a memory region that is a large as the size of the largest array passed to the benchmark function. We have eliminated from this evaluation the speedups greater than 8.0x, as they are likely to be exceptional results. In total, 105 benchmarks have been eliminated in this way. Below, on the left, we show the [density distribution](https://en.wikipedia.org/wiki/Histogram) of speedups:
