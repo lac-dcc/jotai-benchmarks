@@ -33,7 +33,7 @@ A small sample showing how this project is organized. It won't be kept up to dat
 
 ## Sample Results
 
-Inputs for these 15,305 programs have been produced with an strategy called "BigArray", which consists in assigning each pointer to a memory region that is a large as the size of the largest array passed to the benchmark function. We have eliminated from this evaluation the speedups greater than 8.0x, as they are likely to be exceptional results. In total, 105 benchmarks have been eliminated in this way. Below, on the left, we show the [density distribution](https://en.wikipedia.org/wiki/Histogram) of speedups:
+Inputs for these 15,305 programs have been produced with an strategy called "BigArray", which consists in assigning each pointer to a memory region that is a large as the size of the largest integer passed to the benchmark function. We have eliminated from this evaluation the speedups greater than 8.0x, as they are likely to be exceptional results. In total, 105 benchmarks have been eliminated in this way. Below, on the left, we show the [density distribution](https://en.wikipedia.org/wiki/Histogram) of speedups:
 
 ![Results involving big array constraints](./assets/img/BigArrayDynResults.jpg?raw=true "Sample Results")
 
