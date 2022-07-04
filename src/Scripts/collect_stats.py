@@ -9,19 +9,16 @@ def execute_process(args):
     except:
         return ""
 
-def collect_stats():
-    blocks = 0
-    phantom = 0
+def collect_stats(n, str):
+    blocks = -1
+    phantom = -1
 
-    with open(sys.argv[2], 'r', encoding='utf-8') as f:
-        f = f.read().replace("\'", "\"")
-        data = f.split(",\n")
-        for l in data:
-            if "blocks:" in l:
-                blocks = int(l.replace("blocks:","").replace(" ", ""))
-            elif "phantoms:" in l:
-                phantom = int(l.replace("phantoms:","").replace(" ", ""))
-        print("%s,%d,%d" %(n, blocks, phantom))
+    for l in str.split("\n"):
+        if "blocks:" in l:
+            blocks = int(l.replace("blocks:","").replace(" ", "").replace(",",""))
+        elif "phantoms:" in l:
+            phantom = int(l.replace("phantoms:","").replace(" ", "").replace(",",""))
+    print("%s,%d,%d" %(n, blocks, phantom))
 
 if __name__ == "__main__":
 
@@ -35,8 +32,8 @@ if __name__ == "__main__":
     for stat in range(2, len(sys.argv)):
         states.append(sys.argv[stat])
     
-    print(dir)
-    print(states)
+    #print(dir)
+    #print(states)
 
     bench = []
 
@@ -46,9 +43,11 @@ if __name__ == "__main__":
             bench.append(root+"/"+items)
     
     for b in bench:
+        name = b.split("/")[-1]
         func = b.split(".c_")[-1].split("_Final.c")[0]
         arg = "sh gen_stats.sh " + b + " " + func + " -O0"
-        execute_process(arg)
-        print(b, func)
-        break
+        res = execute_process(arg)
+        #print(res)
+        collect_stats(name, res)
+        #break
     
