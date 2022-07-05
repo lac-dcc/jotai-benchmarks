@@ -15,20 +15,20 @@ def execute_process(args):
     Read input data
 '''
 def read_input(in_data):
-    dir = in_data[1]
+    directory = in_data[1]
     n_inputs = int(in_data[2])
     states = []
     for i in range(3, len(in_data)):
-        n_state = sys.in_data[i]
+        n_state = in_data[i]
         states.append(n_state)
-    return dir, n_inputs, states
+    return directory, n_inputs, states
 
 '''
     walks and saves the files inside of list
 '''
-def collect_benchmark_from_directory():
+def collect_benchmark_from_directory(directory):
     bench = []
-    for root, dir, files in os.walk(dir):
+    for root, dir, files in os.walk(directory):
         for items in fnmatch.filter(files, "*"):
             bench.append(root+"/"+items)
     return bench
@@ -85,9 +85,9 @@ if __name__ == "__main__":
         print("Example to use: python3 collect_stats.py <directory> <number_of_inputs> <stats_1> <stats_2> ... <stats_N>")
         exit(0)
 
-    dir, n_inputs, states = read_input(sys.argv)
+    directory, n_inputs, states = read_input(sys.argv)
 
-    bench = collect_benchmark_from_directory()
+    bench = collect_benchmark_from_directory(directory)
     
     print_header(states)
 
@@ -100,4 +100,3 @@ if __name__ == "__main__":
             res = execute_process(arg)
             r.append(collect_stats(res, states))
         print_solution(name, states, r)
-        break
