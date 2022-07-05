@@ -17,11 +17,12 @@ def execute_process(args):
 def read_input(in_data):
     directory = in_data[1]
     n_inputs = int(in_data[2])
+    opt = in_data[3]
     states = []
-    for i in range(3, len(in_data)):
+    for i in range(4, len(in_data)):
         n_state = in_data[i]
         states.append(n_state)
-    return directory, n_inputs, states
+    return directory, n_inputs, states, opt
 
 '''
     walks and saves the files inside of list
@@ -80,12 +81,12 @@ def print_solution(name, states, r):
 '''
 if __name__ == "__main__":
 
-    if len(sys.argv) <= 3:
+    if len(sys.argv) <= 4:
         print("ERROR: Number of parameters")
-        print("Example to use: python3 collect_stats.py <directory> <number_of_inputs> <stats_1> <stats_2> ... <stats_N>")
+        print("Example to use: python3 collect_stats.py <directory> <number_of_inputs> <opt> <stats_1> <stats_2> ... <stats_N>")
         exit(0)
 
-    directory, n_inputs, states = read_input(sys.argv)
+    directory, n_inputs, states, opt = read_input(sys.argv)
 
     bench = collect_benchmark_from_directory(directory)
     
@@ -96,7 +97,7 @@ if __name__ == "__main__":
         func = b.split(".c_")[-1].split("_Final.c")[0]
         r = []
         for i in range(n_inputs):
-            arg = "sh gen_stats.sh " + b + " " + func + " -O0 " + str(i)
+            arg = "sh gen_stats.sh " + b + " " + func + " " + opt +" " + str(i)
             res = execute_process(arg)
             r.append(collect_stats(res, states))
         print_solution(name, states, r)

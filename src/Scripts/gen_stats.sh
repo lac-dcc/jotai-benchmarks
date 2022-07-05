@@ -30,7 +30,9 @@ else
   func_name=$2
   opt_level=$3
   input=$4
-
+  
+  rm -rf *.dot
+  
   # Genereate the executable using gcc:
   #
   gcc -g -ggdb $opt_level -Wall -fno-stack-protector -no-pie -o test $prog_name
@@ -46,8 +48,8 @@ else
 
   # Inform the name of the DOT file just produced (be aware that we might have
   # multiple files).
-  echo "DOT files currently in the folder:"
-  ls cfg-*.dot
+  #echo "DOT files currently in the folder:"
+  #ls cfg-*.dot
 
   # Collect statistics about the target function:
   #
@@ -55,5 +57,5 @@ else
 
   # Now, remove the auxiliary files, to leave the folder clean:
   #
-  rm -rf test test.cfg test.map
+  rm -rf test test.cfg test.map *.dot 
 fi
