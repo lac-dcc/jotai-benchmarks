@@ -1,0 +1,155 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  scalar_t__ uint16_t ;
+typedef  scalar_t__ u16 ;
+struct qedf_rport {int sq_mem_size; scalar_t__ sq_prod_idx; int /*<<< orphan*/  fw_sq_prod_idx; } ;
+struct fcoe_wqe {int dummy; } ;
+
+/* Variables and functions */
+
+u16 qedf_get_sqe_idx(struct qedf_rport *fcport)
+{
+	uint16_t total_sqe = (fcport->sq_mem_size)/(sizeof(struct fcoe_wqe));
+	u16 rval;
+
+	rval = fcport->sq_prod_idx;
+
+	/* Adjust ring index */
+	fcport->sq_prod_idx++;
+	fcport->fw_sq_prod_idx++;
+	if (fcport->sq_prod_idx == total_sqe)
+		fcport->sq_prod_idx = 0;
+
+	return rval;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          int _len_fcport0 = 1;
+          struct qedf_rport * fcport = (struct qedf_rport *) malloc(_len_fcport0*sizeof(struct qedf_rport));
+          for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
+            fcport[_i0].sq_mem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        fcport[_i0].sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        fcport[_i0].fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          long benchRet = qedf_get_sqe_idx(fcport);
+          printf("%ld\n", benchRet); 
+          free(fcport);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int _len_fcport0 = 65025;
+          struct qedf_rport * fcport = (struct qedf_rport *) malloc(_len_fcport0*sizeof(struct qedf_rport));
+          for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
+            fcport[_i0].sq_mem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        fcport[_i0].sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        fcport[_i0].fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          long benchRet = qedf_get_sqe_idx(fcport);
+          printf("%ld\n", benchRet); 
+          free(fcport);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int _len_fcport0 = 100;
+          struct qedf_rport * fcport = (struct qedf_rport *) malloc(_len_fcport0*sizeof(struct qedf_rport));
+          for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
+            fcport[_i0].sq_mem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        fcport[_i0].sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        fcport[_i0].fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          long benchRet = qedf_get_sqe_idx(fcport);
+          printf("%ld\n", benchRet); 
+          free(fcport);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

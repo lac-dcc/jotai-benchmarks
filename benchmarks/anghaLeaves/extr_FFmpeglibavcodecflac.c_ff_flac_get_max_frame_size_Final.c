@@ -1,0 +1,141 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+
+int ff_flac_get_max_frame_size(int blocksize, int ch, int bps)
+{
+    /* Technically, there is no limit to FLAC frame size, but an encoder
+       should not write a frame that is larger than if verbatim encoding mode
+       were to be used. */
+
+    int count;
+
+    count = 16;                  /* frame header */
+    count += ch * ((7+bps+7)/8); /* subframe headers */
+    if (ch == 2) {
+        /* for stereo, need to account for using decorrelation */
+        count += (( 2*bps+1) * blocksize + 7) / 8;
+    } else {
+        count += ( ch*bps    * blocksize + 7) / 8;
+    }
+    count += 2; /* frame footer */
+
+    return count;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          int blocksize = 100;
+          int ch = 100;
+          int bps = 100;
+          int benchRet = ff_flac_get_max_frame_size(blocksize,ch,bps);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int blocksize = 255;
+          int ch = 255;
+          int bps = 255;
+          int benchRet = ff_flac_get_max_frame_size(blocksize,ch,bps);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int blocksize = 10;
+          int ch = 10;
+          int bps = 10;
+          int benchRet = ff_flac_get_max_frame_size(blocksize,ch,bps);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

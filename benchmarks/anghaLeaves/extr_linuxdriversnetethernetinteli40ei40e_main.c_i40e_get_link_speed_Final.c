@@ -1,0 +1,184 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_6__   TYPE_3__ ;
+typedef  struct TYPE_5__   TYPE_2__ ;
+typedef  struct TYPE_4__   TYPE_1__ ;
+
+/* Type definitions */
+struct i40e_vsi {struct i40e_pf* back; } ;
+struct TYPE_4__ {int link_speed; } ;
+struct TYPE_5__ {TYPE_1__ link_info; } ;
+struct TYPE_6__ {TYPE_2__ phy; } ;
+struct i40e_pf {TYPE_3__ hw; } ;
+
+/* Variables and functions */
+ int EINVAL ; 
+#define  I40E_LINK_SPEED_10GB 132 
+#define  I40E_LINK_SPEED_1GB 131 
+#define  I40E_LINK_SPEED_20GB 130 
+#define  I40E_LINK_SPEED_25GB 129 
+#define  I40E_LINK_SPEED_40GB 128 
+
+__attribute__((used)) static int i40e_get_link_speed(struct i40e_vsi *vsi)
+{
+	struct i40e_pf *pf = vsi->back;
+
+	switch (pf->hw.phy.link_info.link_speed) {
+	case I40E_LINK_SPEED_40GB:
+		return 40000;
+	case I40E_LINK_SPEED_25GB:
+		return 25000;
+	case I40E_LINK_SPEED_20GB:
+		return 20000;
+	case I40E_LINK_SPEED_10GB:
+		return 10000;
+	case I40E_LINK_SPEED_1GB:
+		return 1000;
+	default:
+		return -EINVAL;
+	}
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          int _len_vsi0 = 1;
+          struct i40e_vsi * vsi = (struct i40e_vsi *) malloc(_len_vsi0*sizeof(struct i40e_vsi));
+          for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
+              int _len_vsi__i0__back0 = 1;
+          vsi[_i0].back = (struct i40e_pf *) malloc(_len_vsi__i0__back0*sizeof(struct i40e_pf));
+          for(int _j0 = 0; _j0 < _len_vsi__i0__back0; _j0++) {
+            vsi[_i0].back->hw.phy.link_info.link_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          int benchRet = i40e_get_link_speed(vsi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vsi0; _aux++) {
+          free(vsi[_aux].back);
+          }
+          free(vsi);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int _len_vsi0 = 65025;
+          struct i40e_vsi * vsi = (struct i40e_vsi *) malloc(_len_vsi0*sizeof(struct i40e_vsi));
+          for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
+              int _len_vsi__i0__back0 = 1;
+          vsi[_i0].back = (struct i40e_pf *) malloc(_len_vsi__i0__back0*sizeof(struct i40e_pf));
+          for(int _j0 = 0; _j0 < _len_vsi__i0__back0; _j0++) {
+            vsi[_i0].back->hw.phy.link_info.link_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          int benchRet = i40e_get_link_speed(vsi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vsi0; _aux++) {
+          free(vsi[_aux].back);
+          }
+          free(vsi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int _len_vsi0 = 100;
+          struct i40e_vsi * vsi = (struct i40e_vsi *) malloc(_len_vsi0*sizeof(struct i40e_vsi));
+          for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
+              int _len_vsi__i0__back0 = 1;
+          vsi[_i0].back = (struct i40e_pf *) malloc(_len_vsi__i0__back0*sizeof(struct i40e_pf));
+          for(int _j0 = 0; _j0 < _len_vsi__i0__back0; _j0++) {
+            vsi[_i0].back->hw.phy.link_info.link_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          int benchRet = i40e_get_link_speed(vsi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vsi0; _aux++) {
+          free(vsi[_aux].back);
+          }
+          free(vsi);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

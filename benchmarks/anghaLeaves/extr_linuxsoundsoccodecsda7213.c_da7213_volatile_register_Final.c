@@ -1,0 +1,184 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct device {int dummy; } ;
+
+/* Variables and functions */
+#define  DA7213_ADC_L_GAIN_STATUS 148 
+#define  DA7213_ADC_R_GAIN_STATUS 147 
+#define  DA7213_ALC_CIC_OP_LVL_DATA 146 
+#define  DA7213_ALC_CTRL1 145 
+#define  DA7213_ALC_OFFSET_AUTO_M_L 144 
+#define  DA7213_ALC_OFFSET_AUTO_M_R 143 
+#define  DA7213_ALC_OFFSET_AUTO_U_L 142 
+#define  DA7213_ALC_OFFSET_AUTO_U_R 141 
+#define  DA7213_AUX_L_GAIN_STATUS 140 
+#define  DA7213_AUX_R_GAIN_STATUS 139 
+#define  DA7213_DAC_L_GAIN_STATUS 138 
+#define  DA7213_DAC_R_GAIN_STATUS 137 
+#define  DA7213_HP_L_GAIN_STATUS 136 
+#define  DA7213_HP_R_GAIN_STATUS 135 
+#define  DA7213_LINE_GAIN_STATUS 134 
+#define  DA7213_MIC_1_GAIN_STATUS 133 
+#define  DA7213_MIC_2_GAIN_STATUS 132 
+#define  DA7213_MIXIN_L_GAIN_STATUS 131 
+#define  DA7213_MIXIN_R_GAIN_STATUS 130 
+#define  DA7213_PLL_STATUS 129 
+#define  DA7213_STATUS1 128 
+
+__attribute__((used)) static bool da7213_volatile_register(struct device *dev, unsigned int reg)
+{
+	switch (reg) {
+	case DA7213_STATUS1:
+	case DA7213_PLL_STATUS:
+	case DA7213_AUX_L_GAIN_STATUS:
+	case DA7213_AUX_R_GAIN_STATUS:
+	case DA7213_MIC_1_GAIN_STATUS:
+	case DA7213_MIC_2_GAIN_STATUS:
+	case DA7213_MIXIN_L_GAIN_STATUS:
+	case DA7213_MIXIN_R_GAIN_STATUS:
+	case DA7213_ADC_L_GAIN_STATUS:
+	case DA7213_ADC_R_GAIN_STATUS:
+	case DA7213_DAC_L_GAIN_STATUS:
+	case DA7213_DAC_R_GAIN_STATUS:
+	case DA7213_HP_L_GAIN_STATUS:
+	case DA7213_HP_R_GAIN_STATUS:
+	case DA7213_LINE_GAIN_STATUS:
+	case DA7213_ALC_CTRL1:
+	case DA7213_ALC_OFFSET_AUTO_M_L:
+	case DA7213_ALC_OFFSET_AUTO_U_L:
+	case DA7213_ALC_OFFSET_AUTO_M_R:
+	case DA7213_ALC_OFFSET_AUTO_U_R:
+	case DA7213_ALC_CIC_OP_LVL_DATA:
+		return true;
+	default:
+		return false;
+	}
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          unsigned int reg = 100;
+          int _len_dev0 = 1;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = da7213_volatile_register(dev,reg);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int reg = 255;
+          int _len_dev0 = 65025;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = da7213_volatile_register(dev,reg);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int reg = 10;
+          int _len_dev0 = 100;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = da7213_volatile_register(dev,reg);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

@@ -1,0 +1,143 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int uint64_t ;
+
+/* Variables and functions */
+
+unsigned
+coap_udp_set_cookie(unsigned char *px, size_t length, uint64_t seqno)
+{
+    /*
+     The frame header is 4 bytes long, with bytes 2 and 3 being
+     the Message ID.
+     We can also put up to 8 bytes of a "token" here instead of
+     just using the message ID.
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |Ver| T |  TKL  |      Code     |          Message ID           |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   Token (if any, TKL bytes) ...
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    */
+
+    if (length < 4)
+        return 0;
+
+    px[2] = (unsigned char)(seqno >> 8);
+    px[3] = (unsigned char)(seqno >> 0);
+
+    return 0;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // big-arr
+    case 0:
+    {
+          unsigned long length = 255;
+          int seqno = 255;
+          int _len_px0 = 65025;
+          unsigned char * px = (unsigned char *) malloc(_len_px0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_px0; _i0++) {
+            px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          unsigned int benchRet = coap_udp_set_cookie(px,length,seqno);
+          printf("%u\n", benchRet); 
+          free(px);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long length = 10;
+          int seqno = 10;
+          int _len_px0 = 100;
+          unsigned char * px = (unsigned char *) malloc(_len_px0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_px0; _i0++) {
+            px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          unsigned int benchRet = coap_udp_set_cookie(px,length,seqno);
+          printf("%u\n", benchRet); 
+          free(px);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

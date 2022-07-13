@@ -1,0 +1,166 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct vas_tx_win_attr {scalar_t__ tc_mode; scalar_t__ wcreds_max; scalar_t__ rsvd_txbuf_count; scalar_t__ user_win; } ;
+typedef  enum vas_cop_type { ____Placeholder_vas_cop_type } vas_cop_type ;
+
+/* Variables and functions */
+ int VAS_COP_TYPE_FTW ; 
+ int VAS_COP_TYPE_MAX ; 
+ scalar_t__ VAS_THRESH_DISABLED ; 
+ scalar_t__ VAS_TX_WCREDS_MAX ; 
+
+__attribute__((used)) static bool tx_win_args_valid(enum vas_cop_type cop,
+			struct vas_tx_win_attr *attr)
+{
+	if (attr->tc_mode != VAS_THRESH_DISABLED)
+		return false;
+
+	if (cop > VAS_COP_TYPE_MAX)
+		return false;
+
+	if (attr->wcreds_max > VAS_TX_WCREDS_MAX)
+		return false;
+
+	if (attr->user_win &&
+			(cop != VAS_COP_TYPE_FTW || attr->rsvd_txbuf_count))
+		return false;
+
+	return true;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          enum vas_cop_type cop = 0;
+          int _len_attr0 = 1;
+          struct vas_tx_win_attr * attr = (struct vas_tx_win_attr *) malloc(_len_attr0*sizeof(struct vas_tx_win_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+            attr[_i0].tc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        attr[_i0].wcreds_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        attr[_i0].rsvd_txbuf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        attr[_i0].user_win = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = tx_win_args_valid(cop,attr);
+          printf("%d\n", benchRet); 
+          free(attr);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          enum vas_cop_type cop = 0;
+          int _len_attr0 = 65025;
+          struct vas_tx_win_attr * attr = (struct vas_tx_win_attr *) malloc(_len_attr0*sizeof(struct vas_tx_win_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+            attr[_i0].tc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        attr[_i0].wcreds_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        attr[_i0].rsvd_txbuf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        attr[_i0].user_win = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = tx_win_args_valid(cop,attr);
+          printf("%d\n", benchRet); 
+          free(attr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          enum vas_cop_type cop = 0;
+          int _len_attr0 = 100;
+          struct vas_tx_win_attr * attr = (struct vas_tx_win_attr *) malloc(_len_attr0*sizeof(struct vas_tx_win_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+            attr[_i0].tc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        attr[_i0].wcreds_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        attr[_i0].rsvd_txbuf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        attr[_i0].user_win = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = tx_win_args_valid(cop,attr);
+          printf("%d\n", benchRet); 
+          free(attr);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

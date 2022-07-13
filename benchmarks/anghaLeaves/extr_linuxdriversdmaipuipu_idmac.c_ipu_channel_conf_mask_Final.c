@@ -1,0 +1,145 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int uint32_t ;
+typedef  enum ipu_channel { ____Placeholder_ipu_channel } ipu_channel ;
+
+/* Variables and functions */
+#define  IDMAC_IC_0 131 
+#define  IDMAC_IC_7 130 
+#define  IDMAC_SDC_0 129 
+#define  IDMAC_SDC_1 128 
+ int IPU_CONF_CSI_EN ; 
+ int IPU_CONF_DI_EN ; 
+ int IPU_CONF_IC_EN ; 
+ int IPU_CONF_SDC_EN ; 
+
+__attribute__((used)) static uint32_t ipu_channel_conf_mask(enum ipu_channel channel)
+{
+	uint32_t mask;
+
+	switch (channel) {
+	case IDMAC_IC_0:
+	case IDMAC_IC_7:
+		mask = IPU_CONF_CSI_EN | IPU_CONF_IC_EN;
+		break;
+	case IDMAC_SDC_0:
+	case IDMAC_SDC_1:
+		mask = IPU_CONF_SDC_EN | IPU_CONF_DI_EN;
+		break;
+	default:
+		mask = 0;
+		break;
+	}
+
+	return mask;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          enum ipu_channel channel = 0;
+          int benchRet = ipu_channel_conf_mask(channel);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          enum ipu_channel channel = 0;
+          int benchRet = ipu_channel_conf_mask(channel);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          enum ipu_channel channel = 0;
+          int benchRet = ipu_channel_conf_mask(channel);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

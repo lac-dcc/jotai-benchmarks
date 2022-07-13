@@ -1,0 +1,203 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct xhci_ring {unsigned int num_trbs_free; scalar_t__ type; int dequeue; TYPE_1__* deq_seg; } ;
+struct xhci_hcd {int dummy; } ;
+struct TYPE_2__ {int trbs; } ;
+
+/* Variables and functions */
+ scalar_t__ TYPE_COMMAND ; 
+ scalar_t__ TYPE_EVENT ; 
+
+__attribute__((used)) static inline int room_on_ring(struct xhci_hcd *xhci, struct xhci_ring *ring,
+		unsigned int num_trbs)
+{
+	int num_trbs_in_deq_seg;
+
+	if (ring->num_trbs_free < num_trbs)
+		return 0;
+
+	if (ring->type != TYPE_COMMAND && ring->type != TYPE_EVENT) {
+		num_trbs_in_deq_seg = ring->dequeue - ring->deq_seg->trbs;
+		if (ring->num_trbs_free < num_trbs + num_trbs_in_deq_seg)
+			return 0;
+	}
+
+	return 1;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          unsigned int num_trbs = 100;
+          int _len_xhci0 = 1;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+            xhci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ring0 = 1;
+          struct xhci_ring * ring = (struct xhci_ring *) malloc(_len_ring0*sizeof(struct xhci_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+            ring[_i0].num_trbs_free = ((-2 * (next_i()%2)) + 1) * next_i();
+        ring[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        ring[_i0].dequeue = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ring__i0__deq_seg0 = 1;
+          ring[_i0].deq_seg = (struct TYPE_2__ *) malloc(_len_ring__i0__deq_seg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ring__i0__deq_seg0; _j0++) {
+            ring[_i0].deq_seg->trbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          int benchRet = room_on_ring(xhci,ring,num_trbs);
+          printf("%d\n", benchRet); 
+          free(xhci);
+          for(int _aux = 0; _aux < _len_ring0; _aux++) {
+          free(ring[_aux].deq_seg);
+          }
+          free(ring);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int num_trbs = 255;
+          int _len_xhci0 = 65025;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+            xhci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ring0 = 65025;
+          struct xhci_ring * ring = (struct xhci_ring *) malloc(_len_ring0*sizeof(struct xhci_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+            ring[_i0].num_trbs_free = ((-2 * (next_i()%2)) + 1) * next_i();
+        ring[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        ring[_i0].dequeue = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ring__i0__deq_seg0 = 1;
+          ring[_i0].deq_seg = (struct TYPE_2__ *) malloc(_len_ring__i0__deq_seg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ring__i0__deq_seg0; _j0++) {
+            ring[_i0].deq_seg->trbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          int benchRet = room_on_ring(xhci,ring,num_trbs);
+          printf("%d\n", benchRet); 
+          free(xhci);
+          for(int _aux = 0; _aux < _len_ring0; _aux++) {
+          free(ring[_aux].deq_seg);
+          }
+          free(ring);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int num_trbs = 10;
+          int _len_xhci0 = 100;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+            xhci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ring0 = 100;
+          struct xhci_ring * ring = (struct xhci_ring *) malloc(_len_ring0*sizeof(struct xhci_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+            ring[_i0].num_trbs_free = ((-2 * (next_i()%2)) + 1) * next_i();
+        ring[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        ring[_i0].dequeue = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ring__i0__deq_seg0 = 1;
+          ring[_i0].deq_seg = (struct TYPE_2__ *) malloc(_len_ring__i0__deq_seg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ring__i0__deq_seg0; _j0++) {
+            ring[_i0].deq_seg->trbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          int benchRet = room_on_ring(xhci,ring,num_trbs);
+          printf("%d\n", benchRet); 
+          free(xhci);
+          for(int _aux = 0; _aux < _len_ring0; _aux++) {
+          free(ring[_aux].deq_seg);
+          }
+          free(ring);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

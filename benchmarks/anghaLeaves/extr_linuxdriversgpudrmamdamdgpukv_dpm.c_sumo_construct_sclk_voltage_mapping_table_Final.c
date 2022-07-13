@@ -1,0 +1,223 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_5__   TYPE_2__ ;
+typedef  struct TYPE_4__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  size_t u32 ;
+struct sumo_sclk_voltage_mapping_table {size_t num_max_dpm_entries; TYPE_1__* entries; } ;
+struct amdgpu_device {int dummy; } ;
+struct TYPE_5__ {size_t ulSupportedSCLK; int /*<<< orphan*/  usVoltageIndex; } ;
+struct TYPE_4__ {size_t sclk_frequency; int /*<<< orphan*/  vid_2bit; } ;
+typedef  TYPE_2__ ATOM_AVAILABLE_SCLK_LIST ;
+
+/* Variables and functions */
+ size_t SUMO_MAX_HARDWARE_POWERLEVELS ; 
+
+__attribute__((used)) static void sumo_construct_sclk_voltage_mapping_table(struct amdgpu_device *adev,
+						      struct sumo_sclk_voltage_mapping_table *sclk_voltage_mapping_table,
+						      ATOM_AVAILABLE_SCLK_LIST *table)
+{
+	u32 i;
+	u32 n = 0;
+	u32 prev_sclk = 0;
+
+	for (i = 0; i < SUMO_MAX_HARDWARE_POWERLEVELS; i++) {
+		if (table[i].ulSupportedSCLK > prev_sclk) {
+			sclk_voltage_mapping_table->entries[n].sclk_frequency =
+				table[i].ulSupportedSCLK;
+			sclk_voltage_mapping_table->entries[n].vid_2bit =
+				table[i].usVoltageIndex;
+			prev_sclk = table[i].ulSupportedSCLK;
+			n++;
+		}
+	}
+
+	sclk_voltage_mapping_table->num_max_dpm_entries = n;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          int _len_adev0 = 1;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_sclk_voltage_mapping_table0 = 1;
+          struct sumo_sclk_voltage_mapping_table * sclk_voltage_mapping_table = (struct sumo_sclk_voltage_mapping_table *) malloc(_len_sclk_voltage_mapping_table0*sizeof(struct sumo_sclk_voltage_mapping_table));
+          for(int _i0 = 0; _i0 < _len_sclk_voltage_mapping_table0; _i0++) {
+            sclk_voltage_mapping_table[_i0].num_max_dpm_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sclk_voltage_mapping_table__i0__entries0 = 1;
+          sclk_voltage_mapping_table[_i0].entries = (struct TYPE_4__ *) malloc(_len_sclk_voltage_mapping_table__i0__entries0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sclk_voltage_mapping_table__i0__entries0; _j0++) {
+            sclk_voltage_mapping_table[_i0].entries->sclk_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        sclk_voltage_mapping_table[_i0].entries->vid_2bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          int _len_table0 = 1;
+          struct TYPE_5__ * table = (struct TYPE_5__ *) malloc(_len_table0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+            table[_i0].ulSupportedSCLK = ((-2 * (next_i()%2)) + 1) * next_i();
+        table[_i0].usVoltageIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          sumo_construct_sclk_voltage_mapping_table(adev,sclk_voltage_mapping_table,table);
+          free(adev);
+          for(int _aux = 0; _aux < _len_sclk_voltage_mapping_table0; _aux++) {
+          free(sclk_voltage_mapping_table[_aux].entries);
+          }
+          free(sclk_voltage_mapping_table);
+          free(table);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int _len_adev0 = 65025;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_sclk_voltage_mapping_table0 = 65025;
+          struct sumo_sclk_voltage_mapping_table * sclk_voltage_mapping_table = (struct sumo_sclk_voltage_mapping_table *) malloc(_len_sclk_voltage_mapping_table0*sizeof(struct sumo_sclk_voltage_mapping_table));
+          for(int _i0 = 0; _i0 < _len_sclk_voltage_mapping_table0; _i0++) {
+            sclk_voltage_mapping_table[_i0].num_max_dpm_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sclk_voltage_mapping_table__i0__entries0 = 1;
+          sclk_voltage_mapping_table[_i0].entries = (struct TYPE_4__ *) malloc(_len_sclk_voltage_mapping_table__i0__entries0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sclk_voltage_mapping_table__i0__entries0; _j0++) {
+            sclk_voltage_mapping_table[_i0].entries->sclk_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        sclk_voltage_mapping_table[_i0].entries->vid_2bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          int _len_table0 = 65025;
+          struct TYPE_5__ * table = (struct TYPE_5__ *) malloc(_len_table0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+            table[_i0].ulSupportedSCLK = ((-2 * (next_i()%2)) + 1) * next_i();
+        table[_i0].usVoltageIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          sumo_construct_sclk_voltage_mapping_table(adev,sclk_voltage_mapping_table,table);
+          free(adev);
+          for(int _aux = 0; _aux < _len_sclk_voltage_mapping_table0; _aux++) {
+          free(sclk_voltage_mapping_table[_aux].entries);
+          }
+          free(sclk_voltage_mapping_table);
+          free(table);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int _len_adev0 = 100;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_sclk_voltage_mapping_table0 = 100;
+          struct sumo_sclk_voltage_mapping_table * sclk_voltage_mapping_table = (struct sumo_sclk_voltage_mapping_table *) malloc(_len_sclk_voltage_mapping_table0*sizeof(struct sumo_sclk_voltage_mapping_table));
+          for(int _i0 = 0; _i0 < _len_sclk_voltage_mapping_table0; _i0++) {
+            sclk_voltage_mapping_table[_i0].num_max_dpm_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sclk_voltage_mapping_table__i0__entries0 = 1;
+          sclk_voltage_mapping_table[_i0].entries = (struct TYPE_4__ *) malloc(_len_sclk_voltage_mapping_table__i0__entries0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sclk_voltage_mapping_table__i0__entries0; _j0++) {
+            sclk_voltage_mapping_table[_i0].entries->sclk_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        sclk_voltage_mapping_table[_i0].entries->vid_2bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          int _len_table0 = 100;
+          struct TYPE_5__ * table = (struct TYPE_5__ *) malloc(_len_table0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+            table[_i0].ulSupportedSCLK = ((-2 * (next_i()%2)) + 1) * next_i();
+        table[_i0].usVoltageIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          sumo_construct_sclk_voltage_mapping_table(adev,sclk_voltage_mapping_table,table);
+          free(adev);
+          for(int _aux = 0; _aux < _len_sclk_voltage_mapping_table0; _aux++) {
+          free(sclk_voltage_mapping_table[_aux].entries);
+          }
+          free(sclk_voltage_mapping_table);
+          free(table);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

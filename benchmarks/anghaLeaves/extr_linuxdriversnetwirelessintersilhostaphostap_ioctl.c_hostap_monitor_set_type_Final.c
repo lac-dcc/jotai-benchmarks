@@ -1,0 +1,177 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+struct net_device {int /*<<< orphan*/  type; } ;
+struct TYPE_3__ {scalar_t__ monitor_type; struct net_device* ddev; } ;
+typedef  TYPE_1__ local_info_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ARPHRD_IEEE80211 ; 
+ int /*<<< orphan*/  ARPHRD_IEEE80211_PRISM ; 
+ int /*<<< orphan*/  ARPHRD_IEEE80211_RADIOTAP ; 
+ scalar_t__ PRISM2_MONITOR_CAPHDR ; 
+ scalar_t__ PRISM2_MONITOR_PRISM ; 
+ scalar_t__ PRISM2_MONITOR_RADIOTAP ; 
+
+__attribute__((used)) static void hostap_monitor_set_type(local_info_t *local)
+{
+	struct net_device *dev = local->ddev;
+
+	if (dev == NULL)
+		return;
+
+	if (local->monitor_type == PRISM2_MONITOR_PRISM ||
+	    local->monitor_type == PRISM2_MONITOR_CAPHDR) {
+		dev->type = ARPHRD_IEEE80211_PRISM;
+	} else if (local->monitor_type == PRISM2_MONITOR_RADIOTAP) {
+		dev->type = ARPHRD_IEEE80211_RADIOTAP;
+	} else {
+		dev->type = ARPHRD_IEEE80211;
+	}
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          int _len_local0 = 1;
+          struct TYPE_3__ * local = (struct TYPE_3__ *) malloc(_len_local0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_local0; _i0++) {
+            local[_i0].monitor_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_local__i0__ddev0 = 1;
+          local[_i0].ddev = (struct net_device *) malloc(_len_local__i0__ddev0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_local__i0__ddev0; _j0++) {
+            local[_i0].ddev->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          hostap_monitor_set_type(local);
+          for(int _aux = 0; _aux < _len_local0; _aux++) {
+          free(local[_aux].ddev);
+          }
+          free(local);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int _len_local0 = 65025;
+          struct TYPE_3__ * local = (struct TYPE_3__ *) malloc(_len_local0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_local0; _i0++) {
+            local[_i0].monitor_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_local__i0__ddev0 = 1;
+          local[_i0].ddev = (struct net_device *) malloc(_len_local__i0__ddev0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_local__i0__ddev0; _j0++) {
+            local[_i0].ddev->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          hostap_monitor_set_type(local);
+          for(int _aux = 0; _aux < _len_local0; _aux++) {
+          free(local[_aux].ddev);
+          }
+          free(local);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int _len_local0 = 100;
+          struct TYPE_3__ * local = (struct TYPE_3__ *) malloc(_len_local0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_local0; _i0++) {
+            local[_i0].monitor_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_local__i0__ddev0 = 1;
+          local[_i0].ddev = (struct net_device *) malloc(_len_local__i0__ddev0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_local__i0__ddev0; _j0++) {
+            local[_i0].ddev->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          hostap_monitor_set_type(local);
+          for(int _aux = 0; _aux < _len_local0; _aux++) {
+          free(local[_aux].ddev);
+          }
+          free(local);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

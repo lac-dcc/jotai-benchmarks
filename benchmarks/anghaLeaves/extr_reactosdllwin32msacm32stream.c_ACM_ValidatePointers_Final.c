@@ -1,0 +1,163 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_3__ {scalar_t__ pbPreparedSrc; scalar_t__ pbSrc; scalar_t__ cbPreparedSrcLength; scalar_t__ cbSrcLength; scalar_t__ pbPreparedDst; scalar_t__ pbDst; scalar_t__ cbPreparedDstLength; scalar_t__ cbDstLength; } ;
+typedef  TYPE_1__* PACMDRVSTREAMHEADER ;
+typedef  int BOOL ;
+
+/* Variables and functions */
+
+__attribute__((used)) static BOOL ACM_ValidatePointers(PACMDRVSTREAMHEADER padsh)
+{
+    /* check that pointers have not been modified */
+    return !(padsh->pbPreparedSrc != padsh->pbSrc ||
+             padsh->cbPreparedSrcLength < padsh->cbSrcLength ||
+             padsh->pbPreparedDst != padsh->pbDst ||
+             padsh->cbPreparedDstLength < padsh->cbDstLength);
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          int _len_padsh0 = 1;
+          struct TYPE_3__ * padsh = (struct TYPE_3__ *) malloc(_len_padsh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_padsh0; _i0++) {
+            padsh[_i0].pbPreparedSrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].pbSrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbPreparedSrcLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbSrcLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].pbPreparedDst = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].pbDst = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbPreparedDstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbDstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = ACM_ValidatePointers(padsh);
+          printf("%d\n", benchRet); 
+          free(padsh);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int _len_padsh0 = 65025;
+          struct TYPE_3__ * padsh = (struct TYPE_3__ *) malloc(_len_padsh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_padsh0; _i0++) {
+            padsh[_i0].pbPreparedSrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].pbSrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbPreparedSrcLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbSrcLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].pbPreparedDst = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].pbDst = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbPreparedDstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbDstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = ACM_ValidatePointers(padsh);
+          printf("%d\n", benchRet); 
+          free(padsh);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int _len_padsh0 = 100;
+          struct TYPE_3__ * padsh = (struct TYPE_3__ *) malloc(_len_padsh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_padsh0; _i0++) {
+            padsh[_i0].pbPreparedSrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].pbSrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbPreparedSrcLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbSrcLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].pbPreparedDst = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].pbDst = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbPreparedDstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        padsh[_i0].cbDstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = ACM_ValidatePointers(padsh);
+          printf("%d\n", benchRet); 
+          free(padsh);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

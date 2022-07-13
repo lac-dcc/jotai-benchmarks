@@ -1,0 +1,168 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  scalar_t__ u32 ;
+struct ath_softc {int dummy; } ;
+struct ath_airtime_stats {int /*<<< orphan*/  tx_airtime; int /*<<< orphan*/  rx_airtime; } ;
+struct ath_node {struct ath_airtime_stats airtime_stats; } ;
+
+/* Variables and functions */
+
+void ath_debug_airtime(struct ath_softc *sc,
+		struct ath_node *an,
+		u32 rx,
+		u32 tx)
+{
+	struct ath_airtime_stats *astats = &an->airtime_stats;
+
+	astats->rx_airtime += rx;
+	astats->tx_airtime += tx;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          long rx = 100;
+          long tx = 100;
+          int _len_sc0 = 1;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+            sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_an0 = 1;
+          struct ath_node * an = (struct ath_node *) malloc(_len_an0*sizeof(struct ath_node));
+          for(int _i0 = 0; _i0 < _len_an0; _i0++) {
+            an[_i0].airtime_stats.tx_airtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        an[_i0].airtime_stats.rx_airtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ath_debug_airtime(sc,an,rx,tx);
+          free(sc);
+          free(an);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long rx = 255;
+          long tx = 255;
+          int _len_sc0 = 65025;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+            sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_an0 = 65025;
+          struct ath_node * an = (struct ath_node *) malloc(_len_an0*sizeof(struct ath_node));
+          for(int _i0 = 0; _i0 < _len_an0; _i0++) {
+            an[_i0].airtime_stats.tx_airtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        an[_i0].airtime_stats.rx_airtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ath_debug_airtime(sc,an,rx,tx);
+          free(sc);
+          free(an);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long rx = 10;
+          long tx = 10;
+          int _len_sc0 = 100;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+            sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_an0 = 100;
+          struct ath_node * an = (struct ath_node *) malloc(_len_an0*sizeof(struct ath_node));
+          for(int _i0 = 0; _i0 < _len_an0; _i0++) {
+            an[_i0].airtime_stats.tx_airtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        an[_i0].airtime_stats.rx_airtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ath_debug_airtime(sc,an,rx,tx);
+          free(sc);
+          free(an);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

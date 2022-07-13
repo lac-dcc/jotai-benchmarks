@@ -1,0 +1,150 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+
+__attribute__((used)) static double KernelBessel_Q1(const double x)
+{
+	double p, q;
+
+	register long i;
+
+	static const double
+	Pone[] =
+	{
+		0.3511751914303552822533318e+3,
+		0.7210391804904475039280863e+3,
+		0.4259873011654442389886993e+3,
+		0.831898957673850827325226e+2,
+		0.45681716295512267064405e+1,
+		0.3532840052740123642735e-1
+	},
+	Qone[] =
+	{
+		0.74917374171809127714519505e+4,
+		0.154141773392650970499848051e+5,
+		0.91522317015169922705904727e+4,
+		0.18111867005523513506724158e+4,
+		0.1038187585462133728776636e+3,
+		0.1e+1
+	};
+
+	p = Pone[5];
+	q = Qone[5];
+	for (i=4; i >= 0; i--)
+	{
+		p = p*(8.0/x)*(8.0/x)+Pone[i];
+		q = q*(8.0/x)*(8.0/x)+Qone[i];
+	}
+	return (double)(p/q);
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          const double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          double benchRet = KernelBessel_Q1(x);
+          printf("%lf\n", benchRet); 
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          const double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          double benchRet = KernelBessel_Q1(x);
+          printf("%lf\n", benchRet); 
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          const double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          double benchRet = KernelBessel_Q1(x);
+          printf("%lf\n", benchRet); 
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

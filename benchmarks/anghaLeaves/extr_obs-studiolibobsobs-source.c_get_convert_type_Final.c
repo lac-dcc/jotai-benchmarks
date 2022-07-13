@@ -1,0 +1,168 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  static counter = 0;
+  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  static counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    fprintf(stderr, "Usage:\n\
+    prog [OPTIONS] [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+\n\
+    OPTIONS:\n\
+    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  enum video_format { ____Placeholder_video_format } video_format ;
+typedef  enum convert_type { ____Placeholder_convert_type } convert_type ;
+
+/* Variables and functions */
+ int CONVERT_420 ; 
+ int CONVERT_422_U ; 
+ int CONVERT_422_Y ; 
+ int CONVERT_444 ; 
+ int CONVERT_800 ; 
+ int CONVERT_NONE ; 
+ int CONVERT_NV12 ; 
+ int CONVERT_RGB_LIMITED ; 
+#define  VIDEO_FORMAT_BGRA 138 
+#define  VIDEO_FORMAT_BGRX 137 
+#define  VIDEO_FORMAT_I420 136 
+#define  VIDEO_FORMAT_I444 135 
+#define  VIDEO_FORMAT_NONE 134 
+#define  VIDEO_FORMAT_NV12 133 
+#define  VIDEO_FORMAT_RGBA 132 
+#define  VIDEO_FORMAT_UYVY 131 
+#define  VIDEO_FORMAT_Y800 130 
+#define  VIDEO_FORMAT_YUY2 129 
+#define  VIDEO_FORMAT_YVYU 128 
+
+__attribute__((used)) static inline enum convert_type get_convert_type(enum video_format format,
+		bool full_range)
+{
+	switch (format) {
+	case VIDEO_FORMAT_I420:
+		return CONVERT_420;
+	case VIDEO_FORMAT_NV12:
+		return CONVERT_NV12;
+	case VIDEO_FORMAT_I444:
+		return CONVERT_444;
+
+	case VIDEO_FORMAT_YVYU:
+	case VIDEO_FORMAT_YUY2:
+		return CONVERT_422_Y;
+	case VIDEO_FORMAT_UYVY:
+		return CONVERT_422_U;
+
+	case VIDEO_FORMAT_Y800:
+		return CONVERT_800;
+
+	case VIDEO_FORMAT_NONE:
+	case VIDEO_FORMAT_RGBA:
+	case VIDEO_FORMAT_BGRA:
+	case VIDEO_FORMAT_BGRX:
+		return full_range ? CONVERT_NONE : CONVERT_RGB_LIMITED;
+	}
+
+	return CONVERT_NONE;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          enum video_format format = 0;
+          int full_range = 100;
+          enum convert_type benchRet = get_convert_type(format,full_range);
+          printf("{{other_type}} %p\n", &benchRet); 
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          enum video_format format = 0;
+          int full_range = 255;
+          enum convert_type benchRet = get_convert_type(format,full_range);
+          printf("{{other_type}} %p\n", &benchRet); 
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          enum video_format format = 0;
+          int full_range = 10;
+          enum convert_type benchRet = get_convert_type(format,full_range);
+          printf("{{other_type}} %p\n", &benchRet); 
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}
