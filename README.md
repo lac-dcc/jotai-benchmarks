@@ -2,11 +2,11 @@
 
 Jotai is a large collection of executable benchmarks mined from open source
 repositories.
-Each benchmark consists of a single function written in C, plus a driver to run that function. These functions have beentaken from the [AnghaBench](http://cuda.dcc.ufmg.br/angha/home) repository, and have been augmented with code to generate inputs for them.
+Each benchmark consists of a single function written in C, plus a driver to run that function. These functions have been taken from the [AnghaBench](http://cuda.dcc.ufmg.br/angha/home) repository, and have been augmented with code to generate inputs for them.
 
 ## Running
 
-Running Jotai benchmarks is super easy: just compile them and execute them!
+Executing Jotai benchmarks is super easy: just compile and run!
 Each executable program receives a single argument: an integer that specifies
 which input will be used to run that program.
 Every benchmark has at least input 0 (e.g., `./file.exe 0`), but often they
@@ -37,7 +37,7 @@ Usage:
 
 In this example, the benchmark provides two inputs. Each one was produced with
 a different set of constraints. Each set of constraints that we use has a name:
-`big-arr` and `bit-arr-10x`.
+`big-arr` and `bit-arr-10x`, in the above example.
 We have a domain specific language to specify these constraints.
 We are preparing a report about it, but if you want to know more, just write us
 an email.
@@ -51,7 +51,7 @@ learning techniques to solve compilation tasks.
 ### Deriving Statistics
 
 Most of the Jotai functions run for a very short time.
-If you want to time them, be prepared to use solid statistical tools
+If you want to time them, be prepared to use solid statistical equipment
 (t-test, confidence interval, p-values, etc) to deal with high variances.
 If you want more deterministic numbers, we recommend you to analyze the
 benchmarks using [CFGGrind](https://github.com/rimsa/CFGgrind).
@@ -92,3 +92,20 @@ While producing these programs, we decided to stick to the following
 - **Extensible**: we are working on a DSL for the generation of random inputs. In this way, users of Jotai can produce more inputs to the benchmarks without having to hardcode the drivers.
 - **Observable**: we would like to have functions that return values (done!) or at least be able to print the values of local variables, like Whiro does (not done!)
 - **Clean**: every allocated memory chunk should be deallocated at the end of execution. In other words, none of the benchmarks cause memory leaks.
+
+## Browsing the repository
+
+Benchmarks are currently stored in two folders:
+
+- `anghaLeaves`: benchmark functions that do not call any other function
+- `anghaMath`: benchmark functions that call functions from `math.h`
+
+Each benchmark consists of single file. This file contains a single function (which we call the *benchmark*) plus everything that you need to compile and run that function: input generators, forward declarations, the `main` function, stuff to generate random numbers, etc.
+
+We have a few CSV files that we have produced for the benchmarks stored in the `data` folder. This folder is subdivided into three directories:
+
+- `SPEC_CPU_2017`: results produced for [SPEC CPU2017](https://www.spec.org/cpu2017/), which we provide for comparing against our benchmarks.
+- `anghaLeaves`: results produced after observing the execution of the benchmarks in the `anghaLeaves` dataset.
+- `anghaMath`: results produced after observing the execution of the benchmarks in the `anghaMath` dataset.
+
+Additionally, we have a `Scripts` folder with a few useful shell scripts that you can use to collect statistics for the Jotai programs.
