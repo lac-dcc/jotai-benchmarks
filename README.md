@@ -2,36 +2,65 @@
 
 Jotai is a large collection of executable benchmarks mined from open source
 repositories.
-Each benchmark consists of a single function written in C, plus a driver to run that function. These functions have been mined from the [AnghaBench](http://cuda.dcc.ufmg.br/angha/home) repository, and have been augmented with code to generate inputs for them.
+Each benchmark consists of a single function written in C, plus a driver to run that function. These functions have beentaken from the [AnghaBench](http://cuda.dcc.ufmg.br/angha/home) repository, and have been augmented with code to generate inputs for them.
 
-#### Project Structure
+## Running
 
-A small sample showing how this project is organized. It won't be kept up to date, use it as reference when adding new benchmarks.
+Running Jotai benchmarks is super easy: just compile them and execute them!
+Each executable program receives a single argument: an integer that specifies
+which input will be used to run that program.
+Every benchmark has at least input 0 (e.g., `./file.exe 0`), but often they
+have more inputs (1, 2, ...). 
+For instance, the following commands will compile and run `extr_A...al.c` with
+its first input:
 
 ```
-# ================================ dirs only ================================ #
-.
-├── assets
-│  └── img
-├── data
-│  ├── anghaLeaf
-│  │  ├── programs_no-ub_all
-│  │  ├── programs_no-ub_dynInstCnt-greaterThan-staticInstCnt
-│  │  └── programs_no-ub_printableRetVal
-│  └── SPEC_CPU_2017
-├── src
-│  └── anghaLeaf
-│     ├── programs_no-ub_all
-│     ├── programs_no-ub_dynInstCnt-greaterThan-staticInstCnt
-│     └── programs_no-ub_printableRetVal
-├── tmp
-└── util
-   └── notebooks
+$> cd benchmarks/anghaLeaves/
+$> clang extr_Arduinotestsdevicetest_libcmemmove1.c_mymemmove_Final.c
+$> ./a.out 0
 ```
+
+To see all the inputs available for a benchmark, just run the benchmark
+without passing arguments to it.
+For instance, still considering `extr_A...al.c`, we get:
+
+```
+$> ./a.out
+
+Usage:
+    prog [OPTIONS] [ARGS]
+
+    ARGS:
+       0    big-arr
+       1    big-arr-10x
+```
+
+In this example, the benchmark provides two inputs. Each one was produced with
+a different set of constraints. Each set of constraints that we use has a name:
+`big-arr` and `bit-arr-10x`.
+We have a domain specific language to specify these constraints.
+We are preparing a report about it, but if you want to know more, just write us
+an email.
+
+## CompilerGym
+
+Jotai is also available among the datasets used in [CompilerGym](https://compilergym.com/).
+CompilerGym is a library that supports the implementation of reinforcement
+learning techniques to solve compilation tasks.
 
 ## Sample Results
 
-Inputs for these 15,305 programs have been produced with an strategy called "BigArray", which consists in assigning each pointer to a memory region that is a large as the size of the largest integer passed to the benchmark function. We have eliminated from this evaluation the speedups greater than 8.0x, as they are likely to be exceptional results. In total, 105 benchmarks have been eliminated in this way. Below, on the left, we show the [density distribution](https://en.wikipedia.org/wiki/Histogram) of speedups:
+We can extract lots of statistics from the Jotai benchmarks.
+For instance, below we show results for 15,305 programs that contain
+inputs produced by a constraint set called "BigArray".
+This strategy consists in assigning each pointer in the target function to a
+memory region that is a large as the size of the largest integer passed to the
+function.
+We have eliminated from this evaluation the speedups greater than 8.0x, as they
+are likely to be exceptional results.
+In total, 105 benchmarks have been eliminated in this way.
+Below, on the left, we show the
+[density distribution](https://en.wikipedia.org/wiki/Histogram) of speedups:
 
 ![Results involving big array constraints](./assets/img/BigArrayDynResults.jpg?raw=true "Sample Results")
 
