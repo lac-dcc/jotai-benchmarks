@@ -31,7 +31,7 @@ else
   opt_level=$3
   input=$4
   
-  rm -rf *.dot
+  rm -rf *.dot test.json
   
   # Genereate the executable using gcc:
   #
@@ -53,9 +53,9 @@ else
 
   # Collect statistics about the target function:
   #
-  cfggrind_info -f "test::$func_name" -s functions -m json test.cfg
+  cfggrind_info -f "test::$func_name" -s functions -m json test.cfg > test.json
 
   # Now, remove the auxiliary files, to leave the folder clean:
   #
-  rm -rf test test.cfg test.map *.dot 
+  rm -rf test test.cfg test.map *.dot
 fi

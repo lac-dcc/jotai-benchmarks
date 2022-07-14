@@ -23,7 +23,6 @@ def preprocessing_json(in_data):
         if "[" in l or "]" in l:
             continue
         if ":" in l and "," in l:
-            #l.split(":")
             l = l.strip().replace(",","").split(": ")
             s += "\"" + l[0] + "\": \"" + l[1] + "\",\n" 
         elif ":" in l:
@@ -44,13 +43,12 @@ def read_input(in_data):
 
     if len(in_data) < 5:
         print("ERROR: Number of parameters")
-        print("Example to use: python3 collect_stats.py <directory> <json_file> <number_of_inputs> <opt> <stats_1> <stats_2> ... <stats_N>")
+        print("Example to use: python3 collect_stats.py <directory> <number_of_inputs> <opt> <json_file>")
         exit(0)
     directory = in_data[1]
-    json_file = in_data[2]
-    n_inputs = int(in_data[3])
-    opt = in_data[4]
-    return directory, n_inputs, opt, json_file
+    n_inputs = int(in_data[2])
+    opt = in_data[3]
+    return directory, n_inputs, opt
 
 '''
     walks and saves the files inside of list
@@ -104,7 +102,7 @@ def print_solution(name, states, r):
 '''
 if __name__ == "__main__":
 
-    directory, n_inputs, states, opt, json_file = read_input(sys.argv)
+    directory, n_inputs, opt = read_input(sys.argv)
 
     bench = collect_benchmark_from_directory(directory)
     
@@ -117,7 +115,8 @@ if __name__ == "__main__":
         for i in range(n_inputs):
             arg = "sh gen_stats.sh " + b + " " + func + " " + opt +" " + str(i)
             res = execute_process(arg)
-            json_file = preprocessing_json("file.json")
-            r.append(collect_stats(json_file))
-        print_solution(name, states, r)
+            print(res)
+            #json_file = preprocessing_json(open(sys.argv[4], "r"))
+            #r.append(collect_stats(json_file))
+        #print_solution(name, states, r)
         break
