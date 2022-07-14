@@ -1,10 +1,8 @@
 # Jotai Benchmarks
 
-```zsh
-git clone git://github.com/lac-dcc/jotai-benchmarks.git
-```
-
-This repository contains executable benchmarks. Each benchmark consists of a single function, plus a driver to run that function. These functions have been mined from the AnghaBench repository, and have been augmented with code to generate inputs for them.
+Jotai is a large collection of executable benchmarks mined from open source
+repositories.
+Each benchmark consists of a single function written in C, plus a driver to run that function. These functions have been mined from the [AnghaBench](http://cuda.dcc.ufmg.br/angha/home) repository, and have been augmented with code to generate inputs for them.
 
 #### Project Structure
 
