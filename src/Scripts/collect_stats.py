@@ -34,7 +34,10 @@ def preprocessing_json(in_data):
                 s += "\"" + l[1] + "\"\n"
         else:
             s += l.strip() + "\n"
-    return json.loads(s)
+    try:
+        return json.loads(s)
+    except:
+        return ""
 
 '''
     Read input data
@@ -70,11 +73,14 @@ def print_header():
     process the output from code executed by terminal
 '''
 def collect_stats(data):
-    v = [0] * len(4)
-    v[0] = data["blocks"]
-    v[1] = data["phantoms"]
-    v[2] = data["static"]["instructions"]
-    v[3] = data["dynamic"]["instructions"]
+    v = [0] * 4
+    try:
+        v[0] = int(data["blocks"])
+        v[1] = int(data["phantoms"])
+        v[2] = int(data["static"]["instructions"])
+        v[3] = int(data["dynamic"]["instructions"])
+    except:
+        pass
     return v
 
 '''
@@ -89,11 +95,11 @@ def sum_elements(v, pos):
 '''
     print the output in CSV format
 '''
-def print_solution(name, states, r):
-    print(name+", ", end="")
-    for i in range(len(r)):
+def print_solution(count, name,  r):
+    print("%d, %s, " % (count, name), end="")
+    for i in range(len(r[0])):
         print(str(sum_elements(r, i)), end="")
-        if i != len(states)-1:
+        if i != len(r)-1:
             print(", ", end="")
     print()
 
@@ -107,16 +113,19 @@ if __name__ == "__main__":
     bench = collect_benchmark_from_directory(directory)
     
     print_header()
-
-    for b in bench:
+    j = 0
+    for j, b in enumerate(bench):
         name = b.split("/")[-1]
-        func = b.split(".c_")[-1].split("_Final.c")[0]
+        func = b.split(".c_")[-1].split(".h_")[-1].split("_Final.c")[0]
         r = []
         for i in range(n_inputs):
             arg = "sh gen_stats.sh " + b + " " + func + " " + opt +" " + str(i)
+            #print(arg)
             res = execute_process(arg)
-            print(res)
-            #json_file = preprocessing_json(open(sys.argv[4], "r"))
-            #r.append(collect_stats(json_file))
-        #print_solution(name, states, r)
-        break
+            #print(res)
+            json_file = preprocessing_json(open(sys.argv[4], "r"))
+            r.append(collect_stats(json_file))
+        #print(r)
+        print_solution(j, name, r)
+        if j > 1000:
+            break
