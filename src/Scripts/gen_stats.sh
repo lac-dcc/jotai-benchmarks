@@ -54,7 +54,7 @@ else
   # Collect statistics about the target function:
   #
   cfggrind_info -f "test::$func_name" -s functions -m json test.cfg > test.json
-
+  #cat test.json
   # Now, remove the auxiliary files, to leave the folder clean:
   #
   rm -rf test test.cfg test.map *.dot
