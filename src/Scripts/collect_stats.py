@@ -67,7 +67,7 @@ def collect_benchmark_from_directory(directory):
     print the header of CSV file
 '''
 def print_header():
-    print("name, blocks, phantoms, dyn inst, static inst")
+    print("N, name, blocks, phantoms, dyn inst, static inst")
 
 '''
     process the output from code executed by terminal
