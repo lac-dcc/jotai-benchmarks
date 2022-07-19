@@ -99,7 +99,7 @@ def print_solution(count, name,  r):
     print("%d, %s, " % (count, name), end="")
     for i in range(len(r[0])):
         print(str(sum_elements(r, i)), end="")
-        if i != len(r)-1:
+        if i != len(r[0])-1:
             print(", ", end="")
     print()
 
@@ -113,19 +113,18 @@ if __name__ == "__main__":
     bench = collect_benchmark_from_directory(directory)
     
     print_header()
-    j = 0
     for j, b in enumerate(bench):
+        if j >= 1:
+            break
         name = b.split("/")[-1]
         func = b.split(".c_")[-1].split(".h_")[-1].split("_Final.c")[0]
         r = []
         for i in range(n_inputs):
             arg = "sh gen_stats.sh " + b + " " + func + " " + opt +" " + str(i)
-            #print(arg)
+            print(arg)
             res = execute_process(arg)
-            #print(res)
+            print(res)
             json_file = preprocessing_json(open(sys.argv[4], "r"))
             r.append(collect_stats(json_file))
         #print(r)
         print_solution(j, name, r)
-        if j > 1000:
-            break

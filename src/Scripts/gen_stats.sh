@@ -35,12 +35,12 @@ else
   
   # Genereate the executable using gcc:
   #
-  gcc -g -ggdb $opt_level -Wall -fno-stack-protector -no-pie -o test $prog_name
+  clang -g -ggdb $opt_level -Wall -fno-stack-protector -no-pie -fno-inline -o test $prog_name
 
   # Get a map of the instructions in the executable, to enable CFGGrind:
   #
   cfggrind_asmmap ./test > test.map
-
+  
   # Run CFGGrind on the executable:
   #
   valgrind --tool=cfggrind --cfg-outfile=test.cfg --instrs-map=test.map \
@@ -54,7 +54,7 @@ else
   # Collect statistics about the target function:
   #
   cfggrind_info -f "test::$func_name" -s functions -m json test.cfg > test.json
-  #cat test.json
+  cat test.json
   # Now, remove the auxiliary files, to leave the folder clean:
   #
   rm -rf test test.cfg test.map *.dot
