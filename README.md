@@ -42,12 +42,6 @@ We have a domain specific language to specify these constraints.
 We are preparing a report about it, but if you want to know more, just write us
 an email.
 
-### CompilerGym
-
-Jotai is also available among the datasets used in [CompilerGym](https://compilergym.com/).
-CompilerGym is a library that supports the implementation of reinforcement
-learning techniques to solve compilation tasks.
-
 ### Deriving Statistics
 
 Most of the Jotai functions run for a very short time.
