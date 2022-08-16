@@ -103,3 +103,18 @@ We have a few CSV files that we have produced for the benchmarks stored in the `
 - `anghaMath`: results produced after observing the execution of the benchmarks in the `anghaMath` dataset.
 
 Additionally, we have a `Scripts` folder with a few useful shell scripts that you can use to collect statistics for the Jotai programs.
+
+## Technical Report
+
+A draft paper describing the methodology to generate benchmarks is available [here](https://github.com/lac-dcc/jotai-benchmarks/blob/main/assets/doc/LaC_TechReport022022.pdf). This document describes ongoing work; hence, its contents might change in the future. To cite it:
+
+```
+@techreport{Kind22,
+  title = {Jotai: a Methodology for the Generation of Executable C Benchmarks},
+  author = {Cecilia Conde Kind and Michael Canesche and Fernando Magno Quintao Pereira},
+  year = {2022},
+  institution = {Universidade Federal de Minas Gerais},
+  number = {02-2022}
+}
+```
+
