@@ -106,7 +106,7 @@ Additionally, we have a `Scripts` folder with a few useful shell scripts that yo
 
 ## Technical Report
 
-A draft paper describing the methodology to generate benchmarks is available [here](https://github.com/lac-dcc/jotai-benchmarks/blob/main/assets/doc/LaC_TechReport022022.pdf). This document describes ongoing work; hence, its contents might change in the future. To cite it:
+A draft paper describing the methodology to generate benchmarks is available [here](https://raw.githubusercontent.com/lac-dcc/jotai-benchmarks/main/assets/doc/LaC_TechReport022022.pdf). This document describes ongoing work; hence, its contents might change in the future. To cite it:
 
 ```
 @techreport{Kind22,
