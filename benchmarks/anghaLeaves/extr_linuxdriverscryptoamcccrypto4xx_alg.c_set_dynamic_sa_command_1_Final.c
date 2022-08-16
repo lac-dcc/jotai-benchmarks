@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -114,72 +110,6 @@ int main(int argc, char *argv[]) {
           int cp_pay = 100;
           int cp_hdr = 100;
           int _len_sa0 = 1;
-          struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
-          for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
-            sa[_i0].sa_command_1.bf.crypto_mode31 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.crypto_mode9_8 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.feedback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.sa_rev = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.hmac_muting = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.extended_seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.seq_num_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.mutable_bit_proc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.copy_pad = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.copy_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.copy_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.w = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          set_dynamic_sa_command_1(sa,cm,hmac_mc,cfb,esn,sn_mask,mute,cp_pad,cp_pay,cp_hdr);
-          free(sa);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int cm = 255;
-          int hmac_mc = 255;
-          int cfb = 255;
-          int esn = 255;
-          int sn_mask = 255;
-          int mute = 255;
-          int cp_pad = 255;
-          int cp_pay = 255;
-          int cp_hdr = 255;
-          int _len_sa0 = 65025;
-          struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
-          for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
-            sa[_i0].sa_command_1.bf.crypto_mode31 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.crypto_mode9_8 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.feedback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.sa_rev = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.hmac_muting = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.extended_seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.seq_num_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.mutable_bit_proc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.copy_pad = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.copy_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.copy_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.w = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          set_dynamic_sa_command_1(sa,cm,hmac_mc,cfb,esn,sn_mask,mute,cp_pad,cp_pay,cp_hdr);
-          free(sa);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int cm = 10;
-          int hmac_mc = 10;
-          int cfb = 10;
-          int esn = 10;
-          int sn_mask = 10;
-          int mute = 10;
-          int cp_pad = 10;
-          int cp_pay = 10;
-          int cp_hdr = 10;
-          int _len_sa0 = 100;
           struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
           for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
             sa[_i0].sa_command_1.bf.crypto_mode31 = ((-2 * (next_i()%2)) + 1) * next_i();

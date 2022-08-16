@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -146,62 +142,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_asset0 = 1;
-          struct TYPE_3__ * asset = (struct TYPE_3__ *) malloc(_len_asset0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_asset0; _i0++) {
-            asset[_i0].asset_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].asset_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].extension_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].core_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].core_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xbr_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xbr_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xxch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xxch_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].x96_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].x96_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].lbr_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].lbr_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xll_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xll_size = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = set_exss_offsets(asset);
-          printf("%d\n", benchRet); 
-          free(asset);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_asset0 = 65025;
-          struct TYPE_3__ * asset = (struct TYPE_3__ *) malloc(_len_asset0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_asset0; _i0++) {
-            asset[_i0].asset_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].asset_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].extension_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].core_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].core_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xbr_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xbr_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xxch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xxch_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].x96_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].x96_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].lbr_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].lbr_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xll_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        asset[_i0].xll_size = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = set_exss_offsets(asset);
-          printf("%d\n", benchRet); 
-          free(asset);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_asset0 = 100;
           struct TYPE_3__ * asset = (struct TYPE_3__ *) malloc(_len_asset0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_asset0; _i0++) {
             asset[_i0].asset_offset = ((-2 * (next_i()%2)) + 1) * next_i();

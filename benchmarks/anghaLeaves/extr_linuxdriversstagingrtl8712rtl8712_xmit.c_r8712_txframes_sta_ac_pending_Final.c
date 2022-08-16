@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -121,68 +117,6 @@ int main(int argc, char *argv[]) {
             padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_pattrib0 = 1;
-          struct pkt_attrib * pattrib = (struct pkt_attrib *) malloc(_len_pattrib0*sizeof(struct pkt_attrib));
-          for(int _i0 = 0; _i0 < _len_pattrib0; _i0++) {
-            pattrib[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_pattrib__i0__psta0 = 1;
-          pattrib[_i0].psta = (struct sta_info *) malloc(_len_pattrib__i0__psta0*sizeof(struct sta_info));
-          for(int _j0 = 0; _j0 < _len_pattrib__i0__psta0; _j0++) {
-            pattrib[_i0].psta->sta_xmitpriv.be_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].psta->sta_xmitpriv.vo_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].psta->sta_xmitpriv.vi_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].psta->sta_xmitpriv.bk_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = r8712_txframes_sta_ac_pending(padapter,pattrib);
-          printf("%d\n", benchRet); 
-          free(padapter);
-          for(int _aux = 0; _aux < _len_pattrib0; _aux++) {
-          free(pattrib[_aux].psta);
-          }
-          free(pattrib);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_padapter0 = 65025;
-          struct _adapter * padapter = (struct _adapter *) malloc(_len_padapter0*sizeof(struct _adapter));
-          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pattrib0 = 65025;
-          struct pkt_attrib * pattrib = (struct pkt_attrib *) malloc(_len_pattrib0*sizeof(struct pkt_attrib));
-          for(int _i0 = 0; _i0 < _len_pattrib0; _i0++) {
-            pattrib[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_pattrib__i0__psta0 = 1;
-          pattrib[_i0].psta = (struct sta_info *) malloc(_len_pattrib__i0__psta0*sizeof(struct sta_info));
-          for(int _j0 = 0; _j0 < _len_pattrib__i0__psta0; _j0++) {
-            pattrib[_i0].psta->sta_xmitpriv.be_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].psta->sta_xmitpriv.vo_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].psta->sta_xmitpriv.vi_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].psta->sta_xmitpriv.bk_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = r8712_txframes_sta_ac_pending(padapter,pattrib);
-          printf("%d\n", benchRet); 
-          free(padapter);
-          for(int _aux = 0; _aux < _len_pattrib0; _aux++) {
-          free(pattrib[_aux].psta);
-          }
-          free(pattrib);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_padapter0 = 100;
-          struct _adapter * padapter = (struct _adapter *) malloc(_len_padapter0*sizeof(struct _adapter));
-          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pattrib0 = 100;
           struct pkt_attrib * pattrib = (struct pkt_attrib *) malloc(_len_pattrib0*sizeof(struct pkt_attrib));
           for(int _i0 = 0; _i0 < _len_pattrib0; _i0++) {
             pattrib[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();

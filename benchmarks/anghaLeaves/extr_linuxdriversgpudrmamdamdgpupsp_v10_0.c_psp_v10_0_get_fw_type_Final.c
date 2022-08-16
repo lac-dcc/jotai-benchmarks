@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -185,46 +181,6 @@ int main(int argc, char *argv[]) {
             ucode[_i0].ucode_id = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_type0 = 1;
-          enum psp_gfx_fw_type * type = (enum psp_gfx_fw_type *) malloc(_len_type0*sizeof(enum psp_gfx_fw_type));
-          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
-            type[_i0] = 0;
-          }
-          int benchRet = psp_v10_0_get_fw_type(ucode,type);
-          printf("%d\n", benchRet); 
-          free(ucode);
-          free(type);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_ucode0 = 65025;
-          struct amdgpu_firmware_info * ucode = (struct amdgpu_firmware_info *) malloc(_len_ucode0*sizeof(struct amdgpu_firmware_info));
-          for(int _i0 = 0; _i0 < _len_ucode0; _i0++) {
-            ucode[_i0].ucode_id = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_type0 = 65025;
-          enum psp_gfx_fw_type * type = (enum psp_gfx_fw_type *) malloc(_len_type0*sizeof(enum psp_gfx_fw_type));
-          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
-            type[_i0] = 0;
-          }
-          int benchRet = psp_v10_0_get_fw_type(ucode,type);
-          printf("%d\n", benchRet); 
-          free(ucode);
-          free(type);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_ucode0 = 100;
-          struct amdgpu_firmware_info * ucode = (struct amdgpu_firmware_info *) malloc(_len_ucode0*sizeof(struct amdgpu_firmware_info));
-          for(int _i0 = 0; _i0 < _len_ucode0; _i0++) {
-            ucode[_i0].ucode_id = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_type0 = 100;
           enum psp_gfx_fw_type * type = (enum psp_gfx_fw_type *) malloc(_len_type0*sizeof(enum psp_gfx_fw_type));
           for(int _i0 = 0; _i0 < _len_type0; _i0++) {
             type[_i0] = 0;

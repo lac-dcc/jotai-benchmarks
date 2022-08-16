@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -108,56 +104,6 @@ int main(int argc, char *argv[]) {
         row[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_str0 = 1;
-          struct TYPE_6__ * str = (struct TYPE_6__ *) malloc(_len_str0*sizeof(struct TYPE_6__));
-          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
-            str[_i0].stringlen = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          layout_func(row,str,start_i);
-          free(row);
-          free(str);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int start_i = 255;
-          int _len_row0 = 65025;
-          struct TYPE_5__ * row = (struct TYPE_5__ *) malloc(_len_row0*sizeof(struct TYPE_5__));
-          for(int _i0 = 0; _i0 < _len_row0; _i0++) {
-            row[_i0].num_chars = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].baseline_y_delta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        row[_i0].ymin = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].ymax = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_str0 = 65025;
-          struct TYPE_6__ * str = (struct TYPE_6__ *) malloc(_len_str0*sizeof(struct TYPE_6__));
-          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
-            str[_i0].stringlen = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          layout_func(row,str,start_i);
-          free(row);
-          free(str);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int start_i = 10;
-          int _len_row0 = 100;
-          struct TYPE_5__ * row = (struct TYPE_5__ *) malloc(_len_row0*sizeof(struct TYPE_5__));
-          for(int _i0 = 0; _i0 < _len_row0; _i0++) {
-            row[_i0].num_chars = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].baseline_y_delta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        row[_i0].ymin = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].ymax = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_str0 = 100;
           struct TYPE_6__ * str = (struct TYPE_6__ *) malloc(_len_str0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_str0; _i0++) {
             str[_i0].stringlen = ((-2 * (next_i()%2)) + 1) * next_i();

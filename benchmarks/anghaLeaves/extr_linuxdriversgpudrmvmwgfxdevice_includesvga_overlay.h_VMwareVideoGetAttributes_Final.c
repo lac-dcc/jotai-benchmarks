@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -169,84 +165,6 @@ int main(int argc, char *argv[]) {
             pitches[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_offsets0 = 1;
-          int * offsets = (int *) malloc(_len_offsets0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_offsets0; _i0++) {
-            offsets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = VMwareVideoGetAttributes(format,width,height,size,pitches,offsets);
-          printf("%d\n", benchRet); 
-          free(width);
-          free(height);
-          free(size);
-          free(pitches);
-          free(offsets);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          const int format = 255;
-          int _len_width0 = 65025;
-          int * width = (int *) malloc(_len_width0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
-            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_height0 = 65025;
-          int * height = (int *) malloc(_len_height0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
-            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_size0 = 65025;
-          int * size = (int *) malloc(_len_size0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
-            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pitches0 = 65025;
-          int * pitches = (int *) malloc(_len_pitches0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pitches0; _i0++) {
-            pitches[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_offsets0 = 65025;
-          int * offsets = (int *) malloc(_len_offsets0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_offsets0; _i0++) {
-            offsets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = VMwareVideoGetAttributes(format,width,height,size,pitches,offsets);
-          printf("%d\n", benchRet); 
-          free(width);
-          free(height);
-          free(size);
-          free(pitches);
-          free(offsets);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          const int format = 10;
-          int _len_width0 = 100;
-          int * width = (int *) malloc(_len_width0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
-            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_height0 = 100;
-          int * height = (int *) malloc(_len_height0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
-            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_size0 = 100;
-          int * size = (int *) malloc(_len_size0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
-            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pitches0 = 100;
-          int * pitches = (int *) malloc(_len_pitches0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pitches0; _i0++) {
-            pitches[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_offsets0 = 100;
           int * offsets = (int *) malloc(_len_offsets0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_offsets0; _i0++) {
             offsets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

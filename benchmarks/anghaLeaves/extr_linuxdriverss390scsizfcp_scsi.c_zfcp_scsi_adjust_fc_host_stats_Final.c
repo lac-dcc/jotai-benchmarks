@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -163,170 +159,6 @@ int main(int argc, char *argv[]) {
         data[_i0].seconds_since_last_reset = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_old0 = 1;
-          struct fsf_qtcb_bottom_port * old = (struct fsf_qtcb_bottom_port *) malloc(_len_old0*sizeof(struct fsf_qtcb_bottom_port));
-          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
-            old[_i0].output_mb = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].input_mb = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].control_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].output_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].input_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].invalid_crcs = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].invalid_tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].psp_error_counts = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].loss_of_signal = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].loss_of_sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].link_failure = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].dumped_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].error_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].nos = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].lip = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].rx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].seconds_since_last_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          zfcp_scsi_adjust_fc_host_stats(fc_stats,data,old);
-          free(fc_stats);
-          free(data);
-          free(old);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_fc_stats0 = 65025;
-          struct fc_host_statistics * fc_stats = (struct fc_host_statistics *) malloc(_len_fc_stats0*sizeof(struct fc_host_statistics));
-          for(int _i0 = 0; _i0 < _len_fc_stats0; _i0++) {
-            fc_stats[_i0].fcp_output_megabytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].fcp_input_megabytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].fcp_control_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].fcp_output_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].fcp_input_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].invalid_crc_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].invalid_tx_word_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].prim_seq_protocol_err_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].loss_of_signal_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].loss_of_sync_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].link_failure_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].dumped_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].error_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].nos_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].lip_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].rx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].seconds_since_last_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_data0 = 65025;
-          struct fsf_qtcb_bottom_port * data = (struct fsf_qtcb_bottom_port *) malloc(_len_data0*sizeof(struct fsf_qtcb_bottom_port));
-          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].output_mb = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].input_mb = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].control_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].output_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].input_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].invalid_crcs = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].invalid_tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].psp_error_counts = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].loss_of_signal = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].loss_of_sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].link_failure = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].dumped_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].error_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].nos = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].lip = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].rx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].seconds_since_last_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_old0 = 65025;
-          struct fsf_qtcb_bottom_port * old = (struct fsf_qtcb_bottom_port *) malloc(_len_old0*sizeof(struct fsf_qtcb_bottom_port));
-          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
-            old[_i0].output_mb = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].input_mb = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].control_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].output_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].input_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].invalid_crcs = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].invalid_tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].psp_error_counts = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].loss_of_signal = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].loss_of_sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].link_failure = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].dumped_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].error_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].nos = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].lip = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].rx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].seconds_since_last_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          zfcp_scsi_adjust_fc_host_stats(fc_stats,data,old);
-          free(fc_stats);
-          free(data);
-          free(old);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_fc_stats0 = 100;
-          struct fc_host_statistics * fc_stats = (struct fc_host_statistics *) malloc(_len_fc_stats0*sizeof(struct fc_host_statistics));
-          for(int _i0 = 0; _i0 < _len_fc_stats0; _i0++) {
-            fc_stats[_i0].fcp_output_megabytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].fcp_input_megabytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].fcp_control_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].fcp_output_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].fcp_input_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].invalid_crc_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].invalid_tx_word_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].prim_seq_protocol_err_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].loss_of_signal_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].loss_of_sync_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].link_failure_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].dumped_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].error_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].nos_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].lip_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].rx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc_stats[_i0].seconds_since_last_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_data0 = 100;
-          struct fsf_qtcb_bottom_port * data = (struct fsf_qtcb_bottom_port *) malloc(_len_data0*sizeof(struct fsf_qtcb_bottom_port));
-          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].output_mb = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].input_mb = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].control_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].output_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].input_requests = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].invalid_crcs = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].invalid_tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].psp_error_counts = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].loss_of_signal = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].loss_of_sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].link_failure = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].dumped_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].error_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].nos = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].lip = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].rx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].tx_words = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].seconds_since_last_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_old0 = 100;
           struct fsf_qtcb_bottom_port * old = (struct fsf_qtcb_bottom_port *) malloc(_len_old0*sizeof(struct fsf_qtcb_bottom_port));
           for(int _i0 = 0; _i0 < _len_old0; _i0++) {
             old[_i0].output_mb = ((-2 * (next_i()%2)) + 1) * next_i();

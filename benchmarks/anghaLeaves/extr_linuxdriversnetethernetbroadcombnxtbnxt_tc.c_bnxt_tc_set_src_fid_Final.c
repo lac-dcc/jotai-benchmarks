@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -103,48 +99,6 @@ int main(int argc, char *argv[]) {
             bp[_i0].pf.fw_fid = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_flow0 = 1;
-          struct bnxt_tc_flow * flow = (struct bnxt_tc_flow *) malloc(_len_flow0*sizeof(struct bnxt_tc_flow));
-          for(int _i0 = 0; _i0 < _len_flow0; _i0++) {
-            flow[_i0].src_fid = ((-2 * (next_i()%2)) + 1) * next_i();
-        flow[_i0].actions.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          bnxt_tc_set_src_fid(bp,flow,src_fid);
-          free(bp);
-          free(flow);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int src_fid = 255;
-          int _len_bp0 = 65025;
-          struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
-          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].pf.fw_fid = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_flow0 = 65025;
-          struct bnxt_tc_flow * flow = (struct bnxt_tc_flow *) malloc(_len_flow0*sizeof(struct bnxt_tc_flow));
-          for(int _i0 = 0; _i0 < _len_flow0; _i0++) {
-            flow[_i0].src_fid = ((-2 * (next_i()%2)) + 1) * next_i();
-        flow[_i0].actions.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          bnxt_tc_set_src_fid(bp,flow,src_fid);
-          free(bp);
-          free(flow);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int src_fid = 10;
-          int _len_bp0 = 100;
-          struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
-          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].pf.fw_fid = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_flow0 = 100;
           struct bnxt_tc_flow * flow = (struct bnxt_tc_flow *) malloc(_len_flow0*sizeof(struct bnxt_tc_flow));
           for(int _i0 = 0; _i0 < _len_flow0; _i0++) {
             flow[_i0].src_fid = ((-2 * (next_i()%2)) + 1) * next_i();

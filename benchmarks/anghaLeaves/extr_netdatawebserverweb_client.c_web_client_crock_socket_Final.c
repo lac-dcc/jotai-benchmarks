@@ -1,0 +1,131 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+       1            big-arr-10x\n\
+\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct web_client {int dummy; } ;
+
+/* Variables and functions */
+
+__attribute__((used)) static inline int web_client_crock_socket(struct web_client *w) {
+#ifdef TCP_CORK
+    if(likely(web_client_is_corkable(w) && !w->tcp_cork && w->ofd != -1)) {
+        w->tcp_cork = 1;
+        if(unlikely(setsockopt(w->ofd, IPPROTO_TCP, TCP_CORK, (char *) &w->tcp_cork, sizeof(int)) != 0)) {
+            error("%llu: failed to enable TCP_CORK on socket.", w->id);
+
+            w->tcp_cork = 0;
+            return -1;
+        }
+    }
+#else
+    (void)w;
+#endif /* TCP_CORK */
+
+    return 0;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          int _len_w0 = 1;
+          struct web_client * w = (struct web_client *) malloc(_len_w0*sizeof(struct web_client));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+            w[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = web_client_crock_socket(w);
+          printf("%d\n", benchRet); 
+          free(w);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_w0 = 100;
+          struct web_client * w = (struct web_client *) malloc(_len_w0*sizeof(struct web_client));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+            w[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int benchRet = web_client_crock_socket(w);
+          printf("%d\n", benchRet); 
+          free(w);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

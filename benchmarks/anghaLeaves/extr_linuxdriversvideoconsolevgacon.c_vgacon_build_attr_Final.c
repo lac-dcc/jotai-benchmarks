@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -122,50 +118,6 @@ int main(int argc, char *argv[]) {
           int reverse = 100;
           int italic = 100;
           int _len_c0 = 1;
-          struct vc_data * c = (struct vc_data *) malloc(_len_c0*sizeof(struct vc_data));
-          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].vc_itcolor = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].vc_ulcolor = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].vc_halfcolor = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = vgacon_build_attr(c,color,intensity,blink,underline,reverse,italic);
-          printf("%d\n", benchRet); 
-          free(c);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int color = 255;
-          int intensity = 255;
-          int blink = 255;
-          int underline = 255;
-          int reverse = 255;
-          int italic = 255;
-          int _len_c0 = 65025;
-          struct vc_data * c = (struct vc_data *) malloc(_len_c0*sizeof(struct vc_data));
-          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].vc_itcolor = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].vc_ulcolor = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].vc_halfcolor = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = vgacon_build_attr(c,color,intensity,blink,underline,reverse,italic);
-          printf("%d\n", benchRet); 
-          free(c);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int color = 10;
-          int intensity = 10;
-          int blink = 10;
-          int underline = 10;
-          int reverse = 10;
-          int italic = 10;
-          int _len_c0 = 100;
           struct vc_data * c = (struct vc_data *) malloc(_len_c0*sizeof(struct vc_data));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
             c[_i0].vc_itcolor = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            dlinked\n\
-       2            bintree\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -96,49 +92,6 @@ void _delete_L(struct TYPE_3__ *aux_L[], int aux_L_size) {
       free(aux_L[i]);
 }
 
-struct TYPE_3__ *_allocate_Dlinked_L(int length, struct TYPE_3__ *aux_dlinked_L[] ) {
-  struct TYPE_3__ *walker = (struct TYPE_3__ *)malloc(sizeof(struct TYPE_3__));
-
-  aux_dlinked_L[0] = walker;
-  walker->prev = NULL;
-  walker->next = NULL;
-
-  struct TYPE_3__ *head = walker;
-  for(int i = 1; i < length; i++) {
-    walker->next = (struct TYPE_3__ *)malloc(sizeof(struct TYPE_3__));
-    walker->next->prev = walker;
-    walker = walker->next;
-    aux_dlinked_L[i] = walker;
-    if (i == (length - 1)) 
-      walker->next = NULL;  }
-
-  return head;
-}
-
-void _delete_Dlinked_L(struct TYPE_3__ *aux_dlinked_L[], int aux_dlinked_L_size) {
-  for(int i = 0; i < aux_dlinked_L_size; i++) 
-    if(aux_dlinked_L[i])
-      free(aux_dlinked_L[i]);
-}
-
-struct TYPE_3__ *_allocateBinTree_L(int length, struct TYPE_3__ *aux_tree_L[], int *counter_L) {
-  if(length == 0)
-    return NULL;
-  struct TYPE_3__ *walker = (struct TYPE_3__ *)malloc(sizeof(struct TYPE_3__));
-
-  aux_tree_L[*counter_L] = walker;
-  (*counter_L)++;
-  walker->prev = _allocateBinTree_L(length - 1, aux_tree_L, counter_L);
-  walker->next = _allocateBinTree_L(length - 1, aux_tree_L, counter_L);
-  return walker;
-}
-
-void _deleteBinTree_L(struct TYPE_3__ *aux_tree_L[]) {
-  for(int i = 0; i < 1023; i++) 
-    if(aux_tree_L[i])
-      free(aux_tree_L[i]);
-}
-
 
 
 
@@ -161,27 +114,6 @@ int main(int argc, char *argv[]) {
           struct TYPE_3__ * L = _allocate_L(1, aux_L);
           tlist_clear(L);
           _delete_L(aux_L, 1);
-        
-        break;
-    }
-    // dlinked
-    case 1:
-    {
-          struct TYPE_3__ * aux_dlinked_L[10000];
-          struct TYPE_3__ * L = _allocate_Dlinked_L(10000, aux_dlinked_L);
-          tlist_clear(L);
-          _delete_Dlinked_L(aux_dlinked_L, 10000);
-        
-        break;
-    }
-    // bintree
-    case 2:
-    {
-          int counter_L= 0;
-          struct TYPE_3__ *  aux_tree_L[1023];
-          struct TYPE_3__ * L = _allocateBinTree_L(10, aux_tree_L, &counter_L);
-          tlist_clear(L);
-          _deleteBinTree_L(aux_tree_L);
         
         break;
     }

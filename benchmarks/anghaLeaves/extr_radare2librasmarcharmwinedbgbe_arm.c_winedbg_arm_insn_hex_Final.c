@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -85,48 +81,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_arminsn0 = 1;
-          struct winedbg_arm_insn * arminsn = (struct winedbg_arm_insn *) malloc(_len_arminsn0*sizeof(struct winedbg_arm_insn));
-          for(int _i0 = 0; _i0 < _len_arminsn0; _i0++) {
-              int _len_arminsn__i0__str_hex0 = 1;
-          arminsn[_i0].str_hex = (char *) malloc(_len_arminsn__i0__str_hex0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_arminsn__i0__str_hex0; _j0++) {
-            arminsn[_i0].str_hex[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          char * benchRet = winedbg_arm_insn_hex(arminsn);
-          printf("%c\n", ((*benchRet) %26) + 'a'); 
-          for(int _aux = 0; _aux < _len_arminsn0; _aux++) {
-          free(arminsn[_aux].str_hex);
-          }
-          free(arminsn);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_arminsn0 = 65025;
-          struct winedbg_arm_insn * arminsn = (struct winedbg_arm_insn *) malloc(_len_arminsn0*sizeof(struct winedbg_arm_insn));
-          for(int _i0 = 0; _i0 < _len_arminsn0; _i0++) {
-              int _len_arminsn__i0__str_hex0 = 1;
-          arminsn[_i0].str_hex = (char *) malloc(_len_arminsn__i0__str_hex0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_arminsn__i0__str_hex0; _j0++) {
-            arminsn[_i0].str_hex[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          char * benchRet = winedbg_arm_insn_hex(arminsn);
-          printf("%c\n", ((*benchRet) %26) + 'a'); 
-          for(int _aux = 0; _aux < _len_arminsn0; _aux++) {
-          free(arminsn[_aux].str_hex);
-          }
-          free(arminsn);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_arminsn0 = 100;
           struct winedbg_arm_insn * arminsn = (struct winedbg_arm_insn *) malloc(_len_arminsn0*sizeof(struct winedbg_arm_insn));
           for(int _i0 = 0; _i0 < _len_arminsn0; _i0++) {
               int _len_arminsn__i0__str_hex0 = 1;

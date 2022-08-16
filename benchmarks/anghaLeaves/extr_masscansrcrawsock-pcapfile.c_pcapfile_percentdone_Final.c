@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -103,64 +99,6 @@ int main(int argc, char *argv[]) {
           }
           }
           int _len_r_bytes_read0 = 1;
-          int * r_bytes_read = (int *) malloc(_len_r_bytes_read0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_r_bytes_read0; _i0++) {
-            r_bytes_read[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          unsigned int benchRet = pcapfile_percentdone(capfile,r_bytes_read);
-          printf("%u\n", benchRet); 
-          for(int _aux = 0; _aux < _len_capfile0; _aux++) {
-          free(capfile[_aux].fp);
-          }
-          free(capfile);
-          free(r_bytes_read);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_capfile0 = 65025;
-          struct PcapFile * capfile = (struct PcapFile *) malloc(_len_capfile0*sizeof(struct PcapFile));
-          for(int _i0 = 0; _i0 < _len_capfile0; _i0++) {
-            capfile[_i0].bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
-        capfile[_i0].file_size = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_capfile__i0__fp0 = 1;
-          capfile[_i0].fp = (int *) malloc(_len_capfile__i0__fp0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_capfile__i0__fp0; _j0++) {
-            capfile[_i0].fp[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_r_bytes_read0 = 65025;
-          int * r_bytes_read = (int *) malloc(_len_r_bytes_read0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_r_bytes_read0; _i0++) {
-            r_bytes_read[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          unsigned int benchRet = pcapfile_percentdone(capfile,r_bytes_read);
-          printf("%u\n", benchRet); 
-          for(int _aux = 0; _aux < _len_capfile0; _aux++) {
-          free(capfile[_aux].fp);
-          }
-          free(capfile);
-          free(r_bytes_read);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_capfile0 = 100;
-          struct PcapFile * capfile = (struct PcapFile *) malloc(_len_capfile0*sizeof(struct PcapFile));
-          for(int _i0 = 0; _i0 < _len_capfile0; _i0++) {
-            capfile[_i0].bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
-        capfile[_i0].file_size = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_capfile__i0__fp0 = 1;
-          capfile[_i0].fp = (int *) malloc(_len_capfile__i0__fp0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_capfile__i0__fp0; _j0++) {
-            capfile[_i0].fp[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_r_bytes_read0 = 100;
           int * r_bytes_read = (int *) malloc(_len_r_bytes_read0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_r_bytes_read0; _i0++) {
             r_bytes_read[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -118,68 +114,6 @@ int main(int argc, char *argv[]) {
             ioc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_hwif0 = 1;
-          struct bfa_ioc_hwif_s * hwif = (struct bfa_ioc_hwif_s *) malloc(_len_hwif0*sizeof(struct bfa_ioc_hwif_s));
-          for(int _i0 = 0; _i0 < _len_hwif0; _i0++) {
-            hwif[_i0].ioc_get_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_set_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_get_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_set_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_ack = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_leave = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_join = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_ownership_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_notify_fail = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_firmware_unlock = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_firmware_lock = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          bfa_ioc_set_ctx_hwif(ioc,hwif);
-          free(ioc);
-          free(hwif);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_ioc0 = 65025;
-          struct bfa_ioc_s * ioc = (struct bfa_ioc_s *) malloc(_len_ioc0*sizeof(struct bfa_ioc_s));
-          for(int _i0 = 0; _i0 < _len_ioc0; _i0++) {
-            ioc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_hwif0 = 65025;
-          struct bfa_ioc_hwif_s * hwif = (struct bfa_ioc_hwif_s *) malloc(_len_hwif0*sizeof(struct bfa_ioc_hwif_s));
-          for(int _i0 = 0; _i0 < _len_hwif0; _i0++) {
-            hwif[_i0].ioc_get_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_set_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_get_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_set_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_ack = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_leave = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_join = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_ownership_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_notify_fail = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_firmware_unlock = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_firmware_lock = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          bfa_ioc_set_ctx_hwif(ioc,hwif);
-          free(ioc);
-          free(hwif);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_ioc0 = 100;
-          struct bfa_ioc_s * ioc = (struct bfa_ioc_s *) malloc(_len_ioc0*sizeof(struct bfa_ioc_s));
-          for(int _i0 = 0; _i0 < _len_ioc0; _i0++) {
-            ioc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_hwif0 = 100;
           struct bfa_ioc_hwif_s * hwif = (struct bfa_ioc_hwif_s *) malloc(_len_hwif0*sizeof(struct bfa_ioc_hwif_s));
           for(int _i0 = 0; _i0 < _len_hwif0; _i0++) {
             hwif[_i0].ioc_get_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -120,130 +116,6 @@ int main(int argc, char *argv[]) {
           int remove = 100;
           int fuzzy = 100;
           int _len_s0 = 1;
-          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].dts = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].pts = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].cur_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_s__i0__cur_frame_offset0 = 1;
-          s[_i0].cur_frame_offset = (long *) malloc(_len_s__i0__cur_frame_offset0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_offset0; _j0++) {
-            s[_i0].cur_frame_offset[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        s[_i0].frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].next_frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_s__i0__cur_frame_end0 = 1;
-          s[_i0].cur_frame_end = (long *) malloc(_len_s__i0__cur_frame_end0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_end0; _j0++) {
-            s[_i0].cur_frame_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_s__i0__cur_frame_dts0 = 1;
-          s[_i0].cur_frame_dts = (long *) malloc(_len_s__i0__cur_frame_dts0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_dts0; _j0++) {
-            s[_i0].cur_frame_dts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_s__i0__cur_frame_pts0 = 1;
-          s[_i0].cur_frame_pts = (long *) malloc(_len_s__i0__cur_frame_pts0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pts0; _j0++) {
-            s[_i0].cur_frame_pts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_s__i0__cur_frame_pos0 = 1;
-          s[_i0].cur_frame_pos = (int *) malloc(_len_s__i0__cur_frame_pos0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pos0; _j0++) {
-            s[_i0].cur_frame_pos[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          ff_fetch_timestamp(s,off,remove,fuzzy);
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_offset);
-          }
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_end);
-          }
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_dts);
-          }
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_pts);
-          }
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_pos);
-          }
-          free(s);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int off = 255;
-          int remove = 255;
-          int fuzzy = 255;
-          int _len_s0 = 65025;
-          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].dts = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].pts = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].cur_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_s__i0__cur_frame_offset0 = 1;
-          s[_i0].cur_frame_offset = (long *) malloc(_len_s__i0__cur_frame_offset0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_offset0; _j0++) {
-            s[_i0].cur_frame_offset[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        s[_i0].frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].next_frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_s__i0__cur_frame_end0 = 1;
-          s[_i0].cur_frame_end = (long *) malloc(_len_s__i0__cur_frame_end0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_end0; _j0++) {
-            s[_i0].cur_frame_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_s__i0__cur_frame_dts0 = 1;
-          s[_i0].cur_frame_dts = (long *) malloc(_len_s__i0__cur_frame_dts0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_dts0; _j0++) {
-            s[_i0].cur_frame_dts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_s__i0__cur_frame_pts0 = 1;
-          s[_i0].cur_frame_pts = (long *) malloc(_len_s__i0__cur_frame_pts0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pts0; _j0++) {
-            s[_i0].cur_frame_pts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_s__i0__cur_frame_pos0 = 1;
-          s[_i0].cur_frame_pos = (int *) malloc(_len_s__i0__cur_frame_pos0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pos0; _j0++) {
-            s[_i0].cur_frame_pos[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          ff_fetch_timestamp(s,off,remove,fuzzy);
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_offset);
-          }
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_end);
-          }
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_dts);
-          }
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_pts);
-          }
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].cur_frame_pos);
-          }
-          free(s);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int off = 10;
-          int remove = 10;
-          int fuzzy = 10;
-          int _len_s0 = 100;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0].dts = ((-2 * (next_i()%2)) + 1) * next_i();

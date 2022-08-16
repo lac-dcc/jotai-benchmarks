@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -123,64 +119,6 @@ int main(int argc, char *argv[]) {
             f[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
           int _len_nextTime0 = 1;
-          int * nextTime = (int *) malloc(_len_nextTime0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_nextTime0; _i0++) {
-            nextTime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          Fade(flags,f,clamp,nextTime,offsetTime,bFlags,fadeAmount);
-          free(flags);
-          free(f);
-          free(nextTime);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          float clamp = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int offsetTime = 255;
-          long bFlags = 255;
-          float fadeAmount = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_flags0 = 65025;
-          int * flags = (int *) malloc(_len_flags0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
-            flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_f0 = 65025;
-          float * f = (float *) malloc(_len_f0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_nextTime0 = 65025;
-          int * nextTime = (int *) malloc(_len_nextTime0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_nextTime0; _i0++) {
-            nextTime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          Fade(flags,f,clamp,nextTime,offsetTime,bFlags,fadeAmount);
-          free(flags);
-          free(f);
-          free(nextTime);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          float clamp = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int offsetTime = 10;
-          long bFlags = 10;
-          float fadeAmount = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_flags0 = 100;
-          int * flags = (int *) malloc(_len_flags0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
-            flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_f0 = 100;
-          float * f = (float *) malloc(_len_f0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_nextTime0 = 100;
           int * nextTime = (int *) malloc(_len_nextTime0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_nextTime0; _i0++) {
             nextTime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

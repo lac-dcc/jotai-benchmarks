@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -120,70 +116,6 @@ int main(int argc, char *argv[]) {
             calloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_free_func0 = 1;
-          int * free_func = (int *) malloc(_len_free_func0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_free_func0; _i0++) {
-            free_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = uv_replace_allocator(malloc_func,realloc_func,calloc_func,free_func);
-          printf("%d\n", benchRet); 
-          free(malloc_func);
-          free(realloc_func);
-          free(calloc_func);
-          free(free_func);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_malloc_func0 = 65025;
-          int * malloc_func = (int *) malloc(_len_malloc_func0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_malloc_func0; _i0++) {
-            malloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_realloc_func0 = 65025;
-          int * realloc_func = (int *) malloc(_len_realloc_func0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_realloc_func0; _i0++) {
-            realloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_calloc_func0 = 65025;
-          int * calloc_func = (int *) malloc(_len_calloc_func0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_calloc_func0; _i0++) {
-            calloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_free_func0 = 65025;
-          int * free_func = (int *) malloc(_len_free_func0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_free_func0; _i0++) {
-            free_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = uv_replace_allocator(malloc_func,realloc_func,calloc_func,free_func);
-          printf("%d\n", benchRet); 
-          free(malloc_func);
-          free(realloc_func);
-          free(calloc_func);
-          free(free_func);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_malloc_func0 = 100;
-          int * malloc_func = (int *) malloc(_len_malloc_func0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_malloc_func0; _i0++) {
-            malloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_realloc_func0 = 100;
-          int * realloc_func = (int *) malloc(_len_realloc_func0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_realloc_func0; _i0++) {
-            realloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_calloc_func0 = 100;
-          int * calloc_func = (int *) malloc(_len_calloc_func0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_calloc_func0; _i0++) {
-            calloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_free_func0 = 100;
           int * free_func = (int *) malloc(_len_free_func0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_free_func0; _i0++) {
             free_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -286,78 +282,6 @@ int main(int argc, char *argv[]) {
           long polarities = 100;
           int interlaced = 100;
           int _len_fmt0 = 1;
-          struct v4l2_dv_timings * fmt = (struct v4l2_dv_timings *) malloc(_len_fmt0*sizeof(struct v4l2_dv_timings));
-          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
-            fmt[_i0].bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.hfrontporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.vfrontporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.hsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.vsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.hbackporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.vbackporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.il_vbackporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.il_vfrontporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.il_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.pixelclock = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.standards = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.polarities = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = v4l2_detect_cvt(frame_height,hfreq,vsync,active_width,polarities,interlaced,fmt);
-          printf("%d\n", benchRet); 
-          free(fmt);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned int frame_height = 255;
-          unsigned int hfreq = 255;
-          unsigned int vsync = 255;
-          unsigned int active_width = 255;
-          long polarities = 255;
-          int interlaced = 255;
-          int _len_fmt0 = 65025;
-          struct v4l2_dv_timings * fmt = (struct v4l2_dv_timings *) malloc(_len_fmt0*sizeof(struct v4l2_dv_timings));
-          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
-            fmt[_i0].bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.hfrontporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.vfrontporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.hsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.vsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.hbackporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.vbackporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.il_vbackporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.il_vfrontporch = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.il_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.pixelclock = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.standards = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].bt.polarities = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = v4l2_detect_cvt(frame_height,hfreq,vsync,active_width,polarities,interlaced,fmt);
-          printf("%d\n", benchRet); 
-          free(fmt);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          unsigned int frame_height = 10;
-          unsigned int hfreq = 10;
-          unsigned int vsync = 10;
-          unsigned int active_width = 10;
-          long polarities = 10;
-          int interlaced = 10;
-          int _len_fmt0 = 100;
           struct v4l2_dv_timings * fmt = (struct v4l2_dv_timings *) malloc(_len_fmt0*sizeof(struct v4l2_dv_timings));
           for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
             fmt[_i0].bt.width = ((-2 * (next_i()%2)) + 1) * next_i();

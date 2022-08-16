@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -176,116 +172,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_hwmgr0 = 1;
-          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
-          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].feature_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hwmgr__i0__backend0 = 1;
-          hwmgr[_i0].backend = (struct vega10_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct vega10_hwmgr));
-          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
-            hwmgr[_i0].backend->gfx_activity_average_alpha = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->uclk_average_alpha = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->socclk_average_alpha = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->gfxclk_average_alpha = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->display_voltage_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.sclk_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.socclk_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.mclk_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.pcie_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.dcefclk_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.power_containment_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.enable_pkg_pwr_tracking_feature = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.enable_tdc_limit_feature = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.clock_stretcher_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.ulv_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.sclk_deep_sleep_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.fan_control_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.thermal_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.fw_ctf_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.avfs_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.led_dpm_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.vr0hot_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.vr1hot_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.regulator_hot_gpio_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.didt_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.didt_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.sq_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.edc_didt_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.psm_didt_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.gc_didt_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.dbr_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.tcp_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.td_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.db_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.disable_water_mark = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          vega10_set_default_registry_data(hwmgr);
-          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
-          free(hwmgr[_aux].backend);
-          }
-          free(hwmgr);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_hwmgr0 = 65025;
-          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
-          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].feature_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hwmgr__i0__backend0 = 1;
-          hwmgr[_i0].backend = (struct vega10_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct vega10_hwmgr));
-          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
-            hwmgr[_i0].backend->gfx_activity_average_alpha = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->uclk_average_alpha = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->socclk_average_alpha = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->gfxclk_average_alpha = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->display_voltage_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.sclk_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.socclk_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.mclk_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.pcie_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.dcefclk_dpm_key_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.power_containment_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.enable_pkg_pwr_tracking_feature = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.enable_tdc_limit_feature = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.clock_stretcher_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.ulv_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.sclk_deep_sleep_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.fan_control_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.thermal_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.fw_ctf_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.avfs_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.led_dpm_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.vr0hot_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.vr1hot_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.regulator_hot_gpio_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.didt_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.didt_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.sq_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.edc_didt_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.psm_didt_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.gc_didt_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.dbr_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.tcp_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.td_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.db_ramping_support = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->registry_data.disable_water_mark = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          vega10_set_default_registry_data(hwmgr);
-          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
-          free(hwmgr[_aux].backend);
-          }
-          free(hwmgr);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_hwmgr0 = 100;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
             hwmgr[_i0].feature_mask = ((-2 * (next_i()%2)) + 1) * next_i();

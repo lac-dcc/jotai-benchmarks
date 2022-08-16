@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -207,58 +203,6 @@ int main(int argc, char *argv[]) {
           unsigned int iflag = 100;
           int brg = 100;
           int _len_up0 = 1;
-          struct uart_sunzilog_port * up = (struct uart_sunzilog_port *) malloc(_len_up0*sizeof(struct uart_sunzilog_port));
-          for(int _i0 = 0; _i0 < _len_up0; _i0++) {
-              int _len_up__i0__curregs0 = 1;
-          up[_i0].curregs = (int *) malloc(_len_up__i0__curregs0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_up__i0__curregs0; _j0++) {
-            up[_i0].curregs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        up[_i0].parity_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        up[_i0].port.read_status_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        up[_i0].port.ignore_status_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          sunzilog_convert_to_zs(up,cflag,iflag,brg);
-          for(int _aux = 0; _aux < _len_up0; _aux++) {
-          free(up[_aux].curregs);
-          }
-          free(up);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned int cflag = 255;
-          unsigned int iflag = 255;
-          int brg = 255;
-          int _len_up0 = 65025;
-          struct uart_sunzilog_port * up = (struct uart_sunzilog_port *) malloc(_len_up0*sizeof(struct uart_sunzilog_port));
-          for(int _i0 = 0; _i0 < _len_up0; _i0++) {
-              int _len_up__i0__curregs0 = 1;
-          up[_i0].curregs = (int *) malloc(_len_up__i0__curregs0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_up__i0__curregs0; _j0++) {
-            up[_i0].curregs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        up[_i0].parity_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        up[_i0].port.read_status_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        up[_i0].port.ignore_status_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          sunzilog_convert_to_zs(up,cflag,iflag,brg);
-          for(int _aux = 0; _aux < _len_up0; _aux++) {
-          free(up[_aux].curregs);
-          }
-          free(up);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          unsigned int cflag = 10;
-          unsigned int iflag = 10;
-          int brg = 10;
-          int _len_up0 = 100;
           struct uart_sunzilog_port * up = (struct uart_sunzilog_port *) malloc(_len_up0*sizeof(struct uart_sunzilog_port));
           for(int _i0 = 0; _i0 < _len_up0; _i0++) {
               int _len_up__i0__curregs0 = 1;

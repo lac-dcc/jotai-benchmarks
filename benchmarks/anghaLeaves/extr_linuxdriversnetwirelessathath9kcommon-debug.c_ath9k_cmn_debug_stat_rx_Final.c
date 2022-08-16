@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -140,80 +136,6 @@ int main(int argc, char *argv[]) {
         rxstats[_i0].rx_pkts_all = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_rs0 = 1;
-          struct ath_rx_status * rs = (struct ath_rx_status *) malloc(_len_rs0*sizeof(struct ath_rx_status));
-          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
-            rs[_i0].rs_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].rs_phyerr = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].rs_datalen = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          ath9k_cmn_debug_stat_rx(rxstats,rs);
-          for(int _aux = 0; _aux < _len_rxstats0; _aux++) {
-          free(rxstats[_aux].phy_err_stats);
-          }
-          free(rxstats);
-          free(rs);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_rxstats0 = 65025;
-          struct ath_rx_stats * rxstats = (struct ath_rx_stats *) malloc(_len_rxstats0*sizeof(struct ath_rx_stats));
-          for(int _i0 = 0; _i0 < _len_rxstats0; _i0++) {
-              int _len_rxstats__i0__phy_err_stats0 = 1;
-          rxstats[_i0].phy_err_stats = (int *) malloc(_len_rxstats__i0__phy_err_stats0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_rxstats__i0__phy_err_stats0; _j0++) {
-            rxstats[_i0].phy_err_stats[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        rxstats[_i0].phy_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].decrypt_busy_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].post_delim_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].pre_delim_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].mic_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].decrypt_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].rx_bytes_all = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].rx_pkts_all = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rs0 = 65025;
-          struct ath_rx_status * rs = (struct ath_rx_status *) malloc(_len_rs0*sizeof(struct ath_rx_status));
-          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
-            rs[_i0].rs_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].rs_phyerr = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].rs_datalen = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          ath9k_cmn_debug_stat_rx(rxstats,rs);
-          for(int _aux = 0; _aux < _len_rxstats0; _aux++) {
-          free(rxstats[_aux].phy_err_stats);
-          }
-          free(rxstats);
-          free(rs);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_rxstats0 = 100;
-          struct ath_rx_stats * rxstats = (struct ath_rx_stats *) malloc(_len_rxstats0*sizeof(struct ath_rx_stats));
-          for(int _i0 = 0; _i0 < _len_rxstats0; _i0++) {
-              int _len_rxstats__i0__phy_err_stats0 = 1;
-          rxstats[_i0].phy_err_stats = (int *) malloc(_len_rxstats__i0__phy_err_stats0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_rxstats__i0__phy_err_stats0; _j0++) {
-            rxstats[_i0].phy_err_stats[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        rxstats[_i0].phy_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].decrypt_busy_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].post_delim_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].pre_delim_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].mic_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].decrypt_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].rx_bytes_all = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxstats[_i0].rx_pkts_all = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rs0 = 100;
           struct ath_rx_status * rs = (struct ath_rx_status *) malloc(_len_rs0*sizeof(struct ath_rx_status));
           for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
             rs[_i0].rs_status = ((-2 * (next_i()%2)) + 1) * next_i();

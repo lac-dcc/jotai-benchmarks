@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -109,60 +105,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_req0 = 1;
-          struct httprequest * req = (struct httprequest *) malloc(_len_req0*sizeof(struct httprequest));
-          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].upgrade_request = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].upgrade = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].done_processing = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].connect_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].callcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].prot_version = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].rcmd = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].writedelay = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].skip = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].cl = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].partno = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].testno = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].checkindex = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          init_httprequest(req);
-          free(req);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_req0 = 65025;
-          struct httprequest * req = (struct httprequest *) malloc(_len_req0*sizeof(struct httprequest));
-          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].upgrade_request = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].upgrade = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].done_processing = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].connect_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].callcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].prot_version = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].rcmd = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].writedelay = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].skip = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].cl = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].partno = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].testno = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].checkindex = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          init_httprequest(req);
-          free(req);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_req0 = 100;
           struct httprequest * req = (struct httprequest *) malloc(_len_req0*sizeof(struct httprequest));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
             req[_i0].upgrade_request = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -110,76 +106,6 @@ int main(int argc, char *argv[]) {
           }
           }
           int _len_mrdb0 = 1;
-          struct TYPE_9__ * mrdb = (struct TYPE_9__ *) malloc(_len_mrdb0*sizeof(struct TYPE_9__));
-          for(int _i0 = 0; _i0 < _len_mrdb0; _i0++) {
-              int _len_mrdb__i0__dbg0 = 1;
-          mrdb[_i0].dbg = (struct TYPE_7__ *) malloc(_len_mrdb__i0__dbg0*sizeof(struct TYPE_7__));
-          for(int _j0 = 0; _j0 < _len_mrdb__i0__dbg0; _j0++) {
-            mrdb[_i0].dbg->prvci = ((-2 * (next_i()%2)) + 1) * next_i();
-        mrdb[_i0].dbg->xm = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = dbgcmd_next(mrb,mrdb);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_mrb0; _aux++) {
-          free(mrb[_aux].c);
-          }
-          free(mrb);
-          for(int _aux = 0; _aux < _len_mrdb0; _aux++) {
-          free(mrdb[_aux].dbg);
-          }
-          free(mrdb);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_mrb0 = 65025;
-          struct TYPE_10__ * mrb = (struct TYPE_10__ *) malloc(_len_mrb0*sizeof(struct TYPE_10__));
-          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
-              int _len_mrb__i0__c0 = 1;
-          mrb[_i0].c = (struct TYPE_8__ *) malloc(_len_mrb__i0__c0*sizeof(struct TYPE_8__));
-          for(int _j0 = 0; _j0 < _len_mrb__i0__c0; _j0++) {
-            mrb[_i0].c->ci = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_mrdb0 = 65025;
-          struct TYPE_9__ * mrdb = (struct TYPE_9__ *) malloc(_len_mrdb0*sizeof(struct TYPE_9__));
-          for(int _i0 = 0; _i0 < _len_mrdb0; _i0++) {
-              int _len_mrdb__i0__dbg0 = 1;
-          mrdb[_i0].dbg = (struct TYPE_7__ *) malloc(_len_mrdb__i0__dbg0*sizeof(struct TYPE_7__));
-          for(int _j0 = 0; _j0 < _len_mrdb__i0__dbg0; _j0++) {
-            mrdb[_i0].dbg->prvci = ((-2 * (next_i()%2)) + 1) * next_i();
-        mrdb[_i0].dbg->xm = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = dbgcmd_next(mrb,mrdb);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_mrb0; _aux++) {
-          free(mrb[_aux].c);
-          }
-          free(mrb);
-          for(int _aux = 0; _aux < _len_mrdb0; _aux++) {
-          free(mrdb[_aux].dbg);
-          }
-          free(mrdb);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_mrb0 = 100;
-          struct TYPE_10__ * mrb = (struct TYPE_10__ *) malloc(_len_mrb0*sizeof(struct TYPE_10__));
-          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
-              int _len_mrb__i0__c0 = 1;
-          mrb[_i0].c = (struct TYPE_8__ *) malloc(_len_mrb__i0__c0*sizeof(struct TYPE_8__));
-          for(int _j0 = 0; _j0 < _len_mrb__i0__c0; _j0++) {
-            mrb[_i0].c->ci = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_mrdb0 = 100;
           struct TYPE_9__ * mrdb = (struct TYPE_9__ *) malloc(_len_mrdb0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_mrdb0; _i0++) {
               int _len_mrdb__i0__dbg0 = 1;

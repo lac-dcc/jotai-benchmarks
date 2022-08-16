@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -124,84 +120,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_yee0 = 1;
-          struct vpfe_ipipe_yee * yee = (struct vpfe_ipipe_yee *) malloc(_len_yee0*sizeof(struct vpfe_ipipe_yee));
-          for(int _i0 = 0; _i0 < _len_yee0; _i0++) {
-            yee[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].en_halo_red = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_shft = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_00 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_01 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_02 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_10 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_11 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_12 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_20 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_21 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_22 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].yee_thr = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_gain = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_thr1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_thr2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_gain_grad = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_ofst_grad = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_yee__i0__table0 = 1;
-          yee[_i0].table = (long *) malloc(_len_yee__i0__table0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_yee__i0__table0; _j0++) {
-            yee[_i0].table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = ipipe_validate_yee_params(yee);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_yee0; _aux++) {
-          free(yee[_aux].table);
-          }
-          free(yee);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_yee0 = 65025;
-          struct vpfe_ipipe_yee * yee = (struct vpfe_ipipe_yee *) malloc(_len_yee0*sizeof(struct vpfe_ipipe_yee));
-          for(int _i0 = 0; _i0 < _len_yee0; _i0++) {
-            yee[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].en_halo_red = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_shft = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_00 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_01 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_02 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_10 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_11 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_12 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_20 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_21 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].hpf_coef_22 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].yee_thr = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_gain = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_thr1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_thr2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_gain_grad = ((-2 * (next_i()%2)) + 1) * next_i();
-        yee[_i0].es_ofst_grad = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_yee__i0__table0 = 1;
-          yee[_i0].table = (long *) malloc(_len_yee__i0__table0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_yee__i0__table0; _j0++) {
-            yee[_i0].table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = ipipe_validate_yee_params(yee);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_yee0; _aux++) {
-          free(yee[_aux].table);
-          }
-          free(yee);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_yee0 = 100;
           struct vpfe_ipipe_yee * yee = (struct vpfe_ipipe_yee *) malloc(_len_yee0*sizeof(struct vpfe_ipipe_yee));
           for(int _i0 = 0; _i0 < _len_yee0; _i0++) {
             yee[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();

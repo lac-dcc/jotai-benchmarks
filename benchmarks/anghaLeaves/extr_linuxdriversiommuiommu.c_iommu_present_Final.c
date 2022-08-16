@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -86,48 +82,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_bus0 = 1;
-          struct bus_type * bus = (struct bus_type *) malloc(_len_bus0*sizeof(struct bus_type));
-          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-              int _len_bus__i0__iommu_ops0 = 1;
-          bus[_i0].iommu_ops = (int *) malloc(_len_bus__i0__iommu_ops0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_bus__i0__iommu_ops0; _j0++) {
-            bus[_i0].iommu_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = iommu_present(bus);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_bus0; _aux++) {
-          free(bus[_aux].iommu_ops);
-          }
-          free(bus);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_bus0 = 65025;
-          struct bus_type * bus = (struct bus_type *) malloc(_len_bus0*sizeof(struct bus_type));
-          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-              int _len_bus__i0__iommu_ops0 = 1;
-          bus[_i0].iommu_ops = (int *) malloc(_len_bus__i0__iommu_ops0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_bus__i0__iommu_ops0; _j0++) {
-            bus[_i0].iommu_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = iommu_present(bus);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_bus0; _aux++) {
-          free(bus[_aux].iommu_ops);
-          }
-          free(bus);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_bus0 = 100;
           struct bus_type * bus = (struct bus_type *) malloc(_len_bus0*sizeof(struct bus_type));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
               int _len_bus__i0__iommu_ops0 = 1;

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -103,52 +99,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_ipr_cmd0 = 1;
-          struct ipr_cmnd * ipr_cmd = (struct ipr_cmnd *) malloc(_len_ipr_cmd0*sizeof(struct ipr_cmnd));
-          for(int _i0 = 0; _i0 < _len_ipr_cmd0; _i0++) {
-            ipr_cmd[_i0].job_step = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_ipr_cmd__i0__ioa_cfg0 = 1;
-          ipr_cmd[_i0].ioa_cfg = (struct ipr_ioa_cfg *) malloc(_len_ipr_cmd__i0__ioa_cfg0*sizeof(struct ipr_ioa_cfg));
-          for(int _j0 = 0; _j0 < _len_ipr_cmd__i0__ioa_cfg0; _j0++) {
-            ipr_cmd[_i0].ioa_cfg->sdt_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        ipr_cmd[_i0].ioa_cfg->dump_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = ipr_reset_wait_for_dump(ipr_cmd);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_ipr_cmd0; _aux++) {
-          free(ipr_cmd[_aux].ioa_cfg);
-          }
-          free(ipr_cmd);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_ipr_cmd0 = 65025;
-          struct ipr_cmnd * ipr_cmd = (struct ipr_cmnd *) malloc(_len_ipr_cmd0*sizeof(struct ipr_cmnd));
-          for(int _i0 = 0; _i0 < _len_ipr_cmd0; _i0++) {
-            ipr_cmd[_i0].job_step = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_ipr_cmd__i0__ioa_cfg0 = 1;
-          ipr_cmd[_i0].ioa_cfg = (struct ipr_ioa_cfg *) malloc(_len_ipr_cmd__i0__ioa_cfg0*sizeof(struct ipr_ioa_cfg));
-          for(int _j0 = 0; _j0 < _len_ipr_cmd__i0__ioa_cfg0; _j0++) {
-            ipr_cmd[_i0].ioa_cfg->sdt_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        ipr_cmd[_i0].ioa_cfg->dump_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = ipr_reset_wait_for_dump(ipr_cmd);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_ipr_cmd0; _aux++) {
-          free(ipr_cmd[_aux].ioa_cfg);
-          }
-          free(ipr_cmd);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_ipr_cmd0 = 100;
           struct ipr_cmnd * ipr_cmd = (struct ipr_cmnd *) malloc(_len_ipr_cmd0*sizeof(struct ipr_cmnd));
           for(int _i0 = 0; _i0 < _len_ipr_cmd0; _i0++) {
             ipr_cmd[_i0].job_step = ((-2 * (next_i()%2)) + 1) * next_i();

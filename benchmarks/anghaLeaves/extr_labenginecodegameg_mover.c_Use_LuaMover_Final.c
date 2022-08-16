@@ -15,26 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            linked\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -190,22 +187,6 @@ int main(int argc, char *argv[]) {
           _delete_ent(aux_ent, 1);
           _delete_other(aux_other, 1);
           _delete_activator(aux_activator, 1);
-        
-        break;
-    }
-    // linked
-    case 1:
-    {
-          struct TYPE_6__ * aux_ent[10000];
-          struct TYPE_6__ * ent = _allocate_ent(10000, aux_ent);
-          struct TYPE_6__ * aux_other[10000];
-          struct TYPE_6__ * other = _allocate_other(10000, aux_other);
-          struct TYPE_6__ * aux_activator[10000];
-          struct TYPE_6__ * activator = _allocate_activator(10000, aux_activator);
-          Use_LuaMover(ent,other,activator);
-          _delete_ent(aux_ent, 10000);
-          _delete_other(aux_other, 10000);
-          _delete_activator(aux_activator, 10000);
         
         break;
     }

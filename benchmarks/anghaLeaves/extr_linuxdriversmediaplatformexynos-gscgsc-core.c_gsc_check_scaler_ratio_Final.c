@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -116,50 +112,6 @@ int main(int argc, char *argv[]) {
           int rot = 100;
           int out_path = 100;
           int _len_var0 = 1;
-          struct gsc_variant * var = (struct gsc_variant *) malloc(_len_var0*sizeof(struct gsc_variant));
-          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].sc_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].local_sc_down = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].sc_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = gsc_check_scaler_ratio(var,sw,sh,dw,dh,rot,out_path);
-          printf("%d\n", benchRet); 
-          free(var);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int sw = 255;
-          int sh = 255;
-          int dw = 255;
-          int dh = 255;
-          int rot = 255;
-          int out_path = 255;
-          int _len_var0 = 65025;
-          struct gsc_variant * var = (struct gsc_variant *) malloc(_len_var0*sizeof(struct gsc_variant));
-          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].sc_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].local_sc_down = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].sc_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = gsc_check_scaler_ratio(var,sw,sh,dw,dh,rot,out_path);
-          printf("%d\n", benchRet); 
-          free(var);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int sw = 10;
-          int sh = 10;
-          int dw = 10;
-          int dh = 10;
-          int rot = 10;
-          int out_path = 10;
-          int _len_var0 = 100;
           struct gsc_variant * var = (struct gsc_variant *) malloc(_len_var0*sizeof(struct gsc_variant));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
             var[_i0].sc_down_max = ((-2 * (next_i()%2)) + 1) * next_i();

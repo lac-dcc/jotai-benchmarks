@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -133,80 +129,6 @@ int main(int argc, char *argv[]) {
             max_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_parent0 = 1;
-          struct inode * parent = (struct inode *) malloc(_len_parent0*sizeof(struct inode));
-          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
-            parent[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
-        parent[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = export_encode_fh(inode,fid,max_len,parent);
-          printf("%d\n", benchRet); 
-          free(inode);
-          free(fid);
-          free(max_len);
-          free(parent);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_inode0 = 65025;
-          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
-          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
-        inode[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_fid0 = 65025;
-          struct fid * fid = (struct fid *) malloc(_len_fid0*sizeof(struct fid));
-          for(int _i0 = 0; _i0 < _len_fid0; _i0++) {
-            fid[_i0].i32.parent_gen = ((-2 * (next_i()%2)) + 1) * next_i();
-        fid[_i0].i32.parent_ino = ((-2 * (next_i()%2)) + 1) * next_i();
-        fid[_i0].i32.gen = ((-2 * (next_i()%2)) + 1) * next_i();
-        fid[_i0].i32.ino = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_max_len0 = 65025;
-          int * max_len = (int *) malloc(_len_max_len0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_max_len0; _i0++) {
-            max_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_parent0 = 65025;
-          struct inode * parent = (struct inode *) malloc(_len_parent0*sizeof(struct inode));
-          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
-            parent[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
-        parent[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = export_encode_fh(inode,fid,max_len,parent);
-          printf("%d\n", benchRet); 
-          free(inode);
-          free(fid);
-          free(max_len);
-          free(parent);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_inode0 = 100;
-          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
-          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
-        inode[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_fid0 = 100;
-          struct fid * fid = (struct fid *) malloc(_len_fid0*sizeof(struct fid));
-          for(int _i0 = 0; _i0 < _len_fid0; _i0++) {
-            fid[_i0].i32.parent_gen = ((-2 * (next_i()%2)) + 1) * next_i();
-        fid[_i0].i32.parent_ino = ((-2 * (next_i()%2)) + 1) * next_i();
-        fid[_i0].i32.gen = ((-2 * (next_i()%2)) + 1) * next_i();
-        fid[_i0].i32.ino = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_max_len0 = 100;
-          int * max_len = (int *) malloc(_len_max_len0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_max_len0; _i0++) {
-            max_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_parent0 = 100;
           struct inode * parent = (struct inode *) malloc(_len_parent0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
             parent[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();

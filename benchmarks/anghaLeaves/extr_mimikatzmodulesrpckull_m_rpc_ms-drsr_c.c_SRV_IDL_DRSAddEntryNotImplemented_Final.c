@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -103,62 +99,6 @@ int main(int argc, char *argv[]) {
             pdwOutVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_pmsgOut0 = 1;
-          int * pmsgOut = (int *) malloc(_len_pmsgOut0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pmsgOut0; _i0++) {
-            pmsgOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = SRV_IDL_DRSAddEntryNotImplemented(hDrs,dwInVersion,pmsgIn,pdwOutVersion,pmsgOut);
-          printf("%d\n", benchRet); 
-          free(pmsgIn);
-          free(pdwOutVersion);
-          free(pmsgOut);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int hDrs = 255;
-          int dwInVersion = 255;
-          int _len_pmsgIn0 = 65025;
-          int * pmsgIn = (int *) malloc(_len_pmsgIn0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pmsgIn0; _i0++) {
-            pmsgIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pdwOutVersion0 = 65025;
-          int * pdwOutVersion = (int *) malloc(_len_pdwOutVersion0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pdwOutVersion0; _i0++) {
-            pdwOutVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pmsgOut0 = 65025;
-          int * pmsgOut = (int *) malloc(_len_pmsgOut0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pmsgOut0; _i0++) {
-            pmsgOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = SRV_IDL_DRSAddEntryNotImplemented(hDrs,dwInVersion,pmsgIn,pdwOutVersion,pmsgOut);
-          printf("%d\n", benchRet); 
-          free(pmsgIn);
-          free(pdwOutVersion);
-          free(pmsgOut);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int hDrs = 10;
-          int dwInVersion = 10;
-          int _len_pmsgIn0 = 100;
-          int * pmsgIn = (int *) malloc(_len_pmsgIn0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pmsgIn0; _i0++) {
-            pmsgIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pdwOutVersion0 = 100;
-          int * pdwOutVersion = (int *) malloc(_len_pdwOutVersion0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pdwOutVersion0; _i0++) {
-            pdwOutVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pmsgOut0 = 100;
           int * pmsgOut = (int *) malloc(_len_pmsgOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pmsgOut0; _i0++) {
             pmsgOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -104,72 +100,6 @@ int main(int argc, char *argv[]) {
         p_data[_i0].dcb_enable_flag = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_p_src0 = 1;
-          struct qed_dcbx_results * p_src = (struct qed_dcbx_results *) malloc(_len_p_src0*sizeof(struct qed_dcbx_results));
-          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
-              int _len_p_src__i0__arr0 = 1;
-          p_src[_i0].arr = (struct TYPE_2__ *) malloc(_len_p_src__i0__arr0*sizeof(struct TYPE_2__));
-          for(int _j0 = 0; _j0 < _len_p_src__i0__arr0; _j0++) {
-            p_src[_i0].arr->dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].arr->tc = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].arr->priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].arr->enable = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          qed_dcbx_update_protocol_data(p_data,p_src,type);
-          free(p_data);
-          for(int _aux = 0; _aux < _len_p_src0; _aux++) {
-          free(p_src[_aux].arr);
-          }
-          free(p_src);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          enum dcbx_protocol_type type = 0;
-          int _len_p_data0 = 65025;
-          struct protocol_dcb_data * p_data = (struct protocol_dcb_data *) malloc(_len_p_data0*sizeof(struct protocol_dcb_data));
-          for(int _i0 = 0; _i0 < _len_p_data0; _i0++) {
-            p_data[_i0].dcb_dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_data[_i0].dcb_tc = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_data[_i0].dcb_priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_data[_i0].dcb_enable_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_p_src0 = 65025;
-          struct qed_dcbx_results * p_src = (struct qed_dcbx_results *) malloc(_len_p_src0*sizeof(struct qed_dcbx_results));
-          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
-              int _len_p_src__i0__arr0 = 1;
-          p_src[_i0].arr = (struct TYPE_2__ *) malloc(_len_p_src__i0__arr0*sizeof(struct TYPE_2__));
-          for(int _j0 = 0; _j0 < _len_p_src__i0__arr0; _j0++) {
-            p_src[_i0].arr->dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].arr->tc = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].arr->priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].arr->enable = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          qed_dcbx_update_protocol_data(p_data,p_src,type);
-          free(p_data);
-          for(int _aux = 0; _aux < _len_p_src0; _aux++) {
-          free(p_src[_aux].arr);
-          }
-          free(p_src);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          enum dcbx_protocol_type type = 0;
-          int _len_p_data0 = 100;
-          struct protocol_dcb_data * p_data = (struct protocol_dcb_data *) malloc(_len_p_data0*sizeof(struct protocol_dcb_data));
-          for(int _i0 = 0; _i0 < _len_p_data0; _i0++) {
-            p_data[_i0].dcb_dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_data[_i0].dcb_tc = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_data[_i0].dcb_priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_data[_i0].dcb_enable_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_p_src0 = 100;
           struct qed_dcbx_results * p_src = (struct qed_dcbx_results *) malloc(_len_p_src0*sizeof(struct qed_dcbx_results));
           for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
               int _len_p_src__i0__arr0 = 1;

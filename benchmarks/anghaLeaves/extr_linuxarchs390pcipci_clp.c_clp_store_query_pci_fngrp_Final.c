@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -113,64 +109,6 @@ int main(int argc, char *argv[]) {
         zdev[_i0].tlb_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_response0 = 1;
-          struct clp_rsp_query_pci_grp * response = (struct clp_rsp_query_pci_grp *) malloc(_len_response0*sizeof(struct clp_rsp_query_pci_grp));
-          for(int _i0 = 0; _i0 < _len_response0; _i0++) {
-            response[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].mui = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].noi = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].msia = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].dasm = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].refresh = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          clp_store_query_pci_fngrp(zdev,response);
-          free(zdev);
-          free(response);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_zdev0 = 65025;
-          struct zpci_dev * zdev = (struct zpci_dev *) malloc(_len_zdev0*sizeof(struct zpci_dev));
-          for(int _i0 = 0; _i0 < _len_zdev0; _i0++) {
-            zdev[_i0].max_bus_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].fmb_update = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].max_msi = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].msi_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].dma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].tlb_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_response0 = 65025;
-          struct clp_rsp_query_pci_grp * response = (struct clp_rsp_query_pci_grp *) malloc(_len_response0*sizeof(struct clp_rsp_query_pci_grp));
-          for(int _i0 = 0; _i0 < _len_response0; _i0++) {
-            response[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].mui = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].noi = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].msia = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].dasm = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].refresh = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          clp_store_query_pci_fngrp(zdev,response);
-          free(zdev);
-          free(response);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_zdev0 = 100;
-          struct zpci_dev * zdev = (struct zpci_dev *) malloc(_len_zdev0*sizeof(struct zpci_dev));
-          for(int _i0 = 0; _i0 < _len_zdev0; _i0++) {
-            zdev[_i0].max_bus_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].fmb_update = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].max_msi = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].msi_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].dma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].tlb_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_response0 = 100;
           struct clp_rsp_query_pci_grp * response = (struct clp_rsp_query_pci_grp *) malloc(_len_response0*sizeof(struct clp_rsp_query_pci_grp));
           for(int _i0 = 0; _i0 < _len_response0; _i0++) {
             response[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -108,52 +104,6 @@ int main(int argc, char *argv[]) {
     {
           enum d0i3_capability caps = 0;
           int _len_skl0 = 1;
-          struct skl * skl = (struct skl *) malloc(_len_skl0*sizeof(struct skl));
-          for(int _i0 = 0; _i0 < _len_skl0; _i0++) {
-              int _len_skl__i0__skl_sst0 = 1;
-          skl[_i0].skl_sst = (struct TYPE_2__ *) malloc(_len_skl__i0__skl_sst0*sizeof(struct TYPE_2__));
-          for(int _j0 = 0; _j0 < _len_skl__i0__skl_sst0; _j0++) {
-            skl[_i0].skl_sst->d0i3.non_streaming = ((-2 * (next_i()%2)) + 1) * next_i();
-        skl[_i0].skl_sst->d0i3.streaming = ((-2 * (next_i()%2)) + 1) * next_i();
-        skl[_i0].skl_sst->d0i3.non_d0i3 = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          skl_tplg_d0i3_put(skl,caps);
-          for(int _aux = 0; _aux < _len_skl0; _aux++) {
-          free(skl[_aux].skl_sst);
-          }
-          free(skl);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          enum d0i3_capability caps = 0;
-          int _len_skl0 = 65025;
-          struct skl * skl = (struct skl *) malloc(_len_skl0*sizeof(struct skl));
-          for(int _i0 = 0; _i0 < _len_skl0; _i0++) {
-              int _len_skl__i0__skl_sst0 = 1;
-          skl[_i0].skl_sst = (struct TYPE_2__ *) malloc(_len_skl__i0__skl_sst0*sizeof(struct TYPE_2__));
-          for(int _j0 = 0; _j0 < _len_skl__i0__skl_sst0; _j0++) {
-            skl[_i0].skl_sst->d0i3.non_streaming = ((-2 * (next_i()%2)) + 1) * next_i();
-        skl[_i0].skl_sst->d0i3.streaming = ((-2 * (next_i()%2)) + 1) * next_i();
-        skl[_i0].skl_sst->d0i3.non_d0i3 = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          skl_tplg_d0i3_put(skl,caps);
-          for(int _aux = 0; _aux < _len_skl0; _aux++) {
-          free(skl[_aux].skl_sst);
-          }
-          free(skl);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          enum d0i3_capability caps = 0;
-          int _len_skl0 = 100;
           struct skl * skl = (struct skl *) malloc(_len_skl0*sizeof(struct skl));
           for(int _i0 = 0; _i0 < _len_skl0; _i0++) {
               int _len_skl__i0__skl_sst0 = 1;

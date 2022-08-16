@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -101,62 +97,6 @@ int main(int argc, char *argv[]) {
             acb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_srb0 = 1;
-          struct ScsiReqBlk * srb = (struct ScsiReqBlk *) malloc(_len_srb0*sizeof(struct ScsiReqBlk));
-          for(int _i0 = 0; _i0 < _len_srb0; _i0++) {
-            srb[_i0].msg_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        srb[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_srb__i0__msgout_buf0 = 1;
-          srb[_i0].msgout_buf = (int *) malloc(_len_srb__i0__msgout_buf0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_srb__i0__msgout_buf0; _j0++) {
-            srb[_i0].msgout_buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          enable_msgout_abort(acb,srb);
-          free(acb);
-          for(int _aux = 0; _aux < _len_srb0; _aux++) {
-          free(srb[_aux].msgout_buf);
-          }
-          free(srb);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_acb0 = 65025;
-          struct AdapterCtlBlk * acb = (struct AdapterCtlBlk *) malloc(_len_acb0*sizeof(struct AdapterCtlBlk));
-          for(int _i0 = 0; _i0 < _len_acb0; _i0++) {
-            acb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_srb0 = 65025;
-          struct ScsiReqBlk * srb = (struct ScsiReqBlk *) malloc(_len_srb0*sizeof(struct ScsiReqBlk));
-          for(int _i0 = 0; _i0 < _len_srb0; _i0++) {
-            srb[_i0].msg_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        srb[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_srb__i0__msgout_buf0 = 1;
-          srb[_i0].msgout_buf = (int *) malloc(_len_srb__i0__msgout_buf0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_srb__i0__msgout_buf0; _j0++) {
-            srb[_i0].msgout_buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          enable_msgout_abort(acb,srb);
-          free(acb);
-          for(int _aux = 0; _aux < _len_srb0; _aux++) {
-          free(srb[_aux].msgout_buf);
-          }
-          free(srb);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_acb0 = 100;
-          struct AdapterCtlBlk * acb = (struct AdapterCtlBlk *) malloc(_len_acb0*sizeof(struct AdapterCtlBlk));
-          for(int _i0 = 0; _i0 < _len_acb0; _i0++) {
-            acb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_srb0 = 100;
           struct ScsiReqBlk * srb = (struct ScsiReqBlk *) malloc(_len_srb0*sizeof(struct ScsiReqBlk));
           for(int _i0 = 0; _i0 < _len_srb0; _i0++) {
             srb[_i0].msg_count = ((-2 * (next_i()%2)) + 1) * next_i();

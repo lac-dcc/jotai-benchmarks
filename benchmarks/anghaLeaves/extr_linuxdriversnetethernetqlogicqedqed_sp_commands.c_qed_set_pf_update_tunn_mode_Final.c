@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -128,82 +124,6 @@ int main(int argc, char *argv[]) {
         p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_p_src0 = 1;
-          struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
-          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
-            p_src[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          qed_set_pf_update_tunn_mode(p_tun,p_src,b_pf_start);
-          free(p_tun);
-          free(p_src);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int b_pf_start = 255;
-          int _len_p_tun0 = 65025;
-          struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
-          for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
-            p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_p_src0 = 65025;
-          struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
-          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
-            p_src[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          qed_set_pf_update_tunn_mode(p_tun,p_src,b_pf_start);
-          free(p_tun);
-          free(p_src);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int b_pf_start = 10;
-          int _len_p_tun0 = 100;
-          struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
-          for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
-            p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_p_src0 = 100;
           struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
           for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
             p_src[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();

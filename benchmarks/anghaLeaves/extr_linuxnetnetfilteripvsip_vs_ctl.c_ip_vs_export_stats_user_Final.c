@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -104,64 +100,6 @@ int main(int argc, char *argv[]) {
         dst[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_src0 = 1;
-          struct ip_vs_kstats * src = (struct ip_vs_kstats *) malloc(_len_src0*sizeof(struct ip_vs_kstats));
-          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].outbps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inbps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].outpps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inpps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].cps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].conns = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          ip_vs_export_stats_user(dst,src);
-          free(dst);
-          free(src);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_dst0 = 65025;
-          struct ip_vs_stats_user * dst = (struct ip_vs_stats_user *) malloc(_len_dst0*sizeof(struct ip_vs_stats_user));
-          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_src0 = 65025;
-          struct ip_vs_kstats * src = (struct ip_vs_kstats *) malloc(_len_src0*sizeof(struct ip_vs_kstats));
-          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].outbps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inbps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].outpps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inpps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].cps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].conns = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          ip_vs_export_stats_user(dst,src);
-          free(dst);
-          free(src);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_dst0 = 100;
-          struct ip_vs_stats_user * dst = (struct ip_vs_stats_user *) malloc(_len_dst0*sizeof(struct ip_vs_stats_user));
-          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_src0 = 100;
           struct ip_vs_kstats * src = (struct ip_vs_kstats *) malloc(_len_src0*sizeof(struct ip_vs_kstats));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
             src[_i0].outbps = ((-2 * (next_i()%2)) + 1) * next_i();

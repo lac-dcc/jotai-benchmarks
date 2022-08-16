@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -104,58 +100,6 @@ int main(int argc, char *argv[]) {
             remaining_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_elapsed_time0 = 1;
-          int * elapsed_time = (int *) malloc(_len_elapsed_time0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_elapsed_time0; _i0++) {
-            elapsed_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          cache_local_copy_get_yellow_light_time(L,remaining_time,elapsed_time);
-          free(L);
-          free(remaining_time);
-          free(elapsed_time);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_L0 = 65025;
-          struct cache_local_copy * L = (struct cache_local_copy *) malloc(_len_L0*sizeof(struct cache_local_copy));
-          for(int _i0 = 0; _i0 < _len_L0; _i0++) {
-            L[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        L[_i0].yellow_light_start = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_remaining_time0 = 65025;
-          int * remaining_time = (int *) malloc(_len_remaining_time0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_remaining_time0; _i0++) {
-            remaining_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_elapsed_time0 = 65025;
-          int * elapsed_time = (int *) malloc(_len_elapsed_time0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_elapsed_time0; _i0++) {
-            elapsed_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          cache_local_copy_get_yellow_light_time(L,remaining_time,elapsed_time);
-          free(L);
-          free(remaining_time);
-          free(elapsed_time);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_L0 = 100;
-          struct cache_local_copy * L = (struct cache_local_copy *) malloc(_len_L0*sizeof(struct cache_local_copy));
-          for(int _i0 = 0; _i0 < _len_L0; _i0++) {
-            L[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        L[_i0].yellow_light_start = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_remaining_time0 = 100;
-          int * remaining_time = (int *) malloc(_len_remaining_time0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_remaining_time0; _i0++) {
-            remaining_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_elapsed_time0 = 100;
           int * elapsed_time = (int *) malloc(_len_elapsed_time0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_elapsed_time0; _i0++) {
             elapsed_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

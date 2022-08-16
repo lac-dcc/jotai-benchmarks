@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -125,100 +121,6 @@ int main(int argc, char *argv[]) {
           }
           }
           int _len_desc0 = 1;
-          struct TYPE_7__ * desc = (struct TYPE_7__ *) malloc(_len_desc0*sizeof(struct TYPE_7__));
-          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].current_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc[_i0].cache_entry_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc[_i0].eof = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_desc__i0__dir_cookie0 = 1;
-          desc[_i0].dir_cookie = (int *) malloc(_len_desc__i0__dir_cookie0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_desc__i0__dir_cookie0; _j0++) {
-            desc[_i0].dir_cookie[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_desc__i0__ctx0 = 1;
-          desc[_i0].ctx = (struct TYPE_6__ *) malloc(_len_desc__i0__ctx0*sizeof(struct TYPE_6__));
-          for(int _j0 = 0; _j0 < _len_desc__i0__ctx0; _j0++) {
-            desc[_i0].ctx->pos = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = nfs_readdir_search_for_pos(array,desc);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_array0; _aux++) {
-          free(array[_aux].array);
-          }
-          free(array);
-          for(int _aux = 0; _aux < _len_desc0; _aux++) {
-          free(desc[_aux].dir_cookie);
-          }
-          for(int _aux = 0; _aux < _len_desc0; _aux++) {
-          free(desc[_aux].ctx);
-          }
-          free(desc);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_array0 = 65025;
-          struct nfs_cache_array * array = (struct nfs_cache_array *) malloc(_len_array0*sizeof(struct nfs_cache_array));
-          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
-            array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        array[_i0].eof_index = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_array__i0__array0 = 1;
-          array[_i0].array = (struct TYPE_5__ *) malloc(_len_array__i0__array0*sizeof(struct TYPE_5__));
-          for(int _j0 = 0; _j0 < _len_array__i0__array0; _j0++) {
-            array[_i0].array->cookie = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_desc0 = 65025;
-          struct TYPE_7__ * desc = (struct TYPE_7__ *) malloc(_len_desc0*sizeof(struct TYPE_7__));
-          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].current_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc[_i0].cache_entry_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc[_i0].eof = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_desc__i0__dir_cookie0 = 1;
-          desc[_i0].dir_cookie = (int *) malloc(_len_desc__i0__dir_cookie0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_desc__i0__dir_cookie0; _j0++) {
-            desc[_i0].dir_cookie[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_desc__i0__ctx0 = 1;
-          desc[_i0].ctx = (struct TYPE_6__ *) malloc(_len_desc__i0__ctx0*sizeof(struct TYPE_6__));
-          for(int _j0 = 0; _j0 < _len_desc__i0__ctx0; _j0++) {
-            desc[_i0].ctx->pos = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = nfs_readdir_search_for_pos(array,desc);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_array0; _aux++) {
-          free(array[_aux].array);
-          }
-          free(array);
-          for(int _aux = 0; _aux < _len_desc0; _aux++) {
-          free(desc[_aux].dir_cookie);
-          }
-          for(int _aux = 0; _aux < _len_desc0; _aux++) {
-          free(desc[_aux].ctx);
-          }
-          free(desc);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_array0 = 100;
-          struct nfs_cache_array * array = (struct nfs_cache_array *) malloc(_len_array0*sizeof(struct nfs_cache_array));
-          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
-            array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        array[_i0].eof_index = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_array__i0__array0 = 1;
-          array[_i0].array = (struct TYPE_5__ *) malloc(_len_array__i0__array0*sizeof(struct TYPE_5__));
-          for(int _j0 = 0; _j0 < _len_array__i0__array0; _j0++) {
-            array[_i0].array->cookie = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_desc0 = 100;
           struct TYPE_7__ * desc = (struct TYPE_7__ *) malloc(_len_desc0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
             desc[_i0].current_index = ((-2 * (next_i()%2)) + 1) * next_i();

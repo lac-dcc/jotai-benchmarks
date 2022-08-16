@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -98,52 +94,6 @@ int main(int argc, char *argv[]) {
             z0Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_z1Ptr0 = 1;
-          long * z1Ptr = (long *) malloc(_len_z1Ptr0*sizeof(long));
-          for(int _i0 = 0; _i0 < _len_z1Ptr0; _i0++) {
-            z1Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          sub128(a0,a1,b0,b1,z0Ptr,z1Ptr);
-          free(z0Ptr);
-          free(z1Ptr);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          long a0 = 255;
-          long a1 = 255;
-          long b0 = 255;
-          long b1 = 255;
-          int _len_z0Ptr0 = 65025;
-          long * z0Ptr = (long *) malloc(_len_z0Ptr0*sizeof(long));
-          for(int _i0 = 0; _i0 < _len_z0Ptr0; _i0++) {
-            z0Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_z1Ptr0 = 65025;
-          long * z1Ptr = (long *) malloc(_len_z1Ptr0*sizeof(long));
-          for(int _i0 = 0; _i0 < _len_z1Ptr0; _i0++) {
-            z1Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          sub128(a0,a1,b0,b1,z0Ptr,z1Ptr);
-          free(z0Ptr);
-          free(z1Ptr);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          long a0 = 10;
-          long a1 = 10;
-          long b0 = 10;
-          long b1 = 10;
-          int _len_z0Ptr0 = 100;
-          long * z0Ptr = (long *) malloc(_len_z0Ptr0*sizeof(long));
-          for(int _i0 = 0; _i0 < _len_z0Ptr0; _i0++) {
-            z0Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_z1Ptr0 = 100;
           long * z1Ptr = (long *) malloc(_len_z1Ptr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_z1Ptr0; _i0++) {
             z1Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

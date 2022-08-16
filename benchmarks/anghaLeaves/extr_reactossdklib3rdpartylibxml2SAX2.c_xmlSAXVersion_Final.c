@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -158,130 +154,6 @@ int main(int argc, char *argv[]) {
     {
           int version = 100;
           int _len_hdlr0 = 1;
-          struct TYPE_3__ * hdlr = (struct TYPE_3__ *) malloc(_len_hdlr0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_hdlr0; _i0++) {
-            hdlr[_i0].warning = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].processingInstruction = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].cdataBlock = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].reference = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].endDocument = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].startDocument = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].setDocumentLocator = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].unparsedEntityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].notationDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].elementDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].attributeDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].entityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].getParameterEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].getEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].resolveEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].hasExternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].hasInternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].isStandalone = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].externalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].internalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hdlr__i0__serror0 = 1;
-          hdlr[_i0].serror = (int *) malloc(_len_hdlr__i0__serror0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_hdlr__i0__serror0; _j0++) {
-            hdlr[_i0].serror[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        hdlr[_i0].endElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].startElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hdlr__i0__endElement0 = 1;
-          hdlr[_i0].endElement = (int *) malloc(_len_hdlr__i0__endElement0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_hdlr__i0__endElement0; _j0++) {
-            hdlr[_i0].endElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_hdlr__i0__startElement0 = 1;
-          hdlr[_i0].startElement = (int *) malloc(_len_hdlr__i0__startElement0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_hdlr__i0__startElement0; _j0++) {
-            hdlr[_i0].startElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = xmlSAXVersion(hdlr,version);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
-          free(hdlr[_aux].serror);
-          }
-          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
-          free(hdlr[_aux].endElement);
-          }
-          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
-          free(hdlr[_aux].startElement);
-          }
-          free(hdlr);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int version = 255;
-          int _len_hdlr0 = 65025;
-          struct TYPE_3__ * hdlr = (struct TYPE_3__ *) malloc(_len_hdlr0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_hdlr0; _i0++) {
-            hdlr[_i0].warning = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].processingInstruction = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].cdataBlock = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].reference = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].endDocument = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].startDocument = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].setDocumentLocator = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].unparsedEntityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].notationDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].elementDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].attributeDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].entityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].getParameterEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].getEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].resolveEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].hasExternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].hasInternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].isStandalone = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].externalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].internalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hdlr__i0__serror0 = 1;
-          hdlr[_i0].serror = (int *) malloc(_len_hdlr__i0__serror0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_hdlr__i0__serror0; _j0++) {
-            hdlr[_i0].serror[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        hdlr[_i0].endElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].startElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hdlr__i0__endElement0 = 1;
-          hdlr[_i0].endElement = (int *) malloc(_len_hdlr__i0__endElement0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_hdlr__i0__endElement0; _j0++) {
-            hdlr[_i0].endElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_hdlr__i0__startElement0 = 1;
-          hdlr[_i0].startElement = (int *) malloc(_len_hdlr__i0__startElement0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_hdlr__i0__startElement0; _j0++) {
-            hdlr[_i0].startElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = xmlSAXVersion(hdlr,version);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
-          free(hdlr[_aux].serror);
-          }
-          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
-          free(hdlr[_aux].endElement);
-          }
-          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
-          free(hdlr[_aux].startElement);
-          }
-          free(hdlr);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int version = 10;
-          int _len_hdlr0 = 100;
           struct TYPE_3__ * hdlr = (struct TYPE_3__ *) malloc(_len_hdlr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_hdlr0; _i0++) {
             hdlr[_i0].warning = ((-2 * (next_i()%2)) + 1) * next_i();

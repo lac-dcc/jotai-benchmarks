@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -141,44 +137,6 @@ int main(int argc, char *argv[]) {
             surface[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_which0 = 1;
-          int * which = (int *) malloc(_len_which0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_which0; _i0++) {
-            which[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          struct TYPE_16__ * benchRet = findWindowFromDecorationSurface(surface,which);
-          free(surface);
-          free(which);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_surface0 = 65025;
-          struct wl_surface * surface = (struct wl_surface *) malloc(_len_surface0*sizeof(struct wl_surface));
-          for(int _i0 = 0; _i0 < _len_surface0; _i0++) {
-            surface[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_which0 = 65025;
-          int * which = (int *) malloc(_len_which0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_which0; _i0++) {
-            which[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          struct TYPE_16__ * benchRet = findWindowFromDecorationSurface(surface,which);
-          free(surface);
-          free(which);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_surface0 = 100;
-          struct wl_surface * surface = (struct wl_surface *) malloc(_len_surface0*sizeof(struct wl_surface));
-          for(int _i0 = 0; _i0 < _len_surface0; _i0++) {
-            surface[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_which0 = 100;
           int * which = (int *) malloc(_len_which0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_which0; _i0++) {
             which[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

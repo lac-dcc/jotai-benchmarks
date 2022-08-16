@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -97,44 +93,6 @@ int main(int argc, char *argv[]) {
             tc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_connector0 = 1;
-          struct drm_connector * connector = (struct drm_connector *) malloc(_len_connector0*sizeof(struct drm_connector));
-          for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
-            connector[_i0].polled = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          tc_connector_set_polling(tc,connector);
-          free(tc);
-          free(connector);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_tc0 = 65025;
-          struct tc_data * tc = (struct tc_data *) malloc(_len_tc0*sizeof(struct tc_data));
-          for(int _i0 = 0; _i0 < _len_tc0; _i0++) {
-            tc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_connector0 = 65025;
-          struct drm_connector * connector = (struct drm_connector *) malloc(_len_connector0*sizeof(struct drm_connector));
-          for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
-            connector[_i0].polled = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          tc_connector_set_polling(tc,connector);
-          free(tc);
-          free(connector);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_tc0 = 100;
-          struct tc_data * tc = (struct tc_data *) malloc(_len_tc0*sizeof(struct tc_data));
-          for(int _i0 = 0; _i0 < _len_tc0; _i0++) {
-            tc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_connector0 = 100;
           struct drm_connector * connector = (struct drm_connector *) malloc(_len_connector0*sizeof(struct drm_connector));
           for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
             connector[_i0].polled = ((-2 * (next_i()%2)) + 1) * next_i();

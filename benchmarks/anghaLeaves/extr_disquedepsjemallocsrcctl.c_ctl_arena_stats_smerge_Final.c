@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -205,264 +201,6 @@ int main(int argc, char *argv[]) {
         sstats[_i0].pactive = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_astats0 = 1;
-          struct TYPE_12__ * astats = (struct TYPE_12__ *) malloc(_len_astats0*sizeof(struct TYPE_12__));
-          for(int _i0 = 0; _i0 < _len_astats0; _i0++) {
-              int _len_astats__i0__hstats0 = 1;
-          astats[_i0].hstats = (struct TYPE_8__ *) malloc(_len_astats__i0__hstats0*sizeof(struct TYPE_8__));
-          for(int _j0 = 0; _j0 < _len_astats__i0__hstats0; _j0++) {
-            astats[_i0].hstats->curhchunks = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].hstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].hstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_astats__i0__lstats0 = 1;
-          astats[_i0].lstats = (struct TYPE_11__ *) malloc(_len_astats__i0__lstats0*sizeof(struct TYPE_11__));
-          for(int _j0 = 0; _j0 < _len_astats__i0__lstats0; _j0++) {
-            astats[_i0].lstats->curruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].lstats->nrequests = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].lstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].lstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_astats__i0__bstats0 = 1;
-          astats[_i0].bstats = (struct TYPE_10__ *) malloc(_len_astats__i0__bstats0*sizeof(struct TYPE_10__));
-          for(int _j0 = 0; _j0 < _len_astats__i0__bstats0; _j0++) {
-            astats[_i0].bstats->curruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->reruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nflushes = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nfills = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->curregs = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nrequests = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        astats[_i0].astats.ndalloc_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.nmalloc_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.allocated_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.nrequests_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.ndalloc_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.nmalloc_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.allocated_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.metadata_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.metadata_mapped = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.purged = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.nmadvise = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.npurge = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.mapped = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].nrequests_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].ndalloc_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].nmalloc_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].allocated_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].pdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].pactive = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          ctl_arena_stats_smerge(sstats,astats);
-          for(int _aux = 0; _aux < _len_sstats0; _aux++) {
-          free(sstats[_aux].hstats);
-          }
-          for(int _aux = 0; _aux < _len_sstats0; _aux++) {
-          free(sstats[_aux].lstats);
-          }
-          for(int _aux = 0; _aux < _len_sstats0; _aux++) {
-          free(sstats[_aux].bstats);
-          }
-          free(sstats);
-          for(int _aux = 0; _aux < _len_astats0; _aux++) {
-          free(astats[_aux].hstats);
-          }
-          for(int _aux = 0; _aux < _len_astats0; _aux++) {
-          free(astats[_aux].lstats);
-          }
-          for(int _aux = 0; _aux < _len_astats0; _aux++) {
-          free(astats[_aux].bstats);
-          }
-          free(astats);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_sstats0 = 65025;
-          struct TYPE_12__ * sstats = (struct TYPE_12__ *) malloc(_len_sstats0*sizeof(struct TYPE_12__));
-          for(int _i0 = 0; _i0 < _len_sstats0; _i0++) {
-              int _len_sstats__i0__hstats0 = 1;
-          sstats[_i0].hstats = (struct TYPE_8__ *) malloc(_len_sstats__i0__hstats0*sizeof(struct TYPE_8__));
-          for(int _j0 = 0; _j0 < _len_sstats__i0__hstats0; _j0++) {
-            sstats[_i0].hstats->curhchunks = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].hstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].hstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_sstats__i0__lstats0 = 1;
-          sstats[_i0].lstats = (struct TYPE_11__ *) malloc(_len_sstats__i0__lstats0*sizeof(struct TYPE_11__));
-          for(int _j0 = 0; _j0 < _len_sstats__i0__lstats0; _j0++) {
-            sstats[_i0].lstats->curruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].lstats->nrequests = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].lstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].lstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_sstats__i0__bstats0 = 1;
-          sstats[_i0].bstats = (struct TYPE_10__ *) malloc(_len_sstats__i0__bstats0*sizeof(struct TYPE_10__));
-          for(int _j0 = 0; _j0 < _len_sstats__i0__bstats0; _j0++) {
-            sstats[_i0].bstats->curruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->reruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nflushes = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nfills = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->curregs = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nrequests = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        sstats[_i0].astats.ndalloc_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.nmalloc_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.allocated_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.nrequests_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.ndalloc_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.nmalloc_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.allocated_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.metadata_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.metadata_mapped = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.purged = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.nmadvise = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.npurge = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.mapped = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].nrequests_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].ndalloc_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].nmalloc_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].allocated_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].pdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].pactive = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_astats0 = 65025;
-          struct TYPE_12__ * astats = (struct TYPE_12__ *) malloc(_len_astats0*sizeof(struct TYPE_12__));
-          for(int _i0 = 0; _i0 < _len_astats0; _i0++) {
-              int _len_astats__i0__hstats0 = 1;
-          astats[_i0].hstats = (struct TYPE_8__ *) malloc(_len_astats__i0__hstats0*sizeof(struct TYPE_8__));
-          for(int _j0 = 0; _j0 < _len_astats__i0__hstats0; _j0++) {
-            astats[_i0].hstats->curhchunks = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].hstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].hstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_astats__i0__lstats0 = 1;
-          astats[_i0].lstats = (struct TYPE_11__ *) malloc(_len_astats__i0__lstats0*sizeof(struct TYPE_11__));
-          for(int _j0 = 0; _j0 < _len_astats__i0__lstats0; _j0++) {
-            astats[_i0].lstats->curruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].lstats->nrequests = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].lstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].lstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_astats__i0__bstats0 = 1;
-          astats[_i0].bstats = (struct TYPE_10__ *) malloc(_len_astats__i0__bstats0*sizeof(struct TYPE_10__));
-          for(int _j0 = 0; _j0 < _len_astats__i0__bstats0; _j0++) {
-            astats[_i0].bstats->curruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->reruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nflushes = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nfills = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->curregs = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nrequests = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].bstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        astats[_i0].astats.ndalloc_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.nmalloc_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.allocated_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.nrequests_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.ndalloc_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.nmalloc_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.allocated_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.metadata_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.metadata_mapped = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.purged = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.nmadvise = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.npurge = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].astats.mapped = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].nrequests_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].ndalloc_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].nmalloc_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].allocated_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].pdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        astats[_i0].pactive = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          ctl_arena_stats_smerge(sstats,astats);
-          for(int _aux = 0; _aux < _len_sstats0; _aux++) {
-          free(sstats[_aux].hstats);
-          }
-          for(int _aux = 0; _aux < _len_sstats0; _aux++) {
-          free(sstats[_aux].lstats);
-          }
-          for(int _aux = 0; _aux < _len_sstats0; _aux++) {
-          free(sstats[_aux].bstats);
-          }
-          free(sstats);
-          for(int _aux = 0; _aux < _len_astats0; _aux++) {
-          free(astats[_aux].hstats);
-          }
-          for(int _aux = 0; _aux < _len_astats0; _aux++) {
-          free(astats[_aux].lstats);
-          }
-          for(int _aux = 0; _aux < _len_astats0; _aux++) {
-          free(astats[_aux].bstats);
-          }
-          free(astats);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_sstats0 = 100;
-          struct TYPE_12__ * sstats = (struct TYPE_12__ *) malloc(_len_sstats0*sizeof(struct TYPE_12__));
-          for(int _i0 = 0; _i0 < _len_sstats0; _i0++) {
-              int _len_sstats__i0__hstats0 = 1;
-          sstats[_i0].hstats = (struct TYPE_8__ *) malloc(_len_sstats__i0__hstats0*sizeof(struct TYPE_8__));
-          for(int _j0 = 0; _j0 < _len_sstats__i0__hstats0; _j0++) {
-            sstats[_i0].hstats->curhchunks = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].hstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].hstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_sstats__i0__lstats0 = 1;
-          sstats[_i0].lstats = (struct TYPE_11__ *) malloc(_len_sstats__i0__lstats0*sizeof(struct TYPE_11__));
-          for(int _j0 = 0; _j0 < _len_sstats__i0__lstats0; _j0++) {
-            sstats[_i0].lstats->curruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].lstats->nrequests = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].lstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].lstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_sstats__i0__bstats0 = 1;
-          sstats[_i0].bstats = (struct TYPE_10__ *) malloc(_len_sstats__i0__bstats0*sizeof(struct TYPE_10__));
-          for(int _j0 = 0; _j0 < _len_sstats__i0__bstats0; _j0++) {
-            sstats[_i0].bstats->curruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->reruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nruns = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nflushes = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nfills = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->curregs = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nrequests = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->ndalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].bstats->nmalloc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        sstats[_i0].astats.ndalloc_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.nmalloc_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.allocated_huge = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.nrequests_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.ndalloc_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.nmalloc_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.allocated_large = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.metadata_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.metadata_mapped = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.purged = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.nmadvise = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.npurge = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].astats.mapped = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].nrequests_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].ndalloc_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].nmalloc_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].allocated_small = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].pdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        sstats[_i0].pactive = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_astats0 = 100;
           struct TYPE_12__ * astats = (struct TYPE_12__ *) malloc(_len_astats0*sizeof(struct TYPE_12__));
           for(int _i0 = 0; _i0 < _len_astats0; _i0++) {
               int _len_astats__i0__hstats0 = 1;

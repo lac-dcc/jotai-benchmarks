@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -178,48 +174,6 @@ int main(int argc, char *argv[]) {
             tx_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_rsv_time0 = 1;
-          int * rsv_time = (int *) malloc(_len_rsv_time0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_rsv_time0; _i0++) {
-            rsv_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          vnt_calculate_ofdm_rate(rate,bb_type,tx_rate,rsv_time);
-          free(tx_rate);
-          free(rsv_time);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int rate = 255;
-          int bb_type = 255;
-          int _len_tx_rate0 = 65025;
-          int * tx_rate = (int *) malloc(_len_tx_rate0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_tx_rate0; _i0++) {
-            tx_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rsv_time0 = 65025;
-          int * rsv_time = (int *) malloc(_len_rsv_time0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_rsv_time0; _i0++) {
-            rsv_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          vnt_calculate_ofdm_rate(rate,bb_type,tx_rate,rsv_time);
-          free(tx_rate);
-          free(rsv_time);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int rate = 10;
-          int bb_type = 10;
-          int _len_tx_rate0 = 100;
-          int * tx_rate = (int *) malloc(_len_tx_rate0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_tx_rate0; _i0++) {
-            tx_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rsv_time0 = 100;
           int * rsv_time = (int *) malloc(_len_rsv_time0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rsv_time0; _i0++) {
             rsv_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -248,72 +244,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_op0 = 1;
-          struct orangefs_kernel_op_s * op = (struct orangefs_kernel_op_s *) malloc(_len_op0*sizeof(struct orangefs_kernel_op_s));
-          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
-            op[_i0].upcall.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.fsync.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.removexattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.listxattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.setxattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.getxattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.fs_umount.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.ra_cache_flush.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.truncate.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.statfs.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.rename.old_parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.sym.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.setattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.readdir.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.mkdir.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.remove.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.getattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.create.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.lookup.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.io.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = fsid_of_op(op);
-          printf("%d\n", benchRet); 
-          free(op);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_op0 = 65025;
-          struct orangefs_kernel_op_s * op = (struct orangefs_kernel_op_s *) malloc(_len_op0*sizeof(struct orangefs_kernel_op_s));
-          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
-            op[_i0].upcall.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.fsync.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.removexattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.listxattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.setxattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.getxattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.fs_umount.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.ra_cache_flush.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.truncate.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.statfs.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.rename.old_parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.sym.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.setattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.readdir.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.mkdir.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.remove.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.getattr.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.create.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.lookup.parent_refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].upcall.req.io.refn.fs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = fsid_of_op(op);
-          printf("%d\n", benchRet); 
-          free(op);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_op0 = 100;
           struct orangefs_kernel_op_s * op = (struct orangefs_kernel_op_s *) malloc(_len_op0*sizeof(struct orangefs_kernel_op_s));
           for(int _i0 = 0; _i0 < _len_op0; _i0++) {
             op[_i0].upcall.type = ((-2 * (next_i()%2)) + 1) * next_i();

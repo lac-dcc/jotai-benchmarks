@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -107,64 +103,6 @@ int main(int argc, char *argv[]) {
             remcom_out_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_linux_regs0 = 1;
-          struct pt_regs * linux_regs = (struct pt_regs *) malloc(_len_linux_regs0*sizeof(struct pt_regs));
-          for(int _i0 = 0; _i0 < _len_linux_regs0; _i0++) {
-            linux_regs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = kgdb_arch_handle_exception(vector,signo,err_code,remcom_in_buffer,remcom_out_buffer,linux_regs);
-          printf("%d\n", benchRet); 
-          free(remcom_in_buffer);
-          free(remcom_out_buffer);
-          free(linux_regs);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int vector = 255;
-          int signo = 255;
-          int err_code = 255;
-          int _len_remcom_in_buffer0 = 65025;
-          char * remcom_in_buffer = (char *) malloc(_len_remcom_in_buffer0*sizeof(char));
-          for(int _i0 = 0; _i0 < _len_remcom_in_buffer0; _i0++) {
-            remcom_in_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_remcom_out_buffer0 = 65025;
-          char * remcom_out_buffer = (char *) malloc(_len_remcom_out_buffer0*sizeof(char));
-          for(int _i0 = 0; _i0 < _len_remcom_out_buffer0; _i0++) {
-            remcom_out_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_linux_regs0 = 65025;
-          struct pt_regs * linux_regs = (struct pt_regs *) malloc(_len_linux_regs0*sizeof(struct pt_regs));
-          for(int _i0 = 0; _i0 < _len_linux_regs0; _i0++) {
-            linux_regs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = kgdb_arch_handle_exception(vector,signo,err_code,remcom_in_buffer,remcom_out_buffer,linux_regs);
-          printf("%d\n", benchRet); 
-          free(remcom_in_buffer);
-          free(remcom_out_buffer);
-          free(linux_regs);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int vector = 10;
-          int signo = 10;
-          int err_code = 10;
-          int _len_remcom_in_buffer0 = 100;
-          char * remcom_in_buffer = (char *) malloc(_len_remcom_in_buffer0*sizeof(char));
-          for(int _i0 = 0; _i0 < _len_remcom_in_buffer0; _i0++) {
-            remcom_in_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_remcom_out_buffer0 = 100;
-          char * remcom_out_buffer = (char *) malloc(_len_remcom_out_buffer0*sizeof(char));
-          for(int _i0 = 0; _i0 < _len_remcom_out_buffer0; _i0++) {
-            remcom_out_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_linux_regs0 = 100;
           struct pt_regs * linux_regs = (struct pt_regs *) malloc(_len_linux_regs0*sizeof(struct pt_regs));
           for(int _i0 = 0; _i0 < _len_linux_regs0; _i0++) {
             linux_regs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();

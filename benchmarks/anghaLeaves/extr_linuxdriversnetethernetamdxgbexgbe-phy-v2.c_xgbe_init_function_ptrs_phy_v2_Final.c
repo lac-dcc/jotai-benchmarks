@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -143,74 +139,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_phy_if0 = 1;
-          struct xgbe_phy_if * phy_if = (struct xgbe_phy_if *) malloc(_len_phy_if0*sizeof(struct xgbe_phy_if));
-          for(int _i0 = 0; _i0 < _len_phy_if0; _i0++) {
-            phy_if[_i0].phy_impl.module_eeprom = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.module_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.kr_training_post = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.kr_training_pre = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_post = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_pre = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_outcome = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_advertising = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_config = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.cur_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.switch_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.get_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.set_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.use_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.valid_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.link_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.start = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.exit = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.init = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          xgbe_init_function_ptrs_phy_v2(phy_if);
-          free(phy_if);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_phy_if0 = 65025;
-          struct xgbe_phy_if * phy_if = (struct xgbe_phy_if *) malloc(_len_phy_if0*sizeof(struct xgbe_phy_if));
-          for(int _i0 = 0; _i0 < _len_phy_if0; _i0++) {
-            phy_if[_i0].phy_impl.module_eeprom = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.module_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.kr_training_post = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.kr_training_pre = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_post = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_pre = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_outcome = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_advertising = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_config = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.an_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.cur_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.switch_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.get_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.set_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.use_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.valid_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.link_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.start = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.exit = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_impl.init = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          xgbe_init_function_ptrs_phy_v2(phy_if);
-          free(phy_if);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_phy_if0 = 100;
           struct xgbe_phy_if * phy_if = (struct xgbe_phy_if *) malloc(_len_phy_if0*sizeof(struct xgbe_phy_if));
           for(int _i0 = 0; _i0 < _len_phy_if0; _i0++) {
             phy_if[_i0].phy_impl.module_eeprom = ((-2 * (next_i()%2)) + 1) * next_i();

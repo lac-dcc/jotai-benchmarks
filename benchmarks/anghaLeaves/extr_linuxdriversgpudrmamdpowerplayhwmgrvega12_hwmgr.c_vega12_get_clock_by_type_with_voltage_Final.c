@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -98,48 +94,6 @@ int main(int argc, char *argv[]) {
             hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_clocks0 = 1;
-          struct pp_clock_levels_with_voltage * clocks = (struct pp_clock_levels_with_voltage *) malloc(_len_clocks0*sizeof(struct pp_clock_levels_with_voltage));
-          for(int _i0 = 0; _i0 < _len_clocks0; _i0++) {
-            clocks[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = vega12_get_clock_by_type_with_voltage(hwmgr,type,clocks);
-          printf("%d\n", benchRet); 
-          free(hwmgr);
-          free(clocks);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          enum amd_pp_clock_type type = 0;
-          int _len_hwmgr0 = 65025;
-          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
-          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_clocks0 = 65025;
-          struct pp_clock_levels_with_voltage * clocks = (struct pp_clock_levels_with_voltage *) malloc(_len_clocks0*sizeof(struct pp_clock_levels_with_voltage));
-          for(int _i0 = 0; _i0 < _len_clocks0; _i0++) {
-            clocks[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = vega12_get_clock_by_type_with_voltage(hwmgr,type,clocks);
-          printf("%d\n", benchRet); 
-          free(hwmgr);
-          free(clocks);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          enum amd_pp_clock_type type = 0;
-          int _len_hwmgr0 = 100;
-          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
-          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_clocks0 = 100;
           struct pp_clock_levels_with_voltage * clocks = (struct pp_clock_levels_with_voltage *) malloc(_len_clocks0*sizeof(struct pp_clock_levels_with_voltage));
           for(int _i0 = 0; _i0 < _len_clocks0; _i0++) {
             clocks[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();

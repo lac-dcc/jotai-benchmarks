@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -109,50 +105,6 @@ int main(int argc, char *argv[]) {
         emi1[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_emi20 = 1;
-          struct ocfs2_extent_map_item * emi2 = (struct ocfs2_extent_map_item *) malloc(_len_emi20*sizeof(struct ocfs2_extent_map_item));
-          for(int _i0 = 0; _i0 < _len_emi20; _i0++) {
-            emi2[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        emi2[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ocfs2_ei_is_contained(emi1,emi2);
-          printf("%d\n", benchRet); 
-          free(emi1);
-          free(emi2);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_emi10 = 65025;
-          struct ocfs2_extent_map_item * emi1 = (struct ocfs2_extent_map_item *) malloc(_len_emi10*sizeof(struct ocfs2_extent_map_item));
-          for(int _i0 = 0; _i0 < _len_emi10; _i0++) {
-            emi1[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        emi1[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_emi20 = 65025;
-          struct ocfs2_extent_map_item * emi2 = (struct ocfs2_extent_map_item *) malloc(_len_emi20*sizeof(struct ocfs2_extent_map_item));
-          for(int _i0 = 0; _i0 < _len_emi20; _i0++) {
-            emi2[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        emi2[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ocfs2_ei_is_contained(emi1,emi2);
-          printf("%d\n", benchRet); 
-          free(emi1);
-          free(emi2);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_emi10 = 100;
-          struct ocfs2_extent_map_item * emi1 = (struct ocfs2_extent_map_item *) malloc(_len_emi10*sizeof(struct ocfs2_extent_map_item));
-          for(int _i0 = 0; _i0 < _len_emi10; _i0++) {
-            emi1[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        emi1[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_emi20 = 100;
           struct ocfs2_extent_map_item * emi2 = (struct ocfs2_extent_map_item *) malloc(_len_emi20*sizeof(struct ocfs2_extent_map_item));
           for(int _i0 = 0; _i0 < _len_emi20; _i0++) {
             emi2[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();

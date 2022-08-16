@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -96,54 +92,6 @@ int main(int argc, char *argv[]) {
         rl_0[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_rl_10 = 1;
-          struct mlx5_rate_limit * rl_1 = (struct mlx5_rate_limit *) malloc(_len_rl_10*sizeof(struct mlx5_rate_limit));
-          for(int _i0 = 0; _i0 < _len_rl_10; _i0++) {
-            rl_1[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_1[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_1[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = mlx5_rl_are_equal(rl_0,rl_1);
-          printf("%d\n", benchRet); 
-          free(rl_0);
-          free(rl_1);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_rl_00 = 65025;
-          struct mlx5_rate_limit * rl_0 = (struct mlx5_rate_limit *) malloc(_len_rl_00*sizeof(struct mlx5_rate_limit));
-          for(int _i0 = 0; _i0 < _len_rl_00; _i0++) {
-            rl_0[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_0[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_0[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rl_10 = 65025;
-          struct mlx5_rate_limit * rl_1 = (struct mlx5_rate_limit *) malloc(_len_rl_10*sizeof(struct mlx5_rate_limit));
-          for(int _i0 = 0; _i0 < _len_rl_10; _i0++) {
-            rl_1[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_1[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_1[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = mlx5_rl_are_equal(rl_0,rl_1);
-          printf("%d\n", benchRet); 
-          free(rl_0);
-          free(rl_1);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_rl_00 = 100;
-          struct mlx5_rate_limit * rl_0 = (struct mlx5_rate_limit *) malloc(_len_rl_00*sizeof(struct mlx5_rate_limit));
-          for(int _i0 = 0; _i0 < _len_rl_00; _i0++) {
-            rl_0[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_0[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_0[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rl_10 = 100;
           struct mlx5_rate_limit * rl_1 = (struct mlx5_rate_limit *) malloc(_len_rl_10*sizeof(struct mlx5_rate_limit));
           for(int _i0 = 0; _i0 < _len_rl_10; _i0++) {
             rl_1[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();

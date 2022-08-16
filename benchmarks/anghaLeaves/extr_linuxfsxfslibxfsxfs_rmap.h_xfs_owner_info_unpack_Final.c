@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -121,72 +117,6 @@ int main(int argc, char *argv[]) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_flags0 = 1;
-          unsigned int * flags = (unsigned int *) malloc(_len_flags0*sizeof(unsigned int));
-          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
-            flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          xfs_owner_info_unpack(oinfo,owner,offset,flags);
-          free(oinfo);
-          free(owner);
-          free(offset);
-          free(flags);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_oinfo0 = 65025;
-          struct xfs_owner_info * oinfo = (struct xfs_owner_info *) malloc(_len_oinfo0*sizeof(struct xfs_owner_info));
-          for(int _i0 = 0; _i0 < _len_oinfo0; _i0++) {
-            oinfo[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        oinfo[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        oinfo[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_owner0 = 65025;
-          int * owner = (int *) malloc(_len_owner0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_owner0; _i0++) {
-            owner[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_offset0 = 65025;
-          int * offset = (int *) malloc(_len_offset0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
-            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_flags0 = 65025;
-          unsigned int * flags = (unsigned int *) malloc(_len_flags0*sizeof(unsigned int));
-          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
-            flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          xfs_owner_info_unpack(oinfo,owner,offset,flags);
-          free(oinfo);
-          free(owner);
-          free(offset);
-          free(flags);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_oinfo0 = 100;
-          struct xfs_owner_info * oinfo = (struct xfs_owner_info *) malloc(_len_oinfo0*sizeof(struct xfs_owner_info));
-          for(int _i0 = 0; _i0 < _len_oinfo0; _i0++) {
-            oinfo[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        oinfo[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        oinfo[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_owner0 = 100;
-          int * owner = (int *) malloc(_len_owner0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_owner0; _i0++) {
-            owner[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_offset0 = 100;
-          int * offset = (int *) malloc(_len_offset0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
-            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_flags0 = 100;
           unsigned int * flags = (unsigned int *) malloc(_len_flags0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
             flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

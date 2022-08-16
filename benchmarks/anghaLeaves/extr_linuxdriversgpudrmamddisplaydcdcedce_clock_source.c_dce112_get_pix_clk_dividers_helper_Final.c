@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -129,64 +125,6 @@ int main(int argc, char *argv[]) {
         pll_settings[_i0].calculated_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_pix_clk_params0 = 1;
-          struct pixel_clk_params * pix_clk_params = (struct pixel_clk_params *) malloc(_len_pix_clk_params0*sizeof(struct pixel_clk_params));
-          for(int _i0 = 0; _i0 < _len_pix_clk_params0; _i0++) {
-            pix_clk_params[_i0].requested_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix_clk_params[_i0].signal_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix_clk_params[_i0].color_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          dce112_get_pix_clk_dividers_helper(clk_src,pll_settings,pix_clk_params);
-          free(clk_src);
-          free(pll_settings);
-          free(pix_clk_params);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_clk_src0 = 65025;
-          struct dce110_clk_src * clk_src = (struct dce110_clk_src *) malloc(_len_clk_src0*sizeof(struct dce110_clk_src));
-          for(int _i0 = 0; _i0 < _len_clk_src0; _i0++) {
-            clk_src[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pll_settings0 = 65025;
-          struct pll_settings * pll_settings = (struct pll_settings *) malloc(_len_pll_settings0*sizeof(struct pll_settings));
-          for(int _i0 = 0; _i0 < _len_pll_settings0; _i0++) {
-            pll_settings[_i0].actual_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll_settings[_i0].adjusted_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll_settings[_i0].calculated_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pix_clk_params0 = 65025;
-          struct pixel_clk_params * pix_clk_params = (struct pixel_clk_params *) malloc(_len_pix_clk_params0*sizeof(struct pixel_clk_params));
-          for(int _i0 = 0; _i0 < _len_pix_clk_params0; _i0++) {
-            pix_clk_params[_i0].requested_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix_clk_params[_i0].signal_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix_clk_params[_i0].color_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          dce112_get_pix_clk_dividers_helper(clk_src,pll_settings,pix_clk_params);
-          free(clk_src);
-          free(pll_settings);
-          free(pix_clk_params);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_clk_src0 = 100;
-          struct dce110_clk_src * clk_src = (struct dce110_clk_src *) malloc(_len_clk_src0*sizeof(struct dce110_clk_src));
-          for(int _i0 = 0; _i0 < _len_clk_src0; _i0++) {
-            clk_src[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pll_settings0 = 100;
-          struct pll_settings * pll_settings = (struct pll_settings *) malloc(_len_pll_settings0*sizeof(struct pll_settings));
-          for(int _i0 = 0; _i0 < _len_pll_settings0; _i0++) {
-            pll_settings[_i0].actual_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll_settings[_i0].adjusted_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll_settings[_i0].calculated_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pix_clk_params0 = 100;
           struct pixel_clk_params * pix_clk_params = (struct pixel_clk_params *) malloc(_len_pix_clk_params0*sizeof(struct pixel_clk_params));
           for(int _i0 = 0; _i0 < _len_pix_clk_params0; _i0++) {
             pix_clk_params[_i0].requested_pix_clk = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -140,108 +136,6 @@ int main(int argc, char *argv[]) {
         dst[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_src0 = 1;
-          struct fbtft_ops * src = (struct fbtft_ops *) malloc(_len_src0*sizeof(struct fbtft_ops));
-          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          fbtft_merge_fbtftops(dst,src);
-          free(dst);
-          free(src);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_dst0 = 65025;
-          struct fbtft_ops * dst = (struct fbtft_ops *) malloc(_len_dst0*sizeof(struct fbtft_ops));
-          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_src0 = 65025;
-          struct fbtft_ops * src = (struct fbtft_ops *) malloc(_len_src0*sizeof(struct fbtft_ops));
-          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          fbtft_merge_fbtftops(dst,src);
-          free(dst);
-          free(src);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_dst0 = 100;
-          struct fbtft_ops * dst = (struct fbtft_ops *) malloc(_len_dst0*sizeof(struct fbtft_ops));
-          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_src0 = 100;
           struct fbtft_ops * src = (struct fbtft_ops *) malloc(_len_src0*sizeof(struct fbtft_ops));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
             src[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();

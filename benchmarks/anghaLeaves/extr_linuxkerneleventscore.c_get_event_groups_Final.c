@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -99,48 +95,6 @@ int main(int argc, char *argv[]) {
             event[_i0].attr.pinned = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_ctx0 = 1;
-          struct perf_event_context * ctx = (struct perf_event_context *) malloc(_len_ctx0*sizeof(struct perf_event_context));
-          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].flexible_groups.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].pinned_groups.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          struct perf_event_groups * benchRet = get_event_groups(event,ctx);
-          printf("%d\n", (*benchRet).dummy);
-          free(event);
-          free(ctx);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_event0 = 65025;
-          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
-          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].attr.pinned = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ctx0 = 65025;
-          struct perf_event_context * ctx = (struct perf_event_context *) malloc(_len_ctx0*sizeof(struct perf_event_context));
-          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].flexible_groups.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].pinned_groups.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          struct perf_event_groups * benchRet = get_event_groups(event,ctx);
-          printf("%d\n", (*benchRet).dummy);
-          free(event);
-          free(ctx);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_event0 = 100;
-          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
-          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].attr.pinned = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ctx0 = 100;
           struct perf_event_context * ctx = (struct perf_event_context *) malloc(_len_ctx0*sizeof(struct perf_event_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
             ctx[_i0].flexible_groups.dummy = ((-2 * (next_i()%2)) + 1) * next_i();

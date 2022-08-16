@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -104,51 +100,7 @@ int main(int argc, char *argv[]) {
           }
           }
           const char * benchRet = ad5449_vref_name(st,n);
-          printf("{{other_type}} %p\n", &benchRet); 
-          for(int _aux = 0; _aux < _len_st0; _aux++) {
-          free(st[_aux].chip_info);
-          }
-          free(st);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int n = 255;
-          int _len_st0 = 65025;
-          struct ad5449 * st = (struct ad5449 *) malloc(_len_st0*sizeof(struct ad5449));
-          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-              int _len_st__i0__chip_info0 = 1;
-          st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
-          for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
-            st[_i0].chip_info->num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          const char * benchRet = ad5449_vref_name(st,n);
-          printf("{{other_type}} %p\n", &benchRet); 
-          for(int _aux = 0; _aux < _len_st0; _aux++) {
-          free(st[_aux].chip_info);
-          }
-          free(st);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int n = 10;
-          int _len_st0 = 100;
-          struct ad5449 * st = (struct ad5449 *) malloc(_len_st0*sizeof(struct ad5449));
-          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-              int _len_st__i0__chip_info0 = 1;
-          st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
-          for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
-            st[_i0].chip_info->num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          const char * benchRet = ad5449_vref_name(st,n);
-          printf("{{other_type}} %p\n", &benchRet); 
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
           for(int _aux = 0; _aux < _len_st0; _aux++) {
           free(st[_aux].chip_info);
           }

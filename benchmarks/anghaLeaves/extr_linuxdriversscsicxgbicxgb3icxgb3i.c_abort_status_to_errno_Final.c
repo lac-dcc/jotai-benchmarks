@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -115,48 +111,6 @@ int main(int argc, char *argv[]) {
             csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_need_rst0 = 1;
-          int * need_rst = (int *) malloc(_len_need_rst0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_need_rst0; _i0++) {
-            need_rst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = abort_status_to_errno(csk,abort_reason,need_rst);
-          printf("%d\n", benchRet); 
-          free(csk);
-          free(need_rst);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int abort_reason = 255;
-          int _len_csk0 = 65025;
-          struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
-          for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
-            csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_need_rst0 = 65025;
-          int * need_rst = (int *) malloc(_len_need_rst0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_need_rst0; _i0++) {
-            need_rst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = abort_status_to_errno(csk,abort_reason,need_rst);
-          printf("%d\n", benchRet); 
-          free(csk);
-          free(need_rst);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int abort_reason = 10;
-          int _len_csk0 = 100;
-          struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
-          for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
-            csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_need_rst0 = 100;
           int * need_rst = (int *) malloc(_len_need_rst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_need_rst0; _i0++) {
             need_rst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

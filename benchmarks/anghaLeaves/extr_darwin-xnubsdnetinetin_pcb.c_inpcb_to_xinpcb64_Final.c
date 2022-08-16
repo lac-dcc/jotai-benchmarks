@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -135,96 +131,6 @@ int main(int argc, char *argv[]) {
         inp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_xinp0 = 1;
-          struct xinpcb64 * xinp = (struct xinpcb64 *) malloc(_len_xinp0*sizeof(struct xinpcb64));
-          for(int _i0 = 0; _i0 < _len_xinp0; _i0++) {
-            xinp[_i0].inp_depend6.inp6_hops = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_depend6.inp6_ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_depend6.inp6_cksum = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_depend6.inp6_hlim = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_depend4.inp4_ip_tos = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_dependladdr.inp6_local = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_dependfaddr.inp6_foreign = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_ip_p = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_ip_ttl = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_vflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_flow = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_gencnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_lport = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          inpcb_to_xinpcb64(inp,xinp);
-          free(inp);
-          free(xinp);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_inp0 = 65025;
-          struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
-          for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
-            inp[_i0].inp_depend6.inp6_hops = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_depend6.inp6_cksum = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_depend4.inp4_ip_tos = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_dependladdr.inp6_local = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_dependfaddr.inp6_foreign = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_ip_p = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_ip_ttl = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_vflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_flow = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_gencnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_lport = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_xinp0 = 65025;
-          struct xinpcb64 * xinp = (struct xinpcb64 *) malloc(_len_xinp0*sizeof(struct xinpcb64));
-          for(int _i0 = 0; _i0 < _len_xinp0; _i0++) {
-            xinp[_i0].inp_depend6.inp6_hops = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_depend6.inp6_ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_depend6.inp6_cksum = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_depend6.inp6_hlim = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_depend4.inp4_ip_tos = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_dependladdr.inp6_local = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_dependfaddr.inp6_foreign = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_ip_p = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_ip_ttl = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_vflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_flow = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_gencnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_lport = ((-2 * (next_i()%2)) + 1) * next_i();
-        xinp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          inpcb_to_xinpcb64(inp,xinp);
-          free(inp);
-          free(xinp);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_inp0 = 100;
-          struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
-          for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
-            inp[_i0].inp_depend6.inp6_hops = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_depend6.inp6_cksum = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_depend4.inp4_ip_tos = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_dependladdr.inp6_local = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_dependfaddr.inp6_foreign = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_ip_p = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_ip_ttl = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_vflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_flow = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_gencnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_lport = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_xinp0 = 100;
           struct xinpcb64 * xinp = (struct xinpcb64 *) malloc(_len_xinp0*sizeof(struct xinpcb64));
           for(int _i0 = 0; _i0 < _len_xinp0; _i0++) {
             xinp[_i0].inp_depend6.inp6_hops = ((-2 * (next_i()%2)) + 1) * next_i();

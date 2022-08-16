@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -324,118 +320,6 @@ int main(int argc, char *argv[]) {
         params[_i0].video_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_ctrl0 = 1;
-          struct v4l2_ext_control * ctrl = (struct v4l2_ext_control *) malloc(_len_ctrl0*sizeof(struct v4l2_ext_control));
-          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctrl[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = cx2341x_set_ctrl(params,busy,ctrl);
-          printf("%d\n", benchRet); 
-          free(params);
-          free(ctrl);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int busy = 255;
-          int _len_params0 = 65025;
-          struct cx2341x_mpeg_params * params = (struct cx2341x_mpeg_params *) malloc(_len_params0*sizeof(struct cx2341x_mpeg_params));
-          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].audio_sampling_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_l2_bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_ac3_bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_mode_extension = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_emphasis = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_crc = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_mute = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_gop_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_b_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_gop_closure = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_bitrate_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_bitrate_peak = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_temporal_decimation = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_mute = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_mute_yuv = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].stream_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].stream_vbi_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_spatial_filter_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_spatial_filter = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_luma_spatial_filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_chroma_spatial_filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_temporal_filter_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_temporal_filter = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_median_filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_luma_median_filter_top = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_luma_median_filter_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_chroma_median_filter_top = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_chroma_median_filter_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].stream_insert_nav_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ctrl0 = 65025;
-          struct v4l2_ext_control * ctrl = (struct v4l2_ext_control *) malloc(_len_ctrl0*sizeof(struct v4l2_ext_control));
-          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctrl[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = cx2341x_set_ctrl(params,busy,ctrl);
-          printf("%d\n", benchRet); 
-          free(params);
-          free(ctrl);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int busy = 10;
-          int _len_params0 = 100;
-          struct cx2341x_mpeg_params * params = (struct cx2341x_mpeg_params *) malloc(_len_params0*sizeof(struct cx2341x_mpeg_params));
-          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].audio_sampling_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_l2_bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_ac3_bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_mode_extension = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_emphasis = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_crc = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].audio_mute = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_gop_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_b_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_gop_closure = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_bitrate_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_bitrate_peak = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_temporal_decimation = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_mute = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_mute_yuv = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].stream_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].stream_vbi_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_spatial_filter_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_spatial_filter = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_luma_spatial_filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_chroma_spatial_filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_temporal_filter_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_temporal_filter = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_median_filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_luma_median_filter_top = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_luma_median_filter_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_chroma_median_filter_top = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_chroma_median_filter_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].stream_insert_nav_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].video_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ctrl0 = 100;
           struct v4l2_ext_control * ctrl = (struct v4l2_ext_control *) malloc(_len_ctrl0*sizeof(struct v4l2_ext_control));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
             ctrl[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();

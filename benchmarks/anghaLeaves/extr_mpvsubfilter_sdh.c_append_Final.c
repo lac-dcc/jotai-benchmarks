@@ -15,26 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr\n\
-       1            big-arr-10x\n\
+       0            int-bounds\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -89,46 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr
+    // int-bounds
     case 0:
     {
-          char c = 255;
-          int _len_sd0 = 65025;
+          char c = 100;
+          int _len_sd0 = 1;
           struct sd * sd = (struct sd *) malloc(_len_sd0*sizeof(struct sd));
           for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
             sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_buf0 = 65025;
-          struct buffer * buf = (struct buffer *) malloc(_len_buf0*sizeof(struct buffer));
-          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_buf__i0__string0 = 1;
-          buf[_i0].string = (char *) malloc(_len_buf__i0__string0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_buf__i0__string0; _j0++) {
-            buf[_i0].string[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = append(sd,buf,c);
-          printf("%d\n", benchRet); 
-          free(sd);
-          for(int _aux = 0; _aux < _len_buf0; _aux++) {
-          free(buf[_aux].string);
-          }
-          free(buf);
-        
-        break;
-    }
-    // big-arr-10x
-    case 1:
-    {
-          char c = 10;
-          int _len_sd0 = 100;
-          struct sd * sd = (struct sd *) malloc(_len_sd0*sizeof(struct sd));
-          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_buf0 = 100;
+          int _len_buf0 = 1;
           struct buffer * buf = (struct buffer *) malloc(_len_buf0*sizeof(struct buffer));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();

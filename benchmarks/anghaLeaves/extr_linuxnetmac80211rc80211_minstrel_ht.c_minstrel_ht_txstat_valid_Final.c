@@ -15,26 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr\n\
-       1            big-arr-10x\n\
+       0            int-bounds\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -98,10 +95,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr
+    // int-bounds
     case 0:
     {
-          int _len_mp0 = 65025;
+          int _len_mp0 = 1;
           struct minstrel_priv * mp = (struct minstrel_priv *) malloc(_len_mp0*sizeof(struct minstrel_priv));
           for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
               int _len_mp__i0__cck_rates0 = 1;
@@ -110,36 +107,7 @@ int main(int argc, char *argv[]) {
             mp[_i0].cck_rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           }
-          int _len_rate0 = 65025;
-          struct ieee80211_tx_rate * rate = (struct ieee80211_tx_rate *) malloc(_len_rate0*sizeof(struct ieee80211_tx_rate));
-          for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
-            rate[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        rate[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = minstrel_ht_txstat_valid(mp,rate);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_mp0; _aux++) {
-          free(mp[_aux].cck_rates);
-          }
-          free(mp);
-          free(rate);
-        
-        break;
-    }
-    // big-arr-10x
-    case 1:
-    {
-          int _len_mp0 = 100;
-          struct minstrel_priv * mp = (struct minstrel_priv *) malloc(_len_mp0*sizeof(struct minstrel_priv));
-          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
-              int _len_mp__i0__cck_rates0 = 1;
-          mp[_i0].cck_rates = (long *) malloc(_len_mp__i0__cck_rates0*sizeof(long));
-          for(int _j0 = 0; _j0 < _len_mp__i0__cck_rates0; _j0++) {
-            mp[_i0].cck_rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_rate0 = 100;
+          int _len_rate0 = 1;
           struct ieee80211_tx_rate * rate = (struct ieee80211_tx_rate *) malloc(_len_rate0*sizeof(struct ieee80211_tx_rate));
           for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
             rate[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();

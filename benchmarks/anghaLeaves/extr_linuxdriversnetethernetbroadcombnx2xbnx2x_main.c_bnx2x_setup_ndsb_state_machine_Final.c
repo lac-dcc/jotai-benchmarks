@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -92,42 +88,6 @@ int main(int argc, char *argv[]) {
           int igu_sb_id = 100;
           int igu_seg_id = 100;
           int _len_hc_sm0 = 1;
-          struct hc_status_block_sm * hc_sm = (struct hc_status_block_sm *) malloc(_len_hc_sm0*sizeof(struct hc_status_block_sm));
-          for(int _i0 = 0; _i0 < _len_hc_sm0; _i0++) {
-            hc_sm[_i0].igu_sb_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc_sm[_i0].igu_seg_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc_sm[_i0].timer_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc_sm[_i0].time_to_expire = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          bnx2x_setup_ndsb_state_machine(hc_sm,igu_sb_id,igu_seg_id);
-          free(hc_sm);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int igu_sb_id = 255;
-          int igu_seg_id = 255;
-          int _len_hc_sm0 = 65025;
-          struct hc_status_block_sm * hc_sm = (struct hc_status_block_sm *) malloc(_len_hc_sm0*sizeof(struct hc_status_block_sm));
-          for(int _i0 = 0; _i0 < _len_hc_sm0; _i0++) {
-            hc_sm[_i0].igu_sb_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc_sm[_i0].igu_seg_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc_sm[_i0].timer_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc_sm[_i0].time_to_expire = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          bnx2x_setup_ndsb_state_machine(hc_sm,igu_sb_id,igu_seg_id);
-          free(hc_sm);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int igu_sb_id = 10;
-          int igu_seg_id = 10;
-          int _len_hc_sm0 = 100;
           struct hc_status_block_sm * hc_sm = (struct hc_status_block_sm *) malloc(_len_hc_sm0*sizeof(struct hc_status_block_sm));
           for(int _i0 = 0; _i0 < _len_hc_sm0; _i0++) {
             hc_sm[_i0].igu_sb_id = ((-2 * (next_i()%2)) + 1) * next_i();

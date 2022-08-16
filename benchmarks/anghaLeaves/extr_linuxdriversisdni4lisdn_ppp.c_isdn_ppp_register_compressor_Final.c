@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            dlinked\n\
-       2            bintree\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -102,49 +98,6 @@ void _delete_ipc(struct isdn_ppp_compressor *aux_ipc[], int aux_ipc_size) {
       free(aux_ipc[i]);
 }
 
-struct isdn_ppp_compressor *_allocate_Dlinked_ipc(int length, struct isdn_ppp_compressor *aux_dlinked_ipc[] ) {
-  struct isdn_ppp_compressor *walker = (struct isdn_ppp_compressor *)malloc(sizeof(struct isdn_ppp_compressor));
-
-  aux_dlinked_ipc[0] = walker;
-  walker->prev = NULL;
-  walker->next = NULL;
-
-  struct isdn_ppp_compressor *head = walker;
-  for(int i = 1; i < length; i++) {
-    walker->next = (struct isdn_ppp_compressor *)malloc(sizeof(struct isdn_ppp_compressor));
-    walker->next->prev = walker;
-    walker = walker->next;
-    aux_dlinked_ipc[i] = walker;
-    if (i == (length - 1)) 
-      walker->next = NULL;  }
-
-  return head;
-}
-
-void _delete_Dlinked_ipc(struct isdn_ppp_compressor *aux_dlinked_ipc[], int aux_dlinked_ipc_size) {
-  for(int i = 0; i < aux_dlinked_ipc_size; i++) 
-    if(aux_dlinked_ipc[i])
-      free(aux_dlinked_ipc[i]);
-}
-
-struct isdn_ppp_compressor *_allocateBinTree_ipc(int length, struct isdn_ppp_compressor *aux_tree_ipc[], int *counter_ipc) {
-  if(length == 0)
-    return NULL;
-  struct isdn_ppp_compressor *walker = (struct isdn_ppp_compressor *)malloc(sizeof(struct isdn_ppp_compressor));
-
-  aux_tree_ipc[*counter_ipc] = walker;
-  (*counter_ipc)++;
-  walker->prev = _allocateBinTree_ipc(length - 1, aux_tree_ipc, counter_ipc);
-  walker->next = _allocateBinTree_ipc(length - 1, aux_tree_ipc, counter_ipc);
-  return walker;
-}
-
-void _deleteBinTree_ipc(struct isdn_ppp_compressor *aux_tree_ipc[]) {
-  for(int i = 0; i < 1023; i++) 
-    if(aux_tree_ipc[i])
-      free(aux_tree_ipc[i]);
-}
-
 
 
 
@@ -168,29 +121,6 @@ int main(int argc, char *argv[]) {
           int benchRet = isdn_ppp_register_compressor(ipc);
           printf("%d\n", benchRet); 
           _delete_ipc(aux_ipc, 1);
-        
-        break;
-    }
-    // dlinked
-    case 1:
-    {
-          struct isdn_ppp_compressor * aux_dlinked_ipc[10000];
-          struct isdn_ppp_compressor * ipc = _allocate_Dlinked_ipc(10000, aux_dlinked_ipc);
-          int benchRet = isdn_ppp_register_compressor(ipc);
-          printf("%d\n", benchRet); 
-          _delete_Dlinked_ipc(aux_dlinked_ipc, 10000);
-        
-        break;
-    }
-    // bintree
-    case 2:
-    {
-          int counter_ipc= 0;
-          struct isdn_ppp_compressor *  aux_tree_ipc[1023];
-          struct isdn_ppp_compressor * ipc = _allocateBinTree_ipc(10, aux_tree_ipc, &counter_ipc);
-          int benchRet = isdn_ppp_register_compressor(ipc);
-          printf("%d\n", benchRet); 
-          _deleteBinTree_ipc(aux_tree_ipc);
         
         break;
     }

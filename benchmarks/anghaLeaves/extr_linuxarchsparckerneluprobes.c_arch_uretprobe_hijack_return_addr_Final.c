@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -94,50 +90,6 @@ int main(int argc, char *argv[]) {
     {
           unsigned long trampoline_vaddr = 100;
           int _len_regs0 = 1;
-          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
-          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
-              int _len_regs__i0__u_regs0 = 1;
-          regs[_i0].u_regs = (unsigned long *) malloc(_len_regs__i0__u_regs0*sizeof(unsigned long));
-          for(int _j0 = 0; _j0 < _len_regs__i0__u_regs0; _j0++) {
-            regs[_i0].u_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          unsigned long benchRet = arch_uretprobe_hijack_return_addr(trampoline_vaddr,regs);
-          printf("%lu\n", benchRet); 
-          for(int _aux = 0; _aux < _len_regs0; _aux++) {
-          free(regs[_aux].u_regs);
-          }
-          free(regs);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned long trampoline_vaddr = 255;
-          int _len_regs0 = 65025;
-          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
-          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
-              int _len_regs__i0__u_regs0 = 1;
-          regs[_i0].u_regs = (unsigned long *) malloc(_len_regs__i0__u_regs0*sizeof(unsigned long));
-          for(int _j0 = 0; _j0 < _len_regs__i0__u_regs0; _j0++) {
-            regs[_i0].u_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          unsigned long benchRet = arch_uretprobe_hijack_return_addr(trampoline_vaddr,regs);
-          printf("%lu\n", benchRet); 
-          for(int _aux = 0; _aux < _len_regs0; _aux++) {
-          free(regs[_aux].u_regs);
-          }
-          free(regs);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          unsigned long trampoline_vaddr = 10;
-          int _len_regs0 = 100;
           struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
               int _len_regs__i0__u_regs0 = 1;

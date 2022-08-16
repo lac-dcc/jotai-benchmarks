@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -147,60 +143,6 @@ int main(int argc, char *argv[]) {
         hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_desc_len0 = 1;
-          int * desc_len = (int *) malloc(_len_desc_len0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_desc_len0; _i0++) {
-            desc_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ufshcd_map_desc_id_to_length(hba,desc_id,desc_len);
-          printf("%d\n", benchRet); 
-          free(hba);
-          free(desc_len);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          enum desc_idn desc_id = 0;
-          int _len_hba0 = 65025;
-          struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
-          for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
-            hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_desc_len0 = 65025;
-          int * desc_len = (int *) malloc(_len_desc_len0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_desc_len0; _i0++) {
-            desc_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ufshcd_map_desc_id_to_length(hba,desc_id,desc_len);
-          printf("%d\n", benchRet); 
-          free(hba);
-          free(desc_len);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          enum desc_idn desc_id = 0;
-          int _len_hba0 = 100;
-          struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
-          for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
-            hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_desc_len0 = 100;
           int * desc_len = (int *) malloc(_len_desc_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_desc_len0; _i0++) {
             desc_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

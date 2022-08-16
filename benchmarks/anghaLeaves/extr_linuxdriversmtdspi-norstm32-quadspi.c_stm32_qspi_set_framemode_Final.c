@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -123,50 +119,6 @@ int main(int argc, char *argv[]) {
             nor[_i0].read_proto = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_cmd0 = 1;
-          struct stm32_qspi_cmd * cmd = (struct stm32_qspi_cmd *) malloc(_len_cmd0*sizeof(struct stm32_qspi_cmd));
-          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].framemode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].tx_data = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          stm32_qspi_set_framemode(nor,cmd,read);
-          free(nor);
-          free(cmd);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int read = 255;
-          int _len_nor0 = 65025;
-          struct spi_nor * nor = (struct spi_nor *) malloc(_len_nor0*sizeof(struct spi_nor));
-          for(int _i0 = 0; _i0 < _len_nor0; _i0++) {
-            nor[_i0].read_proto = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cmd0 = 65025;
-          struct stm32_qspi_cmd * cmd = (struct stm32_qspi_cmd *) malloc(_len_cmd0*sizeof(struct stm32_qspi_cmd));
-          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].framemode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].tx_data = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          stm32_qspi_set_framemode(nor,cmd,read);
-          free(nor);
-          free(cmd);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int read = 10;
-          int _len_nor0 = 100;
-          struct spi_nor * nor = (struct spi_nor *) malloc(_len_nor0*sizeof(struct spi_nor));
-          for(int _i0 = 0; _i0 < _len_nor0; _i0++) {
-            nor[_i0].read_proto = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cmd0 = 100;
           struct stm32_qspi_cmd * cmd = (struct stm32_qspi_cmd *) malloc(_len_cmd0*sizeof(struct stm32_qspi_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
             cmd[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();

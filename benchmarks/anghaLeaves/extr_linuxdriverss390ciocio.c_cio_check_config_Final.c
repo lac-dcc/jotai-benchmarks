@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -112,78 +108,6 @@ int main(int argc, char *argv[]) {
         sch[_i0].config.mba = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_schib0 = 1;
-          struct schib * schib = (struct schib *) malloc(_len_schib0*sizeof(struct schib));
-          for(int _i0 = 0; _i0 < _len_schib0; _i0++) {
-            schib[_i0].mba = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.isc = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.ena = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mme = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mp = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.csense = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = cio_check_config(sch,schib);
-          printf("%d\n", benchRet); 
-          free(sch);
-          free(schib);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_sch0 = 65025;
-          struct subchannel * sch = (struct subchannel *) malloc(_len_sch0*sizeof(struct subchannel));
-          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
-            sch[_i0].config.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.isc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.ena = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mme = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mp = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.csense = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mba = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_schib0 = 65025;
-          struct schib * schib = (struct schib *) malloc(_len_schib0*sizeof(struct schib));
-          for(int _i0 = 0; _i0 < _len_schib0; _i0++) {
-            schib[_i0].mba = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.isc = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.ena = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mme = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mp = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.csense = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = cio_check_config(sch,schib);
-          printf("%d\n", benchRet); 
-          free(sch);
-          free(schib);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_sch0 = 100;
-          struct subchannel * sch = (struct subchannel *) malloc(_len_sch0*sizeof(struct subchannel));
-          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
-            sch[_i0].config.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.isc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.ena = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mme = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mp = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.csense = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mba = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_schib0 = 100;
           struct schib * schib = (struct schib *) malloc(_len_schib0*sizeof(struct schib));
           for(int _i0 = 0; _i0 < _len_schib0; _i0++) {
             schib[_i0].mba = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            dlinked\n\
-       2            bintree\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -105,49 +101,6 @@ void _delete_priv(struct agp_file_private *aux_priv[], int aux_priv_size) {
       free(aux_priv[i]);
 }
 
-struct agp_file_private *_allocate_Dlinked_priv(int length, struct agp_file_private *aux_dlinked_priv[] ) {
-  struct agp_file_private *walker = (struct agp_file_private *)malloc(sizeof(struct agp_file_private));
-
-  aux_dlinked_priv[0] = walker;
-  walker->next = NULL;
-  walker->prev = NULL;
-
-  struct agp_file_private *head = walker;
-  for(int i = 1; i < length; i++) {
-    walker->prev = (struct agp_file_private *)malloc(sizeof(struct agp_file_private));
-    walker->prev->next = walker;
-    walker = walker->prev;
-    aux_dlinked_priv[i] = walker;
-    if (i == (length - 1)) 
-      walker->prev = NULL;  }
-
-  return head;
-}
-
-void _delete_Dlinked_priv(struct agp_file_private *aux_dlinked_priv[], int aux_dlinked_priv_size) {
-  for(int i = 0; i < aux_dlinked_priv_size; i++) 
-    if(aux_dlinked_priv[i])
-      free(aux_dlinked_priv[i]);
-}
-
-struct agp_file_private *_allocateBinTree_priv(int length, struct agp_file_private *aux_tree_priv[], int *counter_priv) {
-  if(length == 0)
-    return NULL;
-  struct agp_file_private *walker = (struct agp_file_private *)malloc(sizeof(struct agp_file_private));
-
-  aux_tree_priv[*counter_priv] = walker;
-  (*counter_priv)++;
-  walker->next = _allocateBinTree_priv(length - 1, aux_tree_priv, counter_priv);
-  walker->prev = _allocateBinTree_priv(length - 1, aux_tree_priv, counter_priv);
-  return walker;
-}
-
-void _deleteBinTree_priv(struct agp_file_private *aux_tree_priv[]) {
-  for(int i = 0; i < 1023; i++) 
-    if(aux_tree_priv[i])
-      free(aux_tree_priv[i]);
-}
-
 
 
 
@@ -170,27 +123,6 @@ int main(int argc, char *argv[]) {
           struct agp_file_private * priv = _allocate_priv(1, aux_priv);
           agp_insert_file_private(priv);
           _delete_priv(aux_priv, 1);
-        
-        break;
-    }
-    // dlinked
-    case 1:
-    {
-          struct agp_file_private * aux_dlinked_priv[10000];
-          struct agp_file_private * priv = _allocate_Dlinked_priv(10000, aux_dlinked_priv);
-          agp_insert_file_private(priv);
-          _delete_Dlinked_priv(aux_dlinked_priv, 10000);
-        
-        break;
-    }
-    // bintree
-    case 2:
-    {
-          int counter_priv= 0;
-          struct agp_file_private *  aux_tree_priv[1023];
-          struct agp_file_private * priv = _allocateBinTree_priv(10, aux_tree_priv, &counter_priv);
-          agp_insert_file_private(priv);
-          _deleteBinTree_priv(aux_tree_priv);
         
         break;
     }

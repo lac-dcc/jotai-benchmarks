@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -113,54 +109,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_ifp0 = 1;
-          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
-          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
-            ifp[_i0].if_input_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_input_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_ifp__i0__if_link_status0 = 1;
-          ifp[_i0].if_link_status = (struct TYPE_9__ *) malloc(_len_ifp__i0__if_link_status0*sizeof(struct TYPE_9__));
-          for(int _j0 = 0; _j0 < _len_ifp__i0__if_link_status0; _j0++) {
-            ifp[_i0].if_link_status->ifsr_u.ifsr_wifi.if_wifi_u.if_status_v1.dl_effective_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_link_status->ifsr_u.ifsr_wifi.if_wifi_u.if_status_v1.dl_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_link_status->ifsr_u.ifsr_wifi.if_wifi_u.if_status_v1.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          ifnet_set_link_status_inbw(ifp);
-          for(int _aux = 0; _aux < _len_ifp0; _aux++) {
-          free(ifp[_aux].if_link_status);
-          }
-          free(ifp);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_ifp0 = 65025;
-          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
-          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
-            ifp[_i0].if_input_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_input_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_ifp__i0__if_link_status0 = 1;
-          ifp[_i0].if_link_status = (struct TYPE_9__ *) malloc(_len_ifp__i0__if_link_status0*sizeof(struct TYPE_9__));
-          for(int _j0 = 0; _j0 < _len_ifp__i0__if_link_status0; _j0++) {
-            ifp[_i0].if_link_status->ifsr_u.ifsr_wifi.if_wifi_u.if_status_v1.dl_effective_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_link_status->ifsr_u.ifsr_wifi.if_wifi_u.if_status_v1.dl_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_link_status->ifsr_u.ifsr_wifi.if_wifi_u.if_status_v1.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          ifnet_set_link_status_inbw(ifp);
-          for(int _aux = 0; _aux < _len_ifp0; _aux++) {
-          free(ifp[_aux].if_link_status);
-          }
-          free(ifp);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_ifp0 = 100;
           struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
           for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
             ifp[_i0].if_input_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();

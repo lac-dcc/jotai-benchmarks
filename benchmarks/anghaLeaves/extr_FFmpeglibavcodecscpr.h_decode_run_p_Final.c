@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -271,130 +267,6 @@ int main(int argc, char *argv[]) {
             cx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_cx10 = 1;
-          int * cx1 = (int *) malloc(_len_cx10*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_cx10; _i0++) {
-            cx1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = decode_run_p(avctx,ptype,run,x,y,clr,dst,prev,linesize,plinesize,bx,by,backstep,sx1,sx2,cx,cx1);
-          printf("%d\n", benchRet); 
-          free(avctx);
-          free(dst);
-          free(prev);
-          free(bx);
-          free(by);
-          free(cx);
-          free(cx1);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int ptype = 255;
-          int run = 255;
-          int x = 255;
-          int y = 255;
-          int clr = 255;
-          int linesize = 255;
-          int plinesize = 255;
-          int backstep = 255;
-          int sx1 = 255;
-          int sx2 = 255;
-          int _len_avctx0 = 65025;
-          struct TYPE_3__ * avctx = (struct TYPE_3__ *) malloc(_len_avctx0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_avctx0; _i0++) {
-            avctx[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        avctx[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        avctx[_i0].bits_per_coded_sample = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_dst0 = 65025;
-          int * dst = (int *) malloc(_len_dst0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_prev0 = 65025;
-          int * prev = (int *) malloc(_len_prev0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
-            prev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_bx0 = 65025;
-          int * bx = (int *) malloc(_len_bx0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_bx0; _i0++) {
-            bx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_by0 = 65025;
-          int * by = (int *) malloc(_len_by0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_by0; _i0++) {
-            by[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cx0 = 65025;
-          int * cx = (int *) malloc(_len_cx0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
-            cx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cx10 = 65025;
-          int * cx1 = (int *) malloc(_len_cx10*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_cx10; _i0++) {
-            cx1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = decode_run_p(avctx,ptype,run,x,y,clr,dst,prev,linesize,plinesize,bx,by,backstep,sx1,sx2,cx,cx1);
-          printf("%d\n", benchRet); 
-          free(avctx);
-          free(dst);
-          free(prev);
-          free(bx);
-          free(by);
-          free(cx);
-          free(cx1);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int ptype = 10;
-          int run = 10;
-          int x = 10;
-          int y = 10;
-          int clr = 10;
-          int linesize = 10;
-          int plinesize = 10;
-          int backstep = 10;
-          int sx1 = 10;
-          int sx2 = 10;
-          int _len_avctx0 = 100;
-          struct TYPE_3__ * avctx = (struct TYPE_3__ *) malloc(_len_avctx0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_avctx0; _i0++) {
-            avctx[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        avctx[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        avctx[_i0].bits_per_coded_sample = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_dst0 = 100;
-          int * dst = (int *) malloc(_len_dst0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_prev0 = 100;
-          int * prev = (int *) malloc(_len_prev0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
-            prev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_bx0 = 100;
-          int * bx = (int *) malloc(_len_bx0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_bx0; _i0++) {
-            bx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_by0 = 100;
-          int * by = (int *) malloc(_len_by0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_by0; _i0++) {
-            by[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cx0 = 100;
-          int * cx = (int *) malloc(_len_cx0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
-            cx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cx10 = 100;
           int * cx1 = (int *) malloc(_len_cx10*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cx10; _i0++) {
             cx1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

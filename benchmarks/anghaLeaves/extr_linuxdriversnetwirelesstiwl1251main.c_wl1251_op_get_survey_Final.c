@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -115,68 +111,6 @@ int main(int argc, char *argv[]) {
           }
           }
           int _len_survey0 = 1;
-          struct survey_info * survey = (struct survey_info *) malloc(_len_survey0*sizeof(struct survey_info));
-          for(int _i0 = 0; _i0 < _len_survey0; _i0++) {
-            survey[_i0].noise = ((-2 * (next_i()%2)) + 1) * next_i();
-        survey[_i0].filled = ((-2 * (next_i()%2)) + 1) * next_i();
-        survey[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = wl1251_op_get_survey(hw,idx,survey);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_hw0; _aux++) {
-          free(hw[_aux].priv);
-          }
-          free(hw);
-          free(survey);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int idx = 255;
-          int _len_hw0 = 65025;
-          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
-          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].conf.chandef.chan = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hw__i0__priv0 = 1;
-          hw[_i0].priv = (struct wl1251 *) malloc(_len_hw__i0__priv0*sizeof(struct wl1251));
-          for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
-            hw[_i0].priv->noise = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_survey0 = 65025;
-          struct survey_info * survey = (struct survey_info *) malloc(_len_survey0*sizeof(struct survey_info));
-          for(int _i0 = 0; _i0 < _len_survey0; _i0++) {
-            survey[_i0].noise = ((-2 * (next_i()%2)) + 1) * next_i();
-        survey[_i0].filled = ((-2 * (next_i()%2)) + 1) * next_i();
-        survey[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = wl1251_op_get_survey(hw,idx,survey);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_hw0; _aux++) {
-          free(hw[_aux].priv);
-          }
-          free(hw);
-          free(survey);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int idx = 10;
-          int _len_hw0 = 100;
-          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
-          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].conf.chandef.chan = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hw__i0__priv0 = 1;
-          hw[_i0].priv = (struct wl1251 *) malloc(_len_hw__i0__priv0*sizeof(struct wl1251));
-          for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
-            hw[_i0].priv->noise = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_survey0 = 100;
           struct survey_info * survey = (struct survey_info *) malloc(_len_survey0*sizeof(struct survey_info));
           for(int _i0 = 0; _i0 < _len_survey0; _i0++) {
             survey[_i0].noise = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -112,56 +108,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_wbal0 = 1;
-          struct vpfe_ipipe_wb * wbal = (struct vpfe_ipipe_wb *) malloc(_len_wbal0*sizeof(struct vpfe_ipipe_wb));
-          for(int _i0 = 0; _i0 < _len_wbal0; _i0++) {
-            wbal[_i0].ofst_r = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].ofst_gr = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].ofst_gb = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].ofst_b = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_b.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_b.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_gb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_gb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_gr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_gr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_r.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_r.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ipipe_validate_wb_params(wbal);
-          printf("%d\n", benchRet); 
-          free(wbal);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_wbal0 = 65025;
-          struct vpfe_ipipe_wb * wbal = (struct vpfe_ipipe_wb *) malloc(_len_wbal0*sizeof(struct vpfe_ipipe_wb));
-          for(int _i0 = 0; _i0 < _len_wbal0; _i0++) {
-            wbal[_i0].ofst_r = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].ofst_gr = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].ofst_gb = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].ofst_b = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_b.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_b.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_gb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_gb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_gr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_gr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_r.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbal[_i0].gain_r.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ipipe_validate_wb_params(wbal);
-          printf("%d\n", benchRet); 
-          free(wbal);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_wbal0 = 100;
           struct vpfe_ipipe_wb * wbal = (struct vpfe_ipipe_wb *) malloc(_len_wbal0*sizeof(struct vpfe_ipipe_wb));
           for(int _i0 = 0; _i0 < _len_wbal0; _i0++) {
             wbal[_i0].ofst_r = ((-2 * (next_i()%2)) + 1) * next_i();

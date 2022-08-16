@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -99,46 +95,6 @@ int main(int argc, char *argv[]) {
             usb[_i0].usbcx_hprt.s.prtspd = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_pipe0 = 1;
-          struct cvmx_usb_pipe * pipe = (struct cvmx_usb_pipe *) malloc(_len_pipe0*sizeof(struct cvmx_usb_pipe));
-          for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
-            pipe[_i0].device_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = cvmx_usb_pipe_needs_split(usb,pipe);
-          printf("%d\n", benchRet); 
-          free(usb);
-          free(pipe);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_usb0 = 65025;
-          struct octeon_hcd * usb = (struct octeon_hcd *) malloc(_len_usb0*sizeof(struct octeon_hcd));
-          for(int _i0 = 0; _i0 < _len_usb0; _i0++) {
-            usb[_i0].usbcx_hprt.s.prtspd = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pipe0 = 65025;
-          struct cvmx_usb_pipe * pipe = (struct cvmx_usb_pipe *) malloc(_len_pipe0*sizeof(struct cvmx_usb_pipe));
-          for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
-            pipe[_i0].device_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = cvmx_usb_pipe_needs_split(usb,pipe);
-          printf("%d\n", benchRet); 
-          free(usb);
-          free(pipe);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_usb0 = 100;
-          struct octeon_hcd * usb = (struct octeon_hcd *) malloc(_len_usb0*sizeof(struct octeon_hcd));
-          for(int _i0 = 0; _i0 < _len_usb0; _i0++) {
-            usb[_i0].usbcx_hprt.s.prtspd = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pipe0 = 100;
           struct cvmx_usb_pipe * pipe = (struct cvmx_usb_pipe *) malloc(_len_pipe0*sizeof(struct cvmx_usb_pipe));
           for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
             pipe[_i0].device_speed = ((-2 * (next_i()%2)) + 1) * next_i();

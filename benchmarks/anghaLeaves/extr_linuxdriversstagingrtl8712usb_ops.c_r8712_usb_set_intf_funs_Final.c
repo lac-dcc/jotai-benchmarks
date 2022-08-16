@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -93,38 +89,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_pintf_hdl0 = 1;
-          struct intf_hdl * pintf_hdl = (struct intf_hdl *) malloc(_len_pintf_hdl0*sizeof(struct intf_hdl));
-          for(int _i0 = 0; _i0 < _len_pintf_hdl0; _i0++) {
-            pintf_hdl[_i0].intf_hdl_close = ((-2 * (next_i()%2)) + 1) * next_i();
-        pintf_hdl[_i0].intf_hdl_open = ((-2 * (next_i()%2)) + 1) * next_i();
-        pintf_hdl[_i0].intf_hdl_unload = ((-2 * (next_i()%2)) + 1) * next_i();
-        pintf_hdl[_i0].intf_hdl_init = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          r8712_usb_set_intf_funs(pintf_hdl);
-          free(pintf_hdl);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_pintf_hdl0 = 65025;
-          struct intf_hdl * pintf_hdl = (struct intf_hdl *) malloc(_len_pintf_hdl0*sizeof(struct intf_hdl));
-          for(int _i0 = 0; _i0 < _len_pintf_hdl0; _i0++) {
-            pintf_hdl[_i0].intf_hdl_close = ((-2 * (next_i()%2)) + 1) * next_i();
-        pintf_hdl[_i0].intf_hdl_open = ((-2 * (next_i()%2)) + 1) * next_i();
-        pintf_hdl[_i0].intf_hdl_unload = ((-2 * (next_i()%2)) + 1) * next_i();
-        pintf_hdl[_i0].intf_hdl_init = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          r8712_usb_set_intf_funs(pintf_hdl);
-          free(pintf_hdl);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_pintf_hdl0 = 100;
           struct intf_hdl * pintf_hdl = (struct intf_hdl *) malloc(_len_pintf_hdl0*sizeof(struct intf_hdl));
           for(int _i0 = 0; _i0 < _len_pintf_hdl0; _i0++) {
             pintf_hdl[_i0].intf_hdl_close = ((-2 * (next_i()%2)) + 1) * next_i();

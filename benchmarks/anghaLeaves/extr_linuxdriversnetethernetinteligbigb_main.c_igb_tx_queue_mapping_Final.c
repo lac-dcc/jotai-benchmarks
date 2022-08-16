@@ -15,26 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr\n\
-       1            big-arr-10x\n\
+       0            int-bounds\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -89,10 +86,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr
+    // int-bounds
     case 0:
     {
-          int _len_adapter0 = 65025;
+          int _len_adapter0 = 1;
           struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
             adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
@@ -106,40 +103,7 @@ int main(int argc, char *argv[]) {
             }
           }
           }
-          int _len_skb0 = 65025;
-          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
-          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].queue_mapping = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          struct igb_ring * benchRet = igb_tx_queue_mapping(adapter,skb);
-          printf("%d\n", (*benchRet).dummy);
-          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
-          free(*(adapter[_aux].tx_ring));
-        free(adapter[_aux].tx_ring);
-          }
-          free(adapter);
-          free(skb);
-        
-        break;
-    }
-    // big-arr-10x
-    case 1:
-    {
-          int _len_adapter0 = 100;
-          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
-          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_adapter__i0__tx_ring0 = 1;
-          adapter[_i0].tx_ring = (struct igb_ring **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct igb_ring *));
-          for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
-            int _len_adapter__i0__tx_ring1 = 1;
-            adapter[_i0].tx_ring[_j0] = (struct igb_ring *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct igb_ring));
-            for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
-              adapter[_i0].tx_ring[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-            }
-          }
-          }
-          int _len_skb0 = 100;
+          int _len_skb0 = 1;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
             skb[_i0].queue_mapping = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,26 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -114,41 +111,6 @@ int main(int argc, char *argv[]) {
           }
           }
           int _len_addr20 = 1;
-          struct TYPE_4__ * addr2 = (struct TYPE_4__ *) malloc(_len_addr20*sizeof(struct TYPE_4__));
-          for(int _i0 = 0; _i0 < _len_addr20; _i0++) {
-              int _len_addr2__i0__rose_addr0 = 1;
-          addr2[_i0].rose_addr = (int *) malloc(_len_addr2__i0__rose_addr0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_addr2__i0__rose_addr0; _j0++) {
-            addr2[_i0].rose_addr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = rosecmpm(addr1,addr2,mask);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_addr10; _aux++) {
-          free(addr1[_aux].rose_addr);
-          }
-          free(addr1);
-          for(int _aux = 0; _aux < _len_addr20; _aux++) {
-          free(addr2[_aux].rose_addr);
-          }
-          free(addr2);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned short mask = 255;
-          int _len_addr10 = 65025;
-          struct TYPE_4__ * addr1 = (struct TYPE_4__ *) malloc(_len_addr10*sizeof(struct TYPE_4__));
-          for(int _i0 = 0; _i0 < _len_addr10; _i0++) {
-              int _len_addr1__i0__rose_addr0 = 1;
-          addr1[_i0].rose_addr = (int *) malloc(_len_addr1__i0__rose_addr0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_addr1__i0__rose_addr0; _j0++) {
-            addr1[_i0].rose_addr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_addr20 = 65025;
           struct TYPE_4__ * addr2 = (struct TYPE_4__ *) malloc(_len_addr20*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_addr20; _i0++) {
               int _len_addr2__i0__rose_addr0 = 1;

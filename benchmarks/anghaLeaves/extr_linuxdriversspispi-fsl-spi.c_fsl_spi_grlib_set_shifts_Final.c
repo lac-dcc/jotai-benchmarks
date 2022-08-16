@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -103,48 +99,6 @@ int main(int argc, char *argv[]) {
             rx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_tx_shift0 = 1;
-          int * tx_shift = (int *) malloc(_len_tx_shift0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_tx_shift0; _i0++) {
-            tx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          fsl_spi_grlib_set_shifts(rx_shift,tx_shift,bits_per_word,msb_first);
-          free(rx_shift);
-          free(tx_shift);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int bits_per_word = 255;
-          int msb_first = 255;
-          int _len_rx_shift0 = 65025;
-          int * rx_shift = (int *) malloc(_len_rx_shift0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_rx_shift0; _i0++) {
-            rx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_tx_shift0 = 65025;
-          int * tx_shift = (int *) malloc(_len_tx_shift0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_tx_shift0; _i0++) {
-            tx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          fsl_spi_grlib_set_shifts(rx_shift,tx_shift,bits_per_word,msb_first);
-          free(rx_shift);
-          free(tx_shift);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int bits_per_word = 10;
-          int msb_first = 10;
-          int _len_rx_shift0 = 100;
-          int * rx_shift = (int *) malloc(_len_rx_shift0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_rx_shift0; _i0++) {
-            rx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_tx_shift0 = 100;
           int * tx_shift = (int *) malloc(_len_tx_shift0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tx_shift0; _i0++) {
             tx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

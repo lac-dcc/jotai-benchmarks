@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -121,52 +117,6 @@ int main(int argc, char *argv[]) {
           enum isl29501_register_name reg = 0;
           unsigned int val = 100;
           int _len_isl295010 = 1;
-          struct isl29501_private * isl29501 = (struct isl29501_private *) malloc(_len_isl295010*sizeof(struct isl29501_private));
-          for(int _i0 = 0; _i0 < _len_isl295010; _i0++) {
-              int _len_isl29501__i0__shadow_coeffs0 = 1;
-          isl29501[_i0].shadow_coeffs = (unsigned int *) malloc(_len_isl29501__i0__shadow_coeffs0*sizeof(unsigned int));
-          for(int _j0 = 0; _j0 < _len_isl29501__i0__shadow_coeffs0; _j0++) {
-            isl29501[_i0].shadow_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = isl29501_set_shadow_coeff(isl29501,reg,val);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_isl295010; _aux++) {
-          free(isl29501[_aux].shadow_coeffs);
-          }
-          free(isl29501);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          enum isl29501_register_name reg = 0;
-          unsigned int val = 255;
-          int _len_isl295010 = 65025;
-          struct isl29501_private * isl29501 = (struct isl29501_private *) malloc(_len_isl295010*sizeof(struct isl29501_private));
-          for(int _i0 = 0; _i0 < _len_isl295010; _i0++) {
-              int _len_isl29501__i0__shadow_coeffs0 = 1;
-          isl29501[_i0].shadow_coeffs = (unsigned int *) malloc(_len_isl29501__i0__shadow_coeffs0*sizeof(unsigned int));
-          for(int _j0 = 0; _j0 < _len_isl29501__i0__shadow_coeffs0; _j0++) {
-            isl29501[_i0].shadow_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = isl29501_set_shadow_coeff(isl29501,reg,val);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_isl295010; _aux++) {
-          free(isl29501[_aux].shadow_coeffs);
-          }
-          free(isl29501);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          enum isl29501_register_name reg = 0;
-          unsigned int val = 10;
-          int _len_isl295010 = 100;
           struct isl29501_private * isl29501 = (struct isl29501_private *) malloc(_len_isl295010*sizeof(struct isl29501_private));
           for(int _i0 = 0; _i0 < _len_isl295010; _i0++) {
               int _len_isl29501__i0__shadow_coeffs0 = 1;

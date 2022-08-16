@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -97,52 +93,6 @@ int main(int argc, char *argv[]) {
             card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_drv_type0 = 1;
-          int * drv_type = (int *) malloc(_len_drv_type0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_drv_type0; _i0++) {
-            drv_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = amd_select_drive_strength(card,max_dtr,host_drv,card_drv,drv_type);
-          printf("%d\n", benchRet); 
-          free(card);
-          free(drv_type);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned int max_dtr = 255;
-          int host_drv = 255;
-          int card_drv = 255;
-          int _len_card0 = 65025;
-          struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
-          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_drv_type0 = 65025;
-          int * drv_type = (int *) malloc(_len_drv_type0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_drv_type0; _i0++) {
-            drv_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = amd_select_drive_strength(card,max_dtr,host_drv,card_drv,drv_type);
-          printf("%d\n", benchRet); 
-          free(card);
-          free(drv_type);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          unsigned int max_dtr = 10;
-          int host_drv = 10;
-          int card_drv = 10;
-          int _len_card0 = 100;
-          struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
-          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_drv_type0 = 100;
           int * drv_type = (int *) malloc(_len_drv_type0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_drv_type0; _i0++) {
             drv_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

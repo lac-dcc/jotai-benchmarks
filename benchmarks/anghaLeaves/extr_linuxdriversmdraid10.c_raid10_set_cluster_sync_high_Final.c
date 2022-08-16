@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -120,54 +116,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_conf0 = 1;
-          struct r10conf * conf = (struct r10conf *) malloc(_len_conf0*sizeof(struct r10conf));
-          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
-            conf[_i0].cluster_sync_low = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].cluster_sync_high = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_conf__i0__mddev0 = 1;
-          conf[_i0].mddev = (struct TYPE_3__ *) malloc(_len_conf__i0__mddev0*sizeof(struct TYPE_3__));
-          for(int _j0 = 0; _j0 < _len_conf__i0__mddev0; _j0++) {
-            conf[_i0].mddev->chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        conf[_i0].geo.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].geo.near_copies = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          raid10_set_cluster_sync_high(conf);
-          for(int _aux = 0; _aux < _len_conf0; _aux++) {
-          free(conf[_aux].mddev);
-          }
-          free(conf);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_conf0 = 65025;
-          struct r10conf * conf = (struct r10conf *) malloc(_len_conf0*sizeof(struct r10conf));
-          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
-            conf[_i0].cluster_sync_low = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].cluster_sync_high = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_conf__i0__mddev0 = 1;
-          conf[_i0].mddev = (struct TYPE_3__ *) malloc(_len_conf__i0__mddev0*sizeof(struct TYPE_3__));
-          for(int _j0 = 0; _j0 < _len_conf__i0__mddev0; _j0++) {
-            conf[_i0].mddev->chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        conf[_i0].geo.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].geo.near_copies = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          raid10_set_cluster_sync_high(conf);
-          for(int _aux = 0; _aux < _len_conf0; _aux++) {
-          free(conf[_aux].mddev);
-          }
-          free(conf);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_conf0 = 100;
           struct r10conf * conf = (struct r10conf *) malloc(_len_conf0*sizeof(struct r10conf));
           for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
             conf[_i0].cluster_sync_low = ((-2 * (next_i()%2)) + 1) * next_i();

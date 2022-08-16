@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -107,58 +103,6 @@ int main(int argc, char *argv[]) {
             active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_sleep0 = 1;
-          unsigned long * sleep = (unsigned long *) malloc(_len_sleep0*sizeof(unsigned long));
-          for(int _i0 = 0; _i0 < _len_sleep0; _i0++) {
-            sleep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          to_active_sleep(r,rate,active,sleep);
-          free(r);
-          free(active);
-          free(sleep);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned long rate = 255;
-          int _len_r0 = 65025;
-          struct clk_rpm * r = (struct clk_rpm *) malloc(_len_r0*sizeof(struct clk_rpm));
-          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].active_only = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_active0 = 65025;
-          unsigned long * active = (unsigned long *) malloc(_len_active0*sizeof(unsigned long));
-          for(int _i0 = 0; _i0 < _len_active0; _i0++) {
-            active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_sleep0 = 65025;
-          unsigned long * sleep = (unsigned long *) malloc(_len_sleep0*sizeof(unsigned long));
-          for(int _i0 = 0; _i0 < _len_sleep0; _i0++) {
-            sleep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          to_active_sleep(r,rate,active,sleep);
-          free(r);
-          free(active);
-          free(sleep);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          unsigned long rate = 10;
-          int _len_r0 = 100;
-          struct clk_rpm * r = (struct clk_rpm *) malloc(_len_r0*sizeof(struct clk_rpm));
-          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].active_only = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_active0 = 100;
-          unsigned long * active = (unsigned long *) malloc(_len_active0*sizeof(unsigned long));
-          for(int _i0 = 0; _i0 < _len_active0; _i0++) {
-            active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_sleep0 = 100;
           unsigned long * sleep = (unsigned long *) malloc(_len_sleep0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_sleep0; _i0++) {
             sleep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

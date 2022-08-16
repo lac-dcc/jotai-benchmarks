@@ -15,25 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
-       0            linked\n\
+       0            int-bounds\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -168,13 +166,13 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // linked
+    // int-bounds
     case 0:
     {
-          struct TYPE_5__ * aux_list[10000];
-          struct TYPE_5__ * list = _allocate_list(10000, aux_list);
-          struct TYPE_5__ * aux_matcher[10000];
-          struct TYPE_5__ * matcher = _allocate_matcher(10000, aux_matcher);
+          struct TYPE_5__ * aux_list[1];
+          struct TYPE_5__ * list = _allocate_list(1, aux_list);
+          struct TYPE_5__ * aux_matcher[1];
+          struct TYPE_5__ * matcher = _allocate_matcher(1, aux_matcher);
           struct TYPE_5__ * benchRet = x86_match_cache(list,matcher);
           printf("%ld\n", (*benchRet).maxcpus);
           printf("%ld\n", (*benchRet).type);
@@ -182,8 +180,8 @@ int main(int argc, char *argv[]) {
           printf("%ld\n", (*benchRet).partitions);
           printf("%ld\n", (*benchRet).line_size);
           printf("%ld\n", (*benchRet).cache_size);
-          _delete_list(aux_list, 10000);
-          _delete_matcher(aux_matcher, 10000);
+          _delete_list(aux_list, 1);
+          _delete_matcher(aux_matcher, 1);
         
         break;
     }

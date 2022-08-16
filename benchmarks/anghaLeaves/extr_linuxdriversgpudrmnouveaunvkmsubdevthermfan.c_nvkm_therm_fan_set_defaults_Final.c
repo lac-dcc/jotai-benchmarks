@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -97,58 +93,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_therm0 = 1;
-          struct nvkm_therm * therm = (struct nvkm_therm *) malloc(_len_therm0*sizeof(struct nvkm_therm));
-          for(int _i0 = 0; _i0 < _len_therm0; _i0++) {
-              int _len_therm__i0__fan0 = 1;
-          therm[_i0].fan = (struct TYPE_4__ *) malloc(_len_therm__i0__fan0*sizeof(struct TYPE_4__));
-          for(int _j0 = 0; _j0 < _len_therm__i0__fan0; _j0++) {
-            therm[_i0].fan->bios.max_duty = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.bump_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.slow_down_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.linear_min_temp = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.linear_max_temp = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.min_duty = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.pwm_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          nvkm_therm_fan_set_defaults(therm);
-          for(int _aux = 0; _aux < _len_therm0; _aux++) {
-          free(therm[_aux].fan);
-          }
-          free(therm);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_therm0 = 65025;
-          struct nvkm_therm * therm = (struct nvkm_therm *) malloc(_len_therm0*sizeof(struct nvkm_therm));
-          for(int _i0 = 0; _i0 < _len_therm0; _i0++) {
-              int _len_therm__i0__fan0 = 1;
-          therm[_i0].fan = (struct TYPE_4__ *) malloc(_len_therm__i0__fan0*sizeof(struct TYPE_4__));
-          for(int _j0 = 0; _j0 < _len_therm__i0__fan0; _j0++) {
-            therm[_i0].fan->bios.max_duty = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.bump_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.slow_down_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.linear_min_temp = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.linear_max_temp = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.min_duty = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.pwm_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          nvkm_therm_fan_set_defaults(therm);
-          for(int _aux = 0; _aux < _len_therm0; _aux++) {
-          free(therm[_aux].fan);
-          }
-          free(therm);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_therm0 = 100;
           struct nvkm_therm * therm = (struct nvkm_therm *) malloc(_len_therm0*sizeof(struct nvkm_therm));
           for(int _i0 = 0; _i0 < _len_therm0; _i0++) {
               int _len_therm__i0__fan0 = 1;

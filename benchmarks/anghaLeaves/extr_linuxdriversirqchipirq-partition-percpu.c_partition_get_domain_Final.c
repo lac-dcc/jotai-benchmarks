@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -90,48 +86,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_dsc0 = 1;
-          struct partition_desc * dsc = (struct partition_desc *) malloc(_len_dsc0*sizeof(struct partition_desc));
-          for(int _i0 = 0; _i0 < _len_dsc0; _i0++) {
-              int _len_dsc__i0__domain0 = 1;
-          dsc[_i0].domain = (struct irq_domain *) malloc(_len_dsc__i0__domain0*sizeof(struct irq_domain));
-          for(int _j0 = 0; _j0 < _len_dsc__i0__domain0; _j0++) {
-            dsc[_i0].domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          struct irq_domain * benchRet = partition_get_domain(dsc);
-          printf("%d\n", (*benchRet).dummy);
-          for(int _aux = 0; _aux < _len_dsc0; _aux++) {
-          free(dsc[_aux].domain);
-          }
-          free(dsc);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_dsc0 = 65025;
-          struct partition_desc * dsc = (struct partition_desc *) malloc(_len_dsc0*sizeof(struct partition_desc));
-          for(int _i0 = 0; _i0 < _len_dsc0; _i0++) {
-              int _len_dsc__i0__domain0 = 1;
-          dsc[_i0].domain = (struct irq_domain *) malloc(_len_dsc__i0__domain0*sizeof(struct irq_domain));
-          for(int _j0 = 0; _j0 < _len_dsc__i0__domain0; _j0++) {
-            dsc[_i0].domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          struct irq_domain * benchRet = partition_get_domain(dsc);
-          printf("%d\n", (*benchRet).dummy);
-          for(int _aux = 0; _aux < _len_dsc0; _aux++) {
-          free(dsc[_aux].domain);
-          }
-          free(dsc);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_dsc0 = 100;
           struct partition_desc * dsc = (struct partition_desc *) malloc(_len_dsc0*sizeof(struct partition_desc));
           for(int _i0 = 0; _i0 < _len_dsc0; _i0++) {
               int _len_dsc__i0__domain0 = 1;

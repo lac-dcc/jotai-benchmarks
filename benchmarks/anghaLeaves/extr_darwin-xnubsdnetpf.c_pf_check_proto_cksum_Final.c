@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -196,74 +192,6 @@ int main(int argc, char *argv[]) {
           int p = 100;
           int af = 100;
           int _len_pbuf0 = 1;
-          struct TYPE_6__ * pbuf = (struct TYPE_6__ *) malloc(_len_pbuf0*sizeof(struct TYPE_6__));
-          for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
-              int _len_pbuf__i0__pb_csum_flags0 = 1;
-          pbuf[_i0].pb_csum_flags = (int *) malloc(_len_pbuf__i0__pb_csum_flags0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_flags0; _j0++) {
-            pbuf[_i0].pb_csum_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pbuf__i0__pb_csum_data0 = 1;
-          pbuf[_i0].pb_csum_data = (int *) malloc(_len_pbuf__i0__pb_csum_data0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_data0; _j0++) {
-            pbuf[_i0].pb_csum_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        pbuf[_i0].pb_packet_len = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = pf_check_proto_cksum(pbuf,off,len,p,af);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
-          free(pbuf[_aux].pb_csum_flags);
-          }
-          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
-          free(pbuf[_aux].pb_csum_data);
-          }
-          free(pbuf);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int off = 255;
-          int len = 255;
-          int p = 255;
-          int af = 255;
-          int _len_pbuf0 = 65025;
-          struct TYPE_6__ * pbuf = (struct TYPE_6__ *) malloc(_len_pbuf0*sizeof(struct TYPE_6__));
-          for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
-              int _len_pbuf__i0__pb_csum_flags0 = 1;
-          pbuf[_i0].pb_csum_flags = (int *) malloc(_len_pbuf__i0__pb_csum_flags0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_flags0; _j0++) {
-            pbuf[_i0].pb_csum_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pbuf__i0__pb_csum_data0 = 1;
-          pbuf[_i0].pb_csum_data = (int *) malloc(_len_pbuf__i0__pb_csum_data0*sizeof(int));
-          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_data0; _j0++) {
-            pbuf[_i0].pb_csum_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        pbuf[_i0].pb_packet_len = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = pf_check_proto_cksum(pbuf,off,len,p,af);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
-          free(pbuf[_aux].pb_csum_flags);
-          }
-          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
-          free(pbuf[_aux].pb_csum_data);
-          }
-          free(pbuf);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int off = 10;
-          int len = 10;
-          int p = 10;
-          int af = 10;
-          int _len_pbuf0 = 100;
           struct TYPE_6__ * pbuf = (struct TYPE_6__ *) malloc(_len_pbuf0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
               int _len_pbuf__i0__pb_csum_flags0 = 1;

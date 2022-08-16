@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -106,70 +102,6 @@ int main(int argc, char *argv[]) {
             snd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_rcv0 = 1;
-          struct plip_local * rcv = (struct plip_local *) malloc(_len_rcv0*sizeof(struct plip_local));
-          for(int _i0 = 0; _i0 < _len_rcv0; _i0++) {
-            rcv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = plip_none(dev,nl,snd,rcv);
-          printf("%d\n", benchRet); 
-          free(dev);
-          free(nl);
-          free(snd);
-          free(rcv);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_dev0 = 65025;
-          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
-          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_nl0 = 65025;
-          struct net_local * nl = (struct net_local *) malloc(_len_nl0*sizeof(struct net_local));
-          for(int _i0 = 0; _i0 < _len_nl0; _i0++) {
-            nl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_snd0 = 65025;
-          struct plip_local * snd = (struct plip_local *) malloc(_len_snd0*sizeof(struct plip_local));
-          for(int _i0 = 0; _i0 < _len_snd0; _i0++) {
-            snd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rcv0 = 65025;
-          struct plip_local * rcv = (struct plip_local *) malloc(_len_rcv0*sizeof(struct plip_local));
-          for(int _i0 = 0; _i0 < _len_rcv0; _i0++) {
-            rcv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = plip_none(dev,nl,snd,rcv);
-          printf("%d\n", benchRet); 
-          free(dev);
-          free(nl);
-          free(snd);
-          free(rcv);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_dev0 = 100;
-          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
-          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_nl0 = 100;
-          struct net_local * nl = (struct net_local *) malloc(_len_nl0*sizeof(struct net_local));
-          for(int _i0 = 0; _i0 < _len_nl0; _i0++) {
-            nl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_snd0 = 100;
-          struct plip_local * snd = (struct plip_local *) malloc(_len_snd0*sizeof(struct plip_local));
-          for(int _i0 = 0; _i0 < _len_snd0; _i0++) {
-            snd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rcv0 = 100;
           struct plip_local * rcv = (struct plip_local *) malloc(_len_rcv0*sizeof(struct plip_local));
           for(int _i0 = 0; _i0 < _len_rcv0; _i0++) {
             rcv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();

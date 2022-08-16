@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -93,48 +89,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_iphy0 = 1;
-          struct isci_phy * iphy = (struct isci_phy *) malloc(_len_iphy0*sizeof(struct isci_phy));
-          for(int _i0 = 0; _i0 < _len_iphy0; _i0++) {
-              int _len_iphy__i0__owning_port0 = 1;
-          iphy[_i0].owning_port = (struct isci_port *) malloc(_len_iphy__i0__owning_port0*sizeof(struct isci_port));
-          for(int _j0 = 0; _j0 < _len_iphy__i0__owning_port0; _j0++) {
-            iphy[_i0].owning_port->physical_port_index = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          struct isci_port * benchRet = phy_get_non_dummy_port(iphy);
-          printf("%ld\n", (*benchRet).physical_port_index);
-          for(int _aux = 0; _aux < _len_iphy0; _aux++) {
-          free(iphy[_aux].owning_port);
-          }
-          free(iphy);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_iphy0 = 65025;
-          struct isci_phy * iphy = (struct isci_phy *) malloc(_len_iphy0*sizeof(struct isci_phy));
-          for(int _i0 = 0; _i0 < _len_iphy0; _i0++) {
-              int _len_iphy__i0__owning_port0 = 1;
-          iphy[_i0].owning_port = (struct isci_port *) malloc(_len_iphy__i0__owning_port0*sizeof(struct isci_port));
-          for(int _j0 = 0; _j0 < _len_iphy__i0__owning_port0; _j0++) {
-            iphy[_i0].owning_port->physical_port_index = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          struct isci_port * benchRet = phy_get_non_dummy_port(iphy);
-          printf("%ld\n", (*benchRet).physical_port_index);
-          for(int _aux = 0; _aux < _len_iphy0; _aux++) {
-          free(iphy[_aux].owning_port);
-          }
-          free(iphy);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_iphy0 = 100;
           struct isci_phy * iphy = (struct isci_phy *) malloc(_len_iphy0*sizeof(struct isci_phy));
           for(int _i0 = 0; _i0 < _len_iphy0; _i0++) {
               int _len_iphy__i0__owning_port0 = 1;

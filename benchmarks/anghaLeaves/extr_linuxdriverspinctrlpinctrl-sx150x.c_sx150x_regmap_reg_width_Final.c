@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -123,64 +119,6 @@ int main(int argc, char *argv[]) {
     {
           unsigned int reg = 100;
           int _len_pctl0 = 1;
-          struct sx150x_pinctrl * pctl = (struct sx150x_pinctrl *) malloc(_len_pctl0*sizeof(struct sx150x_pinctrl));
-          for(int _i0 = 0; _i0 < _len_pctl0; _i0++) {
-              int _len_pctl__i0__data0 = 1;
-          pctl[_i0].data = (struct sx150x_device_data *) malloc(_len_pctl__i0__data0*sizeof(struct sx150x_device_data));
-          for(int _j0 = 0; _j0 < _len_pctl__i0__data0; _j0++) {
-            pctl[_i0].data->reg_sense = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->ngpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->model = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x456.reg_advanced = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x123.reg_advanced = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x789.reg_misc = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x789.reg_clock = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x789.reg_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = sx150x_regmap_reg_width(pctl,reg);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_pctl0; _aux++) {
-          free(pctl[_aux].data);
-          }
-          free(pctl);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned int reg = 255;
-          int _len_pctl0 = 65025;
-          struct sx150x_pinctrl * pctl = (struct sx150x_pinctrl *) malloc(_len_pctl0*sizeof(struct sx150x_pinctrl));
-          for(int _i0 = 0; _i0 < _len_pctl0; _i0++) {
-              int _len_pctl__i0__data0 = 1;
-          pctl[_i0].data = (struct sx150x_device_data *) malloc(_len_pctl__i0__data0*sizeof(struct sx150x_device_data));
-          for(int _j0 = 0; _j0 < _len_pctl__i0__data0; _j0++) {
-            pctl[_i0].data->reg_sense = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->ngpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->model = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x456.reg_advanced = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x123.reg_advanced = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x789.reg_misc = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x789.reg_clock = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->pri.x789.reg_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = sx150x_regmap_reg_width(pctl,reg);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_pctl0; _aux++) {
-          free(pctl[_aux].data);
-          }
-          free(pctl);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          unsigned int reg = 10;
-          int _len_pctl0 = 100;
           struct sx150x_pinctrl * pctl = (struct sx150x_pinctrl *) malloc(_len_pctl0*sizeof(struct sx150x_pinctrl));
           for(int _i0 = 0; _i0 < _len_pctl0; _i0++) {
               int _len_pctl__i0__data0 = 1;

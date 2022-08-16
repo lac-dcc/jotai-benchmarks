@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -109,62 +105,6 @@ int main(int argc, char *argv[]) {
           int rx_bufs = 100;
           int tx_bufs = 100;
           int _len_hi0 = 1;
-          struct cs_hsi_iface * hi = (struct cs_hsi_iface *) malloc(_len_hi0*sizeof(struct cs_hsi_iface));
-          for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
-            hi[_i0].rx_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].tx_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].rx_ptr_boundary = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hi__i0__mmap_cfg0 = 1;
-          hi[_i0].mmap_cfg = (struct TYPE_2__ *) malloc(_len_hi__i0__mmap_cfg0*sizeof(struct TYPE_2__));
-          for(int _j0 = 0; _j0 < _len_hi__i0__mmap_cfg0; _j0++) {
-            hi[_i0].mmap_cfg->rx_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].mmap_cfg->tx_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].mmap_cfg->rx_ptr_boundary = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          set_buffer_sizes(hi,rx_bufs,tx_bufs);
-          for(int _aux = 0; _aux < _len_hi0; _aux++) {
-          free(hi[_aux].mmap_cfg);
-          }
-          free(hi);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int rx_bufs = 255;
-          int tx_bufs = 255;
-          int _len_hi0 = 65025;
-          struct cs_hsi_iface * hi = (struct cs_hsi_iface *) malloc(_len_hi0*sizeof(struct cs_hsi_iface));
-          for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
-            hi[_i0].rx_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].tx_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].rx_ptr_boundary = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_hi__i0__mmap_cfg0 = 1;
-          hi[_i0].mmap_cfg = (struct TYPE_2__ *) malloc(_len_hi__i0__mmap_cfg0*sizeof(struct TYPE_2__));
-          for(int _j0 = 0; _j0 < _len_hi__i0__mmap_cfg0; _j0++) {
-            hi[_i0].mmap_cfg->rx_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].mmap_cfg->tx_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hi[_i0].mmap_cfg->rx_ptr_boundary = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          set_buffer_sizes(hi,rx_bufs,tx_bufs);
-          for(int _aux = 0; _aux < _len_hi0; _aux++) {
-          free(hi[_aux].mmap_cfg);
-          }
-          free(hi);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int rx_bufs = 10;
-          int tx_bufs = 10;
-          int _len_hi0 = 100;
           struct cs_hsi_iface * hi = (struct cs_hsi_iface *) malloc(_len_hi0*sizeof(struct cs_hsi_iface));
           for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
             hi[_i0].rx_bufs = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,26 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -94,29 +91,6 @@ int main(int argc, char *argv[]) {
     {
           unsigned long rpm = 100;
           int _len_fan_data0 = 1;
-          struct gpio_fan_data * fan_data = (struct gpio_fan_data *) malloc(_len_fan_data0*sizeof(struct gpio_fan_data));
-          for(int _i0 = 0; _i0 < _len_fan_data0; _i0++) {
-            fan_data[_i0].num_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_fan_data__i0__speed0 = 1;
-          fan_data[_i0].speed = (struct gpio_fan_speed *) malloc(_len_fan_data__i0__speed0*sizeof(struct gpio_fan_speed));
-          for(int _j0 = 0; _j0 < _len_fan_data__i0__speed0; _j0++) {
-            fan_data[_i0].speed->rpm = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = rpm_to_speed_index(fan_data,rpm);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_fan_data0; _aux++) {
-          free(fan_data[_aux].speed);
-          }
-          free(fan_data);
-        
-        break;
-    }
-    // big-arr-10x
-    case 1:
-    {
-          unsigned long rpm = 10;
-          int _len_fan_data0 = 100;
           struct gpio_fan_data * fan_data = (struct gpio_fan_data *) malloc(_len_fan_data0*sizeof(struct gpio_fan_data));
           for(int _i0 = 0; _i0 < _len_fan_data0; _i0++) {
             fan_data[_i0].num_speed = ((-2 * (next_i()%2)) + 1) * next_i();

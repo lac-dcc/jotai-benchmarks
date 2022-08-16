@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -203,100 +199,6 @@ int main(int argc, char *argv[]) {
         buffer_offsets[_i0].data_offset = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_internal_buf_offset0 = 1;
-          long * internal_buf_offset = (long *) malloc(_len_internal_buf_offset0*sizeof(long));
-          for(int _i0 = 0; _i0 < _len_internal_buf_offset0; _i0++) {
-            internal_buf_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = fman_sp_build_buffer_struct(int_context_data_copy,buffer_prefix_content,buf_margins,buffer_offsets,internal_buf_offset);
-          printf("%d\n", benchRet); 
-          free(int_context_data_copy);
-          free(buffer_prefix_content);
-          free(buf_margins);
-          free(buffer_offsets);
-          free(internal_buf_offset);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_int_context_data_copy0 = 65025;
-          struct fman_sp_int_context_data_copy * int_context_data_copy = (struct fman_sp_int_context_data_copy *) malloc(_len_int_context_data_copy0*sizeof(struct fman_sp_int_context_data_copy));
-          for(int _i0 = 0; _i0 < _len_int_context_data_copy0; _i0++) {
-            int_context_data_copy[_i0].ext_buf_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_context_data_copy[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_context_data_copy[_i0].int_context_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_buffer_prefix_content0 = 65025;
-          struct fman_buffer_prefix_content * buffer_prefix_content = (struct fman_buffer_prefix_content *) malloc(_len_buffer_prefix_content0*sizeof(struct fman_buffer_prefix_content));
-          for(int _i0 = 0; _i0 < _len_buffer_prefix_content0; _i0++) {
-            buffer_prefix_content[_i0].priv_data_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_prefix_content[_i0].data_align = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_prefix_content[_i0].pass_prs_result = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_prefix_content[_i0].pass_hash_result = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_prefix_content[_i0].pass_time_stamp = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_buf_margins0 = 65025;
-          struct fman_sp_buf_margins * buf_margins = (struct fman_sp_buf_margins *) malloc(_len_buf_margins0*sizeof(struct fman_sp_buf_margins));
-          for(int _i0 = 0; _i0 < _len_buf_margins0; _i0++) {
-            buf_margins[_i0].start_margins = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_buffer_offsets0 = 65025;
-          struct fman_sp_buffer_offsets * buffer_offsets = (struct fman_sp_buffer_offsets *) malloc(_len_buffer_offsets0*sizeof(struct fman_sp_buffer_offsets));
-          for(int _i0 = 0; _i0 < _len_buffer_offsets0; _i0++) {
-            buffer_offsets[_i0].prs_result_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_offsets[_i0].time_stamp_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_offsets[_i0].hash_result_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_offsets[_i0].data_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_internal_buf_offset0 = 65025;
-          long * internal_buf_offset = (long *) malloc(_len_internal_buf_offset0*sizeof(long));
-          for(int _i0 = 0; _i0 < _len_internal_buf_offset0; _i0++) {
-            internal_buf_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = fman_sp_build_buffer_struct(int_context_data_copy,buffer_prefix_content,buf_margins,buffer_offsets,internal_buf_offset);
-          printf("%d\n", benchRet); 
-          free(int_context_data_copy);
-          free(buffer_prefix_content);
-          free(buf_margins);
-          free(buffer_offsets);
-          free(internal_buf_offset);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_int_context_data_copy0 = 100;
-          struct fman_sp_int_context_data_copy * int_context_data_copy = (struct fman_sp_int_context_data_copy *) malloc(_len_int_context_data_copy0*sizeof(struct fman_sp_int_context_data_copy));
-          for(int _i0 = 0; _i0 < _len_int_context_data_copy0; _i0++) {
-            int_context_data_copy[_i0].ext_buf_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_context_data_copy[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_context_data_copy[_i0].int_context_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_buffer_prefix_content0 = 100;
-          struct fman_buffer_prefix_content * buffer_prefix_content = (struct fman_buffer_prefix_content *) malloc(_len_buffer_prefix_content0*sizeof(struct fman_buffer_prefix_content));
-          for(int _i0 = 0; _i0 < _len_buffer_prefix_content0; _i0++) {
-            buffer_prefix_content[_i0].priv_data_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_prefix_content[_i0].data_align = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_prefix_content[_i0].pass_prs_result = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_prefix_content[_i0].pass_hash_result = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_prefix_content[_i0].pass_time_stamp = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_buf_margins0 = 100;
-          struct fman_sp_buf_margins * buf_margins = (struct fman_sp_buf_margins *) malloc(_len_buf_margins0*sizeof(struct fman_sp_buf_margins));
-          for(int _i0 = 0; _i0 < _len_buf_margins0; _i0++) {
-            buf_margins[_i0].start_margins = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_buffer_offsets0 = 100;
-          struct fman_sp_buffer_offsets * buffer_offsets = (struct fman_sp_buffer_offsets *) malloc(_len_buffer_offsets0*sizeof(struct fman_sp_buffer_offsets));
-          for(int _i0 = 0; _i0 < _len_buffer_offsets0; _i0++) {
-            buffer_offsets[_i0].prs_result_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_offsets[_i0].time_stamp_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_offsets[_i0].hash_result_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer_offsets[_i0].data_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_internal_buf_offset0 = 100;
           long * internal_buf_offset = (long *) malloc(_len_internal_buf_offset0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_internal_buf_offset0; _i0++) {
             internal_buf_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

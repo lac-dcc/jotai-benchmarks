@@ -1,0 +1,123 @@
+// ========================================================================= //
+
+// includes
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+#include "limits.h"
+#include "float.h"
+
+
+
+#define JOTAI_NUM_RANDS_ 25
+
+const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
+
+int next_i() {
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+}
+
+float next_f() {
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
+} 
+
+
+// Usage menu
+void usage() {
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
+\nARGS:\n\
+       0            int-bounds\n\
+\n\
+");
+
+}
+
+
+// ------------------------------------------------------------------------- //
+
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  scalar_t__ u32 ;
+struct freq_table {scalar_t__ frequency; scalar_t__ power; } ;
+struct cpufreq_cooling_device {int max_level; struct freq_table* freq_table; } ;
+
+/* Variables and functions */
+
+__attribute__((used)) static u32 cpu_freq_to_power(struct cpufreq_cooling_device *cpufreq_cdev,
+			     u32 freq)
+{
+	int i;
+	struct freq_table *freq_table = cpufreq_cdev->freq_table;
+
+	for (i = 1; i <= cpufreq_cdev->max_level; i++)
+		if (freq > freq_table[i].frequency)
+			break;
+
+	return freq_table[i - 1].power;
+}
+
+
+// ------------------------------------------------------------------------- //
+
+
+
+
+// ------------------------------------------------------------------------- //
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
+
+    int opt = atoi(argv[1]);
+    switch(opt) {
+
+    // int-bounds
+    case 0:
+    {
+          long freq = 100;
+          int _len_cpufreq_cdev0 = 1;
+          struct cpufreq_cooling_device * cpufreq_cdev = (struct cpufreq_cooling_device *) malloc(_len_cpufreq_cdev0*sizeof(struct cpufreq_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cpufreq_cdev0; _i0++) {
+            cpufreq_cdev[_i0].max_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cpufreq_cdev__i0__freq_table0 = 1;
+          cpufreq_cdev[_i0].freq_table = (struct freq_table *) malloc(_len_cpufreq_cdev__i0__freq_table0*sizeof(struct freq_table));
+          for(int _j0 = 0; _j0 < _len_cpufreq_cdev__i0__freq_table0; _j0++) {
+            cpufreq_cdev[_i0].freq_table->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        cpufreq_cdev[_i0].freq_table->power = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          }
+          long benchRet = cpu_freq_to_power(cpufreq_cdev,freq);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cpufreq_cdev0; _aux++) {
+          free(cpufreq_cdev[_aux].freq_table);
+          }
+          free(cpufreq_cdev);
+        
+        break;
+    }
+
+    default:
+        usage();
+        break;
+
+    }
+
+    return 0;
+}

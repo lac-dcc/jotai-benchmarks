@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -123,80 +119,6 @@ int main(int argc, char *argv[]) {
             flcoeffs1[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
           int _len_flcoeffs20 = 1;
-          float * flcoeffs2 = (float *) malloc(_len_flcoeffs20*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_flcoeffs20; _i0++) {
-            flcoeffs2[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          imc_decode_level_coefficients2(q,levlCoeffBuf,old_floor,flcoeffs1,flcoeffs2);
-          free(q);
-          free(levlCoeffBuf);
-          free(old_floor);
-          free(flcoeffs1);
-          free(flcoeffs2);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_q0 = 65025;
-          int * q = (int *) malloc(_len_q0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_levlCoeffBuf0 = 65025;
-          int * levlCoeffBuf = (int *) malloc(_len_levlCoeffBuf0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_levlCoeffBuf0; _i0++) {
-            levlCoeffBuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_old_floor0 = 65025;
-          float * old_floor = (float *) malloc(_len_old_floor0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_old_floor0; _i0++) {
-            old_floor[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_flcoeffs10 = 65025;
-          float * flcoeffs1 = (float *) malloc(_len_flcoeffs10*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_flcoeffs10; _i0++) {
-            flcoeffs1[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_flcoeffs20 = 65025;
-          float * flcoeffs2 = (float *) malloc(_len_flcoeffs20*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_flcoeffs20; _i0++) {
-            flcoeffs2[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          imc_decode_level_coefficients2(q,levlCoeffBuf,old_floor,flcoeffs1,flcoeffs2);
-          free(q);
-          free(levlCoeffBuf);
-          free(old_floor);
-          free(flcoeffs1);
-          free(flcoeffs2);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_q0 = 100;
-          int * q = (int *) malloc(_len_q0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_levlCoeffBuf0 = 100;
-          int * levlCoeffBuf = (int *) malloc(_len_levlCoeffBuf0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_levlCoeffBuf0; _i0++) {
-            levlCoeffBuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_old_floor0 = 100;
-          float * old_floor = (float *) malloc(_len_old_floor0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_old_floor0; _i0++) {
-            old_floor[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_flcoeffs10 = 100;
-          float * flcoeffs1 = (float *) malloc(_len_flcoeffs10*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_flcoeffs10; _i0++) {
-            flcoeffs1[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_flcoeffs20 = 100;
           float * flcoeffs2 = (float *) malloc(_len_flcoeffs20*sizeof(float));
           for(int _i0 = 0; _i0 < _len_flcoeffs20; _i0++) {
             flcoeffs2[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -170,126 +166,6 @@ int main(int argc, char *argv[]) {
           }
           }
           int _len_mode0 = 1;
-          struct vbe_mode_ib * mode = (struct vbe_mode_ib *) malloc(_len_mode0*sizeof(struct vbe_mode_ib));
-          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].y_res = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].bytes_per_scan_line = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].red_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].green_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].blue_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].rsvd_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].rsvd_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].blue_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].green_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].red_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].x_res = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          uvesafb_setup_var(var,info,mode);
-          free(var);
-          for(int _aux = 0; _aux < _len_info0; _aux++) {
-          free(info[_aux].par);
-          }
-          free(info);
-          free(mode);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_var0 = 65025;
-          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
-          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].vmode = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_info0 = 65025;
-          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
-          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].fix.smem_len = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_info__i0__par0 = 1;
-          info[_i0].par = (struct uvesafb_par *) malloc(_len_info__i0__par0*sizeof(struct uvesafb_par));
-          for(int _j0 = 0; _j0 < _len_info__i0__par0; _j0++) {
-            info[_i0].par->ypan = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_mode0 = 65025;
-          struct vbe_mode_ib * mode = (struct vbe_mode_ib *) malloc(_len_mode0*sizeof(struct vbe_mode_ib));
-          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].y_res = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].bytes_per_scan_line = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].red_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].green_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].blue_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].rsvd_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].rsvd_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].blue_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].green_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].red_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].x_res = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          uvesafb_setup_var(var,info,mode);
-          free(var);
-          for(int _aux = 0; _aux < _len_info0; _aux++) {
-          free(info[_aux].par);
-          }
-          free(info);
-          free(mode);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_var0 = 100;
-          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
-          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].vmode = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_info0 = 100;
-          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
-          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].fix.smem_len = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_info__i0__par0 = 1;
-          info[_i0].par = (struct uvesafb_par *) malloc(_len_info__i0__par0*sizeof(struct uvesafb_par));
-          for(int _j0 = 0; _j0 < _len_info__i0__par0; _j0++) {
-            info[_i0].par->ypan = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_mode0 = 100;
           struct vbe_mode_ib * mode = (struct vbe_mode_ib *) malloc(_len_mode0*sizeof(struct vbe_mode_ib));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
             mode[_i0].y_res = ((-2 * (next_i()%2)) + 1) * next_i();

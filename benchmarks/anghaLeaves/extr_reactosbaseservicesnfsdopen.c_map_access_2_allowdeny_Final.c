@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -153,50 +149,6 @@ int main(int argc, char *argv[]) {
             allow[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_deny0 = 1;
-          int * deny = (int *) malloc(_len_deny0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_deny0; _i0++) {
-            deny[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          map_access_2_allowdeny(access_mask,access_mode,disposition,allow,deny);
-          free(allow);
-          free(deny);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int access_mask = 255;
-          int access_mode = 255;
-          int disposition = 255;
-          int _len_allow0 = 65025;
-          int * allow = (int *) malloc(_len_allow0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_allow0; _i0++) {
-            allow[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_deny0 = 65025;
-          int * deny = (int *) malloc(_len_deny0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_deny0; _i0++) {
-            deny[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          map_access_2_allowdeny(access_mask,access_mode,disposition,allow,deny);
-          free(allow);
-          free(deny);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int access_mask = 10;
-          int access_mode = 10;
-          int disposition = 10;
-          int _len_allow0 = 100;
-          int * allow = (int *) malloc(_len_allow0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_allow0; _i0++) {
-            allow[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_deny0 = 100;
           int * deny = (int *) malloc(_len_deny0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_deny0; _i0++) {
             deny[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

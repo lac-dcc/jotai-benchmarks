@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -237,74 +233,6 @@ int main(int argc, char *argv[]) {
             tfd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_dev_cmd0 = 1;
-          struct iwl_device_cmd * dev_cmd = (struct iwl_device_cmd *) malloc(_len_dev_cmd0*sizeof(struct iwl_device_cmd));
-          for(int _i0 = 0; _i0 < _len_dev_cmd0; _i0++) {
-            dev_cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = iwl_pcie_gen2_build_amsdu(trans,skb,tfd,start_len,hdr_len,dev_cmd);
-          printf("%d\n", benchRet); 
-          free(trans);
-          free(skb);
-          free(tfd);
-          free(dev_cmd);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int start_len = 255;
-          int hdr_len = 255;
-          int _len_trans0 = 65025;
-          struct iwl_trans * trans = (struct iwl_trans *) malloc(_len_trans0*sizeof(struct iwl_trans));
-          for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
-            trans[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_skb0 = 65025;
-          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
-          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_tfd0 = 65025;
-          struct iwl_tfh_tfd * tfd = (struct iwl_tfh_tfd *) malloc(_len_tfd0*sizeof(struct iwl_tfh_tfd));
-          for(int _i0 = 0; _i0 < _len_tfd0; _i0++) {
-            tfd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_dev_cmd0 = 65025;
-          struct iwl_device_cmd * dev_cmd = (struct iwl_device_cmd *) malloc(_len_dev_cmd0*sizeof(struct iwl_device_cmd));
-          for(int _i0 = 0; _i0 < _len_dev_cmd0; _i0++) {
-            dev_cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = iwl_pcie_gen2_build_amsdu(trans,skb,tfd,start_len,hdr_len,dev_cmd);
-          printf("%d\n", benchRet); 
-          free(trans);
-          free(skb);
-          free(tfd);
-          free(dev_cmd);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int start_len = 10;
-          int hdr_len = 10;
-          int _len_trans0 = 100;
-          struct iwl_trans * trans = (struct iwl_trans *) malloc(_len_trans0*sizeof(struct iwl_trans));
-          for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
-            trans[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_skb0 = 100;
-          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
-          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_tfd0 = 100;
-          struct iwl_tfh_tfd * tfd = (struct iwl_tfh_tfd *) malloc(_len_tfd0*sizeof(struct iwl_tfh_tfd));
-          for(int _i0 = 0; _i0 < _len_tfd0; _i0++) {
-            tfd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_dev_cmd0 = 100;
           struct iwl_device_cmd * dev_cmd = (struct iwl_device_cmd *) malloc(_len_dev_cmd0*sizeof(struct iwl_device_cmd));
           for(int _i0 = 0; _i0 < _len_dev_cmd0; _i0++) {
             dev_cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();

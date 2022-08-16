@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -111,78 +107,6 @@ int main(int argc, char *argv[]) {
         ri[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_ri_current0 = 1;
-          struct TYPE_3__ * ri_current = (struct TYPE_3__ *) malloc(_len_ri_current0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_ri_current0; _i0++) {
-            ri_current[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_proc_start_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_proc_exit_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          update_rusage_info_child(ri,ri_current);
-          free(ri);
-          free(ri_current);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_ri0 = 65025;
-          struct rusage_info_child * ri = (struct rusage_info_child *) malloc(_len_ri0*sizeof(struct rusage_info_child));
-          for(int _i0 = 0; _i0 < _len_ri0; _i0++) {
-            ri[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ri_current0 = 65025;
-          struct TYPE_3__ * ri_current = (struct TYPE_3__ *) malloc(_len_ri_current0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_ri_current0; _i0++) {
-            ri_current[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_proc_start_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_proc_exit_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          update_rusage_info_child(ri,ri_current);
-          free(ri);
-          free(ri_current);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_ri0 = 100;
-          struct rusage_info_child * ri = (struct rusage_info_child *) malloc(_len_ri0*sizeof(struct rusage_info_child));
-          for(int _i0 = 0; _i0 < _len_ri0; _i0++) {
-            ri[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ri_current0 = 100;
           struct TYPE_3__ * ri_current = (struct TYPE_3__ *) malloc(_len_ri_current0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ri_current0; _i0++) {
             ri_current[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();

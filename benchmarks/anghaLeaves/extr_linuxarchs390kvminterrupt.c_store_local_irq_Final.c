@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -158,68 +154,6 @@ int main(int argc, char *argv[]) {
         li[_i0].irq.mchk = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_irq0 = 1;
-          struct kvm_s390_irq * irq = (struct kvm_s390_irq *) malloc(_len_irq0*sizeof(struct kvm_s390_irq));
-          for(int _i0 = 0; _i0 < _len_irq0; _i0++) {
-            irq[_i0].u.prefix = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.extcall = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.ext = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.pgm = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.mchk = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          store_local_irq(li,irq,irq_type);
-          free(li);
-          free(irq);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned long irq_type = 255;
-          int _len_li0 = 65025;
-          struct kvm_s390_local_interrupt * li = (struct kvm_s390_local_interrupt *) malloc(_len_li0*sizeof(struct kvm_s390_local_interrupt));
-          for(int _i0 = 0; _i0 < _len_li0; _i0++) {
-            li[_i0].irq.prefix = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.extcall = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.ext = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.pgm = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.mchk = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_irq0 = 65025;
-          struct kvm_s390_irq * irq = (struct kvm_s390_irq *) malloc(_len_irq0*sizeof(struct kvm_s390_irq));
-          for(int _i0 = 0; _i0 < _len_irq0; _i0++) {
-            irq[_i0].u.prefix = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.extcall = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.ext = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.pgm = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].u.mchk = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          store_local_irq(li,irq,irq_type);
-          free(li);
-          free(irq);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          unsigned long irq_type = 10;
-          int _len_li0 = 100;
-          struct kvm_s390_local_interrupt * li = (struct kvm_s390_local_interrupt *) malloc(_len_li0*sizeof(struct kvm_s390_local_interrupt));
-          for(int _i0 = 0; _i0 < _len_li0; _i0++) {
-            li[_i0].irq.prefix = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.extcall = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.ext = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.pgm = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].irq.mchk = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_irq0 = 100;
           struct kvm_s390_irq * irq = (struct kvm_s390_irq *) malloc(_len_irq0*sizeof(struct kvm_s390_irq));
           for(int _i0 = 0; _i0 < _len_irq0; _i0++) {
             irq[_i0].u.prefix = ((-2 * (next_i()%2)) + 1) * next_i();

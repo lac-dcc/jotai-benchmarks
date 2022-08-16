@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            dlinked\n\
-       2            bintree\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -96,49 +92,6 @@ void _delete_n(struct list *aux_n[], int aux_n_size) {
       free(aux_n[i]);
 }
 
-struct list *_allocate_Dlinked_n(int length, struct list *aux_dlinked_n[] ) {
-  struct list *walker = (struct list *)malloc(sizeof(struct list));
-
-  aux_dlinked_n[0] = walker;
-  walker->prev = NULL;
-  walker->next = NULL;
-
-  struct list *head = walker;
-  for(int i = 1; i < length; i++) {
-    walker->next = (struct list *)malloc(sizeof(struct list));
-    walker->next->prev = walker;
-    walker = walker->next;
-    aux_dlinked_n[i] = walker;
-    if (i == (length - 1)) 
-      walker->next = NULL;  }
-
-  return head;
-}
-
-void _delete_Dlinked_n(struct list *aux_dlinked_n[], int aux_dlinked_n_size) {
-  for(int i = 0; i < aux_dlinked_n_size; i++) 
-    if(aux_dlinked_n[i])
-      free(aux_dlinked_n[i]);
-}
-
-struct list *_allocateBinTree_n(int length, struct list *aux_tree_n[], int *counter_n) {
-  if(length == 0)
-    return NULL;
-  struct list *walker = (struct list *)malloc(sizeof(struct list));
-
-  aux_tree_n[*counter_n] = walker;
-  (*counter_n)++;
-  walker->prev = _allocateBinTree_n(length - 1, aux_tree_n, counter_n);
-  walker->next = _allocateBinTree_n(length - 1, aux_tree_n, counter_n);
-  return walker;
-}
-
-void _deleteBinTree_n(struct list *aux_tree_n[]) {
-  for(int i = 0; i < 1023; i++) 
-    if(aux_tree_n[i])
-      free(aux_tree_n[i]);
-}
-
 
 
 
@@ -161,27 +114,6 @@ int main(int argc, char *argv[]) {
           struct list * n = _allocate_n(1, aux_n);
           list_init(n);
           _delete_n(aux_n, 1);
-        
-        break;
-    }
-    // dlinked
-    case 1:
-    {
-          struct list * aux_dlinked_n[10000];
-          struct list * n = _allocate_Dlinked_n(10000, aux_dlinked_n);
-          list_init(n);
-          _delete_Dlinked_n(aux_dlinked_n, 10000);
-        
-        break;
-    }
-    // bintree
-    case 2:
-    {
-          int counter_n= 0;
-          struct list *  aux_tree_n[1023];
-          struct list * n = _allocateBinTree_n(10, aux_tree_n, &counter_n);
-          list_init(n);
-          _deleteBinTree_n(aux_tree_n);
         
         break;
     }

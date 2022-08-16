@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -143,120 +139,6 @@ int main(int argc, char *argv[]) {
             locally_initiated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_open_context0 = 1;
-          int * open_context = (int *) malloc(_len_open_context0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_open_context0; _i0++) {
-            open_context[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = gss_inquire_context(min,context_handle,src_name,targ_name,lifetime_rec,mech_type,ctx_flags,locally_initiated,open_context);
-          printf("%d\n", benchRet); 
-          free(min);
-          free(src_name);
-          free(targ_name);
-          free(lifetime_rec);
-          free(mech_type);
-          free(ctx_flags);
-          free(locally_initiated);
-          free(open_context);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int context_handle = 255;
-          int _len_min0 = 65025;
-          int * min = (int *) malloc(_len_min0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_min0; _i0++) {
-            min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_src_name0 = 65025;
-          int * src_name = (int *) malloc(_len_src_name0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_src_name0; _i0++) {
-            src_name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_targ_name0 = 65025;
-          int * targ_name = (int *) malloc(_len_targ_name0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_targ_name0; _i0++) {
-            targ_name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_lifetime_rec0 = 65025;
-          int * lifetime_rec = (int *) malloc(_len_lifetime_rec0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_lifetime_rec0; _i0++) {
-            lifetime_rec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_mech_type0 = 65025;
-          int * mech_type = (int *) malloc(_len_mech_type0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_mech_type0; _i0++) {
-            mech_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ctx_flags0 = 65025;
-          int * ctx_flags = (int *) malloc(_len_ctx_flags0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_ctx_flags0; _i0++) {
-            ctx_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_locally_initiated0 = 65025;
-          int * locally_initiated = (int *) malloc(_len_locally_initiated0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_locally_initiated0; _i0++) {
-            locally_initiated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_open_context0 = 65025;
-          int * open_context = (int *) malloc(_len_open_context0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_open_context0; _i0++) {
-            open_context[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = gss_inquire_context(min,context_handle,src_name,targ_name,lifetime_rec,mech_type,ctx_flags,locally_initiated,open_context);
-          printf("%d\n", benchRet); 
-          free(min);
-          free(src_name);
-          free(targ_name);
-          free(lifetime_rec);
-          free(mech_type);
-          free(ctx_flags);
-          free(locally_initiated);
-          free(open_context);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int context_handle = 10;
-          int _len_min0 = 100;
-          int * min = (int *) malloc(_len_min0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_min0; _i0++) {
-            min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_src_name0 = 100;
-          int * src_name = (int *) malloc(_len_src_name0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_src_name0; _i0++) {
-            src_name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_targ_name0 = 100;
-          int * targ_name = (int *) malloc(_len_targ_name0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_targ_name0; _i0++) {
-            targ_name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_lifetime_rec0 = 100;
-          int * lifetime_rec = (int *) malloc(_len_lifetime_rec0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_lifetime_rec0; _i0++) {
-            lifetime_rec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_mech_type0 = 100;
-          int * mech_type = (int *) malloc(_len_mech_type0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_mech_type0; _i0++) {
-            mech_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ctx_flags0 = 100;
-          int * ctx_flags = (int *) malloc(_len_ctx_flags0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_ctx_flags0; _i0++) {
-            ctx_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_locally_initiated0 = 100;
-          int * locally_initiated = (int *) malloc(_len_locally_initiated0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_locally_initiated0; _i0++) {
-            locally_initiated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_open_context0 = 100;
           int * open_context = (int *) malloc(_len_open_context0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_open_context0; _i0++) {
             open_context[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

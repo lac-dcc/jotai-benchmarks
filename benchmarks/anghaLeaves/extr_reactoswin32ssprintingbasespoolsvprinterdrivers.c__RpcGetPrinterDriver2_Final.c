@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -118,92 +114,6 @@ int main(int argc, char *argv[]) {
             pdwServerMaxVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_pdwServerMinVersion0 = 1;
-          int * pdwServerMinVersion = (int *) malloc(_len_pdwServerMinVersion0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pdwServerMinVersion0; _i0++) {
-            pdwServerMinVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = _RpcGetPrinterDriver2(hPrinter,pEnvironment,Level,pDriver,cbBuf,pcbNeeded,dwClientMajorVersion,dwClientMinorVersion,pdwServerMaxVersion,pdwServerMinVersion);
-          printf("%d\n", benchRet); 
-          free(pEnvironment);
-          free(pDriver);
-          free(pcbNeeded);
-          free(pdwServerMaxVersion);
-          free(pdwServerMinVersion);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int hPrinter = 255;
-          int Level = 255;
-          int cbBuf = 255;
-          int dwClientMajorVersion = 255;
-          int dwClientMinorVersion = 255;
-          int _len_pEnvironment0 = 65025;
-          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
-            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pDriver0 = 65025;
-          int * pDriver = (int *) malloc(_len_pDriver0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pDriver0; _i0++) {
-            pDriver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pcbNeeded0 = 65025;
-          int * pcbNeeded = (int *) malloc(_len_pcbNeeded0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pcbNeeded0; _i0++) {
-            pcbNeeded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pdwServerMaxVersion0 = 65025;
-          int * pdwServerMaxVersion = (int *) malloc(_len_pdwServerMaxVersion0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pdwServerMaxVersion0; _i0++) {
-            pdwServerMaxVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pdwServerMinVersion0 = 65025;
-          int * pdwServerMinVersion = (int *) malloc(_len_pdwServerMinVersion0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pdwServerMinVersion0; _i0++) {
-            pdwServerMinVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = _RpcGetPrinterDriver2(hPrinter,pEnvironment,Level,pDriver,cbBuf,pcbNeeded,dwClientMajorVersion,dwClientMinorVersion,pdwServerMaxVersion,pdwServerMinVersion);
-          printf("%d\n", benchRet); 
-          free(pEnvironment);
-          free(pDriver);
-          free(pcbNeeded);
-          free(pdwServerMaxVersion);
-          free(pdwServerMinVersion);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int hPrinter = 10;
-          int Level = 10;
-          int cbBuf = 10;
-          int dwClientMajorVersion = 10;
-          int dwClientMinorVersion = 10;
-          int _len_pEnvironment0 = 100;
-          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
-            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pDriver0 = 100;
-          int * pDriver = (int *) malloc(_len_pDriver0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pDriver0; _i0++) {
-            pDriver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pcbNeeded0 = 100;
-          int * pcbNeeded = (int *) malloc(_len_pcbNeeded0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pcbNeeded0; _i0++) {
-            pcbNeeded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pdwServerMaxVersion0 = 100;
-          int * pdwServerMaxVersion = (int *) malloc(_len_pdwServerMaxVersion0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pdwServerMaxVersion0; _i0++) {
-            pdwServerMaxVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pdwServerMinVersion0 = 100;
           int * pdwServerMinVersion = (int *) malloc(_len_pdwServerMinVersion0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pdwServerMinVersion0; _i0++) {
             pdwServerMinVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

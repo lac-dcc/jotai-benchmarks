@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -235,104 +231,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_r0 = 1;
-          struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-              int _len_r__i0__uri_start0 = 1;
-          r[_i0].uri_start = (char *) malloc(_len_r__i0__uri_start0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_r__i0__uri_start0; _j0++) {
-            r[_i0].uri_start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_r__i0__uri_end0 = 1;
-          r[_i0].uri_end = (char *) malloc(_len_r__i0__uri_end0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_r__i0__uri_end0; _j0++) {
-            r[_i0].uri_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        r[_i0].space_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].complex_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].quoted_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_r__i0__args_start0 = 1;
-          r[_i0].args_start = (char *) malloc(_len_r__i0__args_start0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_r__i0__args_start0; _j0++) {
-            r[_i0].args_start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        r[_i0].plus_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_r__i0__uri_ext0 = 1;
-          r[_i0].uri_ext = (char *) malloc(_len_r__i0__uri_ext0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_r__i0__uri_ext0; _j0++) {
-            r[_i0].uri_ext[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = ngx_http_parse_uri(r);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_r0; _aux++) {
-          free(r[_aux].uri_start);
-          }
-          for(int _aux = 0; _aux < _len_r0; _aux++) {
-          free(r[_aux].uri_end);
-          }
-          for(int _aux = 0; _aux < _len_r0; _aux++) {
-          free(r[_aux].args_start);
-          }
-          for(int _aux = 0; _aux < _len_r0; _aux++) {
-          free(r[_aux].uri_ext);
-          }
-          free(r);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_r0 = 65025;
-          struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-              int _len_r__i0__uri_start0 = 1;
-          r[_i0].uri_start = (char *) malloc(_len_r__i0__uri_start0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_r__i0__uri_start0; _j0++) {
-            r[_i0].uri_start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_r__i0__uri_end0 = 1;
-          r[_i0].uri_end = (char *) malloc(_len_r__i0__uri_end0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_r__i0__uri_end0; _j0++) {
-            r[_i0].uri_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        r[_i0].space_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].complex_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].quoted_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_r__i0__args_start0 = 1;
-          r[_i0].args_start = (char *) malloc(_len_r__i0__args_start0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_r__i0__args_start0; _j0++) {
-            r[_i0].args_start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        r[_i0].plus_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_r__i0__uri_ext0 = 1;
-          r[_i0].uri_ext = (char *) malloc(_len_r__i0__uri_ext0*sizeof(char));
-          for(int _j0 = 0; _j0 < _len_r__i0__uri_ext0; _j0++) {
-            r[_i0].uri_ext[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int benchRet = ngx_http_parse_uri(r);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_r0; _aux++) {
-          free(r[_aux].uri_start);
-          }
-          for(int _aux = 0; _aux < _len_r0; _aux++) {
-          free(r[_aux].uri_end);
-          }
-          for(int _aux = 0; _aux < _len_r0; _aux++) {
-          free(r[_aux].args_start);
-          }
-          for(int _aux = 0; _aux < _len_r0; _aux++) {
-          free(r[_aux].uri_ext);
-          }
-          free(r);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_r0 = 100;
           struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
               int _len_r__i0__uri_start0 = 1;

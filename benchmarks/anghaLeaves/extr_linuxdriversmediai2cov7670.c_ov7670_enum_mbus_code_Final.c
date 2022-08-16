@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -109,62 +105,6 @@ int main(int argc, char *argv[]) {
             cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_code0 = 1;
-          struct v4l2_subdev_mbus_code_enum * code = (struct v4l2_subdev_mbus_code_enum *) malloc(_len_code0*sizeof(struct v4l2_subdev_mbus_code_enum));
-          for(int _i0 = 0; _i0 < _len_code0; _i0++) {
-            code[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
-        code[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
-        code[_i0].pad = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ov7670_enum_mbus_code(sd,cfg,code);
-          printf("%d\n", benchRet); 
-          free(sd);
-          free(cfg);
-          free(code);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_sd0 = 65025;
-          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
-          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cfg0 = 65025;
-          struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
-          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_code0 = 65025;
-          struct v4l2_subdev_mbus_code_enum * code = (struct v4l2_subdev_mbus_code_enum *) malloc(_len_code0*sizeof(struct v4l2_subdev_mbus_code_enum));
-          for(int _i0 = 0; _i0 < _len_code0; _i0++) {
-            code[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
-        code[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
-        code[_i0].pad = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ov7670_enum_mbus_code(sd,cfg,code);
-          printf("%d\n", benchRet); 
-          free(sd);
-          free(cfg);
-          free(code);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_sd0 = 100;
-          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
-          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cfg0 = 100;
-          struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
-          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_code0 = 100;
           struct v4l2_subdev_mbus_code_enum * code = (struct v4l2_subdev_mbus_code_enum *) malloc(_len_code0*sizeof(struct v4l2_subdev_mbus_code_enum));
           for(int _i0 = 0; _i0 < _len_code0; _i0++) {
             code[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();

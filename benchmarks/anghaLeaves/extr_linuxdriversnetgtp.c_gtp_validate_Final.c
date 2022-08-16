@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -110,90 +106,6 @@ int main(int argc, char *argv[]) {
             }
           }
           int _len_extack0 = 1;
-          struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
-          for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
-            extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = gtp_validate(tb,data,extack);
-          printf("%d\n", benchRet); 
-          for(int i1 = 0; i1 < _len_tb0; i1++) {
-            int _len_tb1 = 1;
-              free(tb[i1]);
-          }
-          free(tb);
-          for(int i1 = 0; i1 < _len_data0; i1++) {
-            int _len_data1 = 1;
-              free(data[i1]);
-          }
-          free(data);
-          free(extack);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_tb0 = 65025;
-          struct nlattr ** tb = (struct nlattr **) malloc(_len_tb0*sizeof(struct nlattr *));
-          for(int _i0 = 0; _i0 < _len_tb0; _i0++) {
-            int _len_tb1 = 1;
-            tb[_i0] = (struct nlattr *) malloc(_len_tb1*sizeof(struct nlattr));
-            for(int _i1 = 0; _i1 < _len_tb1; _i1++) {
-              tb[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-            }
-          }
-          int _len_data0 = 65025;
-          struct nlattr ** data = (struct nlattr **) malloc(_len_data0*sizeof(struct nlattr *));
-          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            int _len_data1 = 1;
-            data[_i0] = (struct nlattr *) malloc(_len_data1*sizeof(struct nlattr));
-            for(int _i1 = 0; _i1 < _len_data1; _i1++) {
-              data[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-            }
-          }
-          int _len_extack0 = 65025;
-          struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
-          for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
-            extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = gtp_validate(tb,data,extack);
-          printf("%d\n", benchRet); 
-          for(int i1 = 0; i1 < _len_tb0; i1++) {
-            int _len_tb1 = 1;
-              free(tb[i1]);
-          }
-          free(tb);
-          for(int i1 = 0; i1 < _len_data0; i1++) {
-            int _len_data1 = 1;
-              free(data[i1]);
-          }
-          free(data);
-          free(extack);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_tb0 = 100;
-          struct nlattr ** tb = (struct nlattr **) malloc(_len_tb0*sizeof(struct nlattr *));
-          for(int _i0 = 0; _i0 < _len_tb0; _i0++) {
-            int _len_tb1 = 1;
-            tb[_i0] = (struct nlattr *) malloc(_len_tb1*sizeof(struct nlattr));
-            for(int _i1 = 0; _i1 < _len_tb1; _i1++) {
-              tb[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-            }
-          }
-          int _len_data0 = 100;
-          struct nlattr ** data = (struct nlattr **) malloc(_len_data0*sizeof(struct nlattr *));
-          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            int _len_data1 = 1;
-            data[_i0] = (struct nlattr *) malloc(_len_data1*sizeof(struct nlattr));
-            for(int _i1 = 0; _i1 < _len_data1; _i1++) {
-              data[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-            }
-          }
-          int _len_extack0 = 100;
           struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
           for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
             extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -123,82 +119,6 @@ int main(int argc, char *argv[]) {
             pkt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_x0 = 1;
-          int * x = (int *) malloc(_len_x0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = tls_parse_stoc_ems(s,pkt,context,x,chainidx);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].session);
-          }
-          free(s);
-          free(pkt);
-          free(x);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned int context = 255;
-          unsigned long chainidx = 255;
-          int _len_s0 = 65025;
-          struct TYPE_7__ * s = (struct TYPE_7__ *) malloc(_len_s0*sizeof(struct TYPE_7__));
-          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_s__i0__session0 = 1;
-          s[_i0].session = (struct TYPE_6__ *) malloc(_len_s__i0__session0*sizeof(struct TYPE_6__));
-          for(int _j0 = 0; _j0 < _len_s__i0__session0; _j0++) {
-            s[_i0].session->flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        s[_i0].hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].s3.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pkt0 = 65025;
-          int * pkt = (int *) malloc(_len_pkt0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
-            pkt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_x0 = 65025;
-          int * x = (int *) malloc(_len_x0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = tls_parse_stoc_ems(s,pkt,context,x,chainidx);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_s0; _aux++) {
-          free(s[_aux].session);
-          }
-          free(s);
-          free(pkt);
-          free(x);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          unsigned int context = 10;
-          unsigned long chainidx = 10;
-          int _len_s0 = 100;
-          struct TYPE_7__ * s = (struct TYPE_7__ *) malloc(_len_s0*sizeof(struct TYPE_7__));
-          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_s__i0__session0 = 1;
-          s[_i0].session = (struct TYPE_6__ *) malloc(_len_s__i0__session0*sizeof(struct TYPE_6__));
-          for(int _j0 = 0; _j0 < _len_s__i0__session0; _j0++) {
-            s[_i0].session->flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        s[_i0].hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].s3.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pkt0 = 100;
-          int * pkt = (int *) malloc(_len_pkt0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
-            pkt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_x0 = 100;
           int * x = (int *) malloc(_len_x0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
             x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

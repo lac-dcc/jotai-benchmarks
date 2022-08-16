@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -128,62 +124,6 @@ int main(int argc, char *argv[]) {
         tqp_vector[_i0].int_adapt_down = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_priv0 = 1;
-          struct hns3_nic_priv * priv = (struct hns3_nic_priv *) malloc(_len_priv0*sizeof(struct hns3_nic_priv));
-          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-              int _len_priv__i0__ae_handle0 = 1;
-          priv[_i0].ae_handle = (struct hnae3_handle *) malloc(_len_priv__i0__ae_handle0*sizeof(struct hnae3_handle));
-          for(int _j0 = 0; _j0 < _len_priv__i0__ae_handle0; _j0++) {
-            priv[_i0].ae_handle->kinfo.int_rl_setting = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          hns3_vector_gl_rl_init(tqp_vector,priv);
-          free(tqp_vector);
-          for(int _aux = 0; _aux < _len_priv0; _aux++) {
-          free(priv[_aux].ae_handle);
-          }
-          free(priv);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_tqp_vector0 = 65025;
-          struct hns3_enet_tqp_vector * tqp_vector = (struct hns3_enet_tqp_vector *) malloc(_len_tqp_vector0*sizeof(struct hns3_enet_tqp_vector));
-          for(int _i0 = 0; _i0 < _len_tqp_vector0; _i0++) {
-            tqp_vector[_i0].tx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        tqp_vector[_i0].rx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        tqp_vector[_i0].int_adapt_down = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_priv0 = 65025;
-          struct hns3_nic_priv * priv = (struct hns3_nic_priv *) malloc(_len_priv0*sizeof(struct hns3_nic_priv));
-          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-              int _len_priv__i0__ae_handle0 = 1;
-          priv[_i0].ae_handle = (struct hnae3_handle *) malloc(_len_priv__i0__ae_handle0*sizeof(struct hnae3_handle));
-          for(int _j0 = 0; _j0 < _len_priv__i0__ae_handle0; _j0++) {
-            priv[_i0].ae_handle->kinfo.int_rl_setting = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          hns3_vector_gl_rl_init(tqp_vector,priv);
-          free(tqp_vector);
-          for(int _aux = 0; _aux < _len_priv0; _aux++) {
-          free(priv[_aux].ae_handle);
-          }
-          free(priv);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_tqp_vector0 = 100;
-          struct hns3_enet_tqp_vector * tqp_vector = (struct hns3_enet_tqp_vector *) malloc(_len_tqp_vector0*sizeof(struct hns3_enet_tqp_vector));
-          for(int _i0 = 0; _i0 < _len_tqp_vector0; _i0++) {
-            tqp_vector[_i0].tx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        tqp_vector[_i0].rx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        tqp_vector[_i0].int_adapt_down = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_priv0 = 100;
           struct hns3_nic_priv * priv = (struct hns3_nic_priv *) malloc(_len_priv0*sizeof(struct hns3_nic_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
               int _len_priv__i0__ae_handle0 = 1;

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -98,48 +94,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_detect0 = 1;
-          struct TYPE_3__ * detect = (struct TYPE_3__ *) malloc(_len_detect0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_detect0; _i0++) {
-            detect[_i0].max_gain_adjustment = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        detect[_i0].cdt_expirations = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0]._active_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].uses_transient_filter = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].peak_extend = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].total_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].hdcd_detected = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          hdcd_detect_reset(detect);
-          free(detect);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_detect0 = 65025;
-          struct TYPE_3__ * detect = (struct TYPE_3__ *) malloc(_len_detect0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_detect0; _i0++) {
-            detect[_i0].max_gain_adjustment = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        detect[_i0].cdt_expirations = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0]._active_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].uses_transient_filter = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].peak_extend = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].total_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].hdcd_detected = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          hdcd_detect_reset(detect);
-          free(detect);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_detect0 = 100;
           struct TYPE_3__ * detect = (struct TYPE_3__ *) malloc(_len_detect0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_detect0; _i0++) {
             detect[_i0].max_gain_adjustment = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));

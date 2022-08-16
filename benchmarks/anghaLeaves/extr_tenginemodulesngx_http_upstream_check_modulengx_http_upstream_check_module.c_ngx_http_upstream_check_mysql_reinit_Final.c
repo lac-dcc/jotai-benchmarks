@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -103,58 +99,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_peer0 = 1;
-          struct TYPE_8__ * peer = (struct TYPE_8__ *) malloc(_len_peer0*sizeof(struct TYPE_8__));
-          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
-              int _len_peer__i0__check_data0 = 1;
-          peer[_i0].check_data = (struct TYPE_9__ *) malloc(_len_peer__i0__check_data0*sizeof(struct TYPE_9__));
-          for(int _j0 = 0; _j0 < _len_peer__i0__check_data0; _j0++) {
-            peer[_i0].check_data->recv.start = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->recv.last = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->recv.pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.end = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.last = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.start = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.pos = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          ngx_http_upstream_check_mysql_reinit(peer);
-          for(int _aux = 0; _aux < _len_peer0; _aux++) {
-          free(peer[_aux].check_data);
-          }
-          free(peer);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_peer0 = 65025;
-          struct TYPE_8__ * peer = (struct TYPE_8__ *) malloc(_len_peer0*sizeof(struct TYPE_8__));
-          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
-              int _len_peer__i0__check_data0 = 1;
-          peer[_i0].check_data = (struct TYPE_9__ *) malloc(_len_peer__i0__check_data0*sizeof(struct TYPE_9__));
-          for(int _j0 = 0; _j0 < _len_peer__i0__check_data0; _j0++) {
-            peer[_i0].check_data->recv.start = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->recv.last = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->recv.pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.end = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.last = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.start = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.pos = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          ngx_http_upstream_check_mysql_reinit(peer);
-          for(int _aux = 0; _aux < _len_peer0; _aux++) {
-          free(peer[_aux].check_data);
-          }
-          free(peer);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_peer0 = 100;
           struct TYPE_8__ * peer = (struct TYPE_8__ *) malloc(_len_peer0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
               int _len_peer__i0__check_data0 = 1;

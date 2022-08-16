@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -169,94 +165,6 @@ int main(int argc, char *argv[]) {
     {
           enum ath9k_int status = 100;
           int _len_sc0 = 1;
-          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
-          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].debug.stats.istats.gen_timer = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.mci = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.tsfoor = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.dtim = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.dtimsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.cabend = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.tim = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.gtt = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.cst = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.bnr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.bmiss = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.swba = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rx_keycache_miss = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxphyerr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.txurn = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.txok = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxorn = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxeol = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxok = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.bb_watchdog = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxhp = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxlp = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.total = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_sc__i0__sc_ah0 = 1;
-          sc[_i0].sc_ah = (struct TYPE_7__ *) malloc(_len_sc__i0__sc_ah0*sizeof(struct TYPE_7__));
-          for(int _j0 = 0; _j0 < _len_sc__i0__sc_ah0; _j0++) {
-            sc[_i0].sc_ah->caps.hw_caps = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          ath_debug_stat_interrupt(sc,status);
-          for(int _aux = 0; _aux < _len_sc0; _aux++) {
-          free(sc[_aux].sc_ah);
-          }
-          free(sc);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          enum ath9k_int status = 255;
-          int _len_sc0 = 65025;
-          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
-          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].debug.stats.istats.gen_timer = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.mci = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.tsfoor = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.dtim = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.dtimsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.cabend = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.tim = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.gtt = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.cst = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.bnr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.bmiss = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.swba = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rx_keycache_miss = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxphyerr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.txurn = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.txok = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxorn = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxeol = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxok = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.bb_watchdog = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxhp = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.rxlp = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.total = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_sc__i0__sc_ah0 = 1;
-          sc[_i0].sc_ah = (struct TYPE_7__ *) malloc(_len_sc__i0__sc_ah0*sizeof(struct TYPE_7__));
-          for(int _j0 = 0; _j0 < _len_sc__i0__sc_ah0; _j0++) {
-            sc[_i0].sc_ah->caps.hw_caps = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          ath_debug_stat_interrupt(sc,status);
-          for(int _aux = 0; _aux < _len_sc0; _aux++) {
-          free(sc[_aux].sc_ah);
-          }
-          free(sc);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          enum ath9k_int status = 10;
-          int _len_sc0 = 100;
           struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
             sc[_i0].debug.stats.istats.gen_timer = ((-2 * (next_i()%2)) + 1) * next_i();

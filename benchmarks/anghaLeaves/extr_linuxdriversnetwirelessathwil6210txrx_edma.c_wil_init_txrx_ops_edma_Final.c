@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -124,64 +120,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_wil0 = 1;
-          struct wil6210_priv * wil = (struct wil6210_priv *) malloc(_len_wil0*sizeof(struct wil6210_priv));
-          for(int _i0 = 0; _i0 < _len_wil0; _i0++) {
-            wil[_i0].txrx_ops.rx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.is_rx_idle = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.rx_error_check = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.rx_crypto_check = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.get_netif_rx_params = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.get_reorder_params = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.wmi_addba_rx_resp = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.rx_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_ring_tso = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_desc_unmap = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_desc_map = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.ring_init_bcast = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.ring_fini_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.ring_init_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.configure_interrupt_moderation = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          wil_init_txrx_ops_edma(wil);
-          free(wil);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_wil0 = 65025;
-          struct wil6210_priv * wil = (struct wil6210_priv *) malloc(_len_wil0*sizeof(struct wil6210_priv));
-          for(int _i0 = 0; _i0 < _len_wil0; _i0++) {
-            wil[_i0].txrx_ops.rx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.is_rx_idle = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.rx_error_check = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.rx_crypto_check = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.get_netif_rx_params = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.get_reorder_params = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.wmi_addba_rx_resp = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.rx_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_ring_tso = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_desc_unmap = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_desc_map = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.ring_init_bcast = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.ring_fini_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.ring_init_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.configure_interrupt_moderation = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          wil_init_txrx_ops_edma(wil);
-          free(wil);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_wil0 = 100;
           struct wil6210_priv * wil = (struct wil6210_priv *) malloc(_len_wil0*sizeof(struct wil6210_priv));
           for(int _i0 = 0; _i0 < _len_wil0; _i0++) {
             wil[_i0].txrx_ops.rx_fini = ((-2 * (next_i()%2)) + 1) * next_i();

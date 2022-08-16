@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -161,96 +157,6 @@ int main(int argc, char *argv[]) {
             omi[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_omj0 = 1;
-          int * omj = (int *) malloc(_len_omj0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_omj0; _i0++) {
-            omj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = longest_match(a,b,pos,a1,a2,b1,b2,omi,omj);
-          printf("%d\n", benchRet); 
-          free(a);
-          free(b);
-          free(pos);
-          free(omi);
-          free(omj);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int a1 = 255;
-          int a2 = 255;
-          int b1 = 255;
-          int b2 = 255;
-          int _len_a0 = 65025;
-          struct line * a = (struct line *) malloc(_len_a0*sizeof(struct line));
-          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].e = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_b0 = 65025;
-          struct line * b = (struct line *) malloc(_len_b0*sizeof(struct line));
-          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].e = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pos0 = 65025;
-          struct pos * pos = (struct pos *) malloc(_len_pos0*sizeof(struct pos));
-          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
-            pos[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        pos[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_omi0 = 65025;
-          int * omi = (int *) malloc(_len_omi0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_omi0; _i0++) {
-            omi[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_omj0 = 65025;
-          int * omj = (int *) malloc(_len_omj0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_omj0; _i0++) {
-            omj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = longest_match(a,b,pos,a1,a2,b1,b2,omi,omj);
-          printf("%d\n", benchRet); 
-          free(a);
-          free(b);
-          free(pos);
-          free(omi);
-          free(omj);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int a1 = 10;
-          int a2 = 10;
-          int b1 = 10;
-          int b2 = 10;
-          int _len_a0 = 100;
-          struct line * a = (struct line *) malloc(_len_a0*sizeof(struct line));
-          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].e = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_b0 = 100;
-          struct line * b = (struct line *) malloc(_len_b0*sizeof(struct line));
-          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].e = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pos0 = 100;
-          struct pos * pos = (struct pos *) malloc(_len_pos0*sizeof(struct pos));
-          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
-            pos[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        pos[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_omi0 = 100;
-          int * omi = (int *) malloc(_len_omi0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_omi0; _i0++) {
-            omi[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_omj0 = 100;
           int * omj = (int *) malloc(_len_omj0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_omj0; _i0++) {
             omj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

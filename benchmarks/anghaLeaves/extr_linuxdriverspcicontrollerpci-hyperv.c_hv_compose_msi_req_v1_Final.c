@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -124,60 +120,6 @@ int main(int argc, char *argv[]) {
         int_pkt[_i0].message_type.type = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_affinity0 = 1;
-          struct cpumask * affinity = (struct cpumask *) malloc(_len_affinity0*sizeof(struct cpumask));
-          for(int _i0 = 0; _i0 < _len_affinity0; _i0++) {
-            affinity[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = hv_compose_msi_req_v1(int_pkt,affinity,slot,vector);
-          printf("%d\n", benchRet); 
-          free(int_pkt);
-          free(affinity);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int slot = 255;
-          int vector = 255;
-          int _len_int_pkt0 = 65025;
-          struct pci_create_interrupt * int_pkt = (struct pci_create_interrupt *) malloc(_len_int_pkt0*sizeof(struct pci_create_interrupt));
-          for(int _i0 = 0; _i0 < _len_int_pkt0; _i0++) {
-            int_pkt[_i0].int_desc.vector_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].int_desc.cpu_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].int_desc.delivery_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].int_desc.vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].wslot.slot = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].message_type.type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_affinity0 = 65025;
-          struct cpumask * affinity = (struct cpumask *) malloc(_len_affinity0*sizeof(struct cpumask));
-          for(int _i0 = 0; _i0 < _len_affinity0; _i0++) {
-            affinity[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = hv_compose_msi_req_v1(int_pkt,affinity,slot,vector);
-          printf("%d\n", benchRet); 
-          free(int_pkt);
-          free(affinity);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int slot = 10;
-          int vector = 10;
-          int _len_int_pkt0 = 100;
-          struct pci_create_interrupt * int_pkt = (struct pci_create_interrupt *) malloc(_len_int_pkt0*sizeof(struct pci_create_interrupt));
-          for(int _i0 = 0; _i0 < _len_int_pkt0; _i0++) {
-            int_pkt[_i0].int_desc.vector_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].int_desc.cpu_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].int_desc.delivery_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].int_desc.vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].wslot.slot = ((-2 * (next_i()%2)) + 1) * next_i();
-        int_pkt[_i0].message_type.type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_affinity0 = 100;
           struct cpumask * affinity = (struct cpumask *) malloc(_len_affinity0*sizeof(struct cpumask));
           for(int _i0 = 0; _i0 < _len_affinity0; _i0++) {
             affinity[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();

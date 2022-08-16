@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -125,54 +121,6 @@ int main(int argc, char *argv[]) {
         tx_hdr[_i0].control.packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_control0 = 1;
-          struct ieee80211_tx_info * control = (struct ieee80211_tx_info *) malloc(_len_control0*sizeof(struct ieee80211_tx_info));
-          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
-            control[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          wl1251_tx_control(tx_hdr,control,fc);
-          free(tx_hdr);
-          free(control);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int fc = 255;
-          int _len_tx_hdr0 = 65025;
-          struct tx_double_buffer_desc * tx_hdr = (struct tx_double_buffer_desc *) malloc(_len_tx_hdr0*sizeof(struct tx_double_buffer_desc));
-          for(int _i0 = 0; _i0 < _len_tx_hdr0; _i0++) {
-            tx_hdr[_i0].control.rate_policy = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.ack_policy = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.qos = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_control0 = 65025;
-          struct ieee80211_tx_info * control = (struct ieee80211_tx_info *) malloc(_len_control0*sizeof(struct ieee80211_tx_info));
-          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
-            control[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          wl1251_tx_control(tx_hdr,control,fc);
-          free(tx_hdr);
-          free(control);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int fc = 10;
-          int _len_tx_hdr0 = 100;
-          struct tx_double_buffer_desc * tx_hdr = (struct tx_double_buffer_desc *) malloc(_len_tx_hdr0*sizeof(struct tx_double_buffer_desc));
-          for(int _i0 = 0; _i0 < _len_tx_hdr0; _i0++) {
-            tx_hdr[_i0].control.rate_policy = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.ack_policy = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.qos = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_control0 = 100;
           struct ieee80211_tx_info * control = (struct ieee80211_tx_info *) malloc(_len_control0*sizeof(struct ieee80211_tx_info));
           for(int _i0 = 0; _i0 < _len_control0; _i0++) {
             control[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();

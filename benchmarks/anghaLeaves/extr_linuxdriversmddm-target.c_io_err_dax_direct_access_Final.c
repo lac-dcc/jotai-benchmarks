@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -101,66 +97,6 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_kaddr0; _i0++) {
           }
           int _len_pfn0 = 1;
-          int * pfn = (int *) malloc(_len_pfn0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pfn0; _i0++) {
-            pfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          long benchRet = io_err_dax_direct_access(ti,pgoff,nr_pages,kaddr,pfn);
-          printf("%ld\n", benchRet); 
-          free(ti);
-          for(int i1 = 0; i1 < _len_kaddr0; i1++) {
-            int _len_kaddr1 = 1;
-              }
-          free(kaddr);
-          free(pfn);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int pgoff = 255;
-          long nr_pages = 255;
-          int _len_ti0 = 65025;
-          struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
-          for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
-            ti[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_kaddr0 = 65025;
-          void ** kaddr = (void **) malloc(_len_kaddr0*sizeof(void *));
-          for(int _i0 = 0; _i0 < _len_kaddr0; _i0++) {
-          }
-          int _len_pfn0 = 65025;
-          int * pfn = (int *) malloc(_len_pfn0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pfn0; _i0++) {
-            pfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          long benchRet = io_err_dax_direct_access(ti,pgoff,nr_pages,kaddr,pfn);
-          printf("%ld\n", benchRet); 
-          free(ti);
-          for(int i1 = 0; i1 < _len_kaddr0; i1++) {
-            int _len_kaddr1 = 1;
-              }
-          free(kaddr);
-          free(pfn);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int pgoff = 10;
-          long nr_pages = 10;
-          int _len_ti0 = 100;
-          struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
-          for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
-            ti[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_kaddr0 = 100;
-          void ** kaddr = (void **) malloc(_len_kaddr0*sizeof(void *));
-          for(int _i0 = 0; _i0 < _len_kaddr0; _i0++) {
-          }
-          int _len_pfn0 = 100;
           int * pfn = (int *) malloc(_len_pfn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pfn0; _i0++) {
             pfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

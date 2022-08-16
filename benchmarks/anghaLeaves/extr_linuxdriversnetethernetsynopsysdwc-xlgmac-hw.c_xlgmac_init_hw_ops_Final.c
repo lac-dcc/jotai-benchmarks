@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -219,138 +215,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_hw_ops0 = 1;
-          struct xlgmac_hw_ops * hw_ops = (struct xlgmac_hw_ops *) malloc(_len_hw_ops0*sizeof(struct xlgmac_hw_ops));
-          for(int _i0 = 0; _i0 < _len_hw_ops0; _i0++) {
-            hw_ops[_i0].set_rss_lookup_table = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_rss_hash_key = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rss = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rss = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].read_mmc_stats = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].rx_mmc_int = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_mmc_int = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_pblx8 = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].get_tx_pbl_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tx_pbl_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].get_rx_pbl_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_pbl_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_osp_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tsf_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rsf_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tx_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].riwt_to_usec = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].usec_to_riwt = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tx_coalesce = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_coalesce = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].update_vlan_hash_table = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rx_vlan_filtering = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rx_vlan_filtering = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rx_vlan_stripping = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rx_vlan_stripping = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tx_flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_start_xmit = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].is_context_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].is_last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].rx_desc_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_desc_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].rx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_xlgmii_100000_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_xlgmii_50000_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_xlgmii_40000_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_xlgmii_25000_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rx_csum = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rx_csum = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_mac_address = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_int = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_int = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].dev_read = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].dev_xmit = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].exit = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          xlgmac_init_hw_ops(hw_ops);
-          free(hw_ops);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_hw_ops0 = 65025;
-          struct xlgmac_hw_ops * hw_ops = (struct xlgmac_hw_ops *) malloc(_len_hw_ops0*sizeof(struct xlgmac_hw_ops));
-          for(int _i0 = 0; _i0 < _len_hw_ops0; _i0++) {
-            hw_ops[_i0].set_rss_lookup_table = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_rss_hash_key = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rss = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rss = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].read_mmc_stats = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].rx_mmc_int = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_mmc_int = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_pblx8 = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].get_tx_pbl_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tx_pbl_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].get_rx_pbl_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_pbl_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_osp_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tsf_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rsf_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tx_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].riwt_to_usec = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].usec_to_riwt = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tx_coalesce = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_coalesce = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].update_vlan_hash_table = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rx_vlan_filtering = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rx_vlan_filtering = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rx_vlan_stripping = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rx_vlan_stripping = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_tx_flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_start_xmit = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].is_context_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].is_last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].rx_desc_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_desc_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].rx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_xlgmii_100000_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_xlgmii_50000_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_xlgmii_40000_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_xlgmii_25000_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rx_csum = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rx_csum = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].config_rx_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].set_mac_address = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_int = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_int = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].dev_read = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].dev_xmit = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].disable_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].enable_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].exit = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_ops[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          xlgmac_init_hw_ops(hw_ops);
-          free(hw_ops);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_hw_ops0 = 100;
           struct xlgmac_hw_ops * hw_ops = (struct xlgmac_hw_ops *) malloc(_len_hw_ops0*sizeof(struct xlgmac_hw_ops));
           for(int _i0 = 0; _i0 < _len_hw_ops0; _i0++) {
             hw_ops[_i0].set_rss_lookup_table = ((-2 * (next_i()%2)) + 1) * next_i();

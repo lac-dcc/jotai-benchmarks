@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -205,116 +201,6 @@ int main(int argc, char *argv[]) {
             video_cmap_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_mode0 = 1;
-          int * mode = (int *) malloc(_len_mode0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = matroxfb_dh_decode_var(m2info,var,visual,video_cmap_len,mode);
-          printf("%d\n", benchRet); 
-          free(m2info);
-          free(var);
-          free(visual);
-          free(video_cmap_len);
-          free(mode);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_m2info0 = 65025;
-          struct matroxfb_dh_fb_info * m2info = (struct matroxfb_dh_fb_info *) malloc(_len_m2info0*sizeof(struct matroxfb_dh_fb_info));
-          for(int _i0 = 0; _i0 < _len_m2info0; _i0++) {
-            m2info[_i0].video.len_usable = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_var0 = 65025;
-          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
-          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_visual0 = 65025;
-          int * visual = (int *) malloc(_len_visual0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_visual0; _i0++) {
-            visual[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_video_cmap_len0 = 65025;
-          int * video_cmap_len = (int *) malloc(_len_video_cmap_len0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_video_cmap_len0; _i0++) {
-            video_cmap_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_mode0 = 65025;
-          int * mode = (int *) malloc(_len_mode0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = matroxfb_dh_decode_var(m2info,var,visual,video_cmap_len,mode);
-          printf("%d\n", benchRet); 
-          free(m2info);
-          free(var);
-          free(visual);
-          free(video_cmap_len);
-          free(mode);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_m2info0 = 100;
-          struct matroxfb_dh_fb_info * m2info = (struct matroxfb_dh_fb_info *) malloc(_len_m2info0*sizeof(struct matroxfb_dh_fb_info));
-          for(int _i0 = 0; _i0 < _len_m2info0; _i0++) {
-            m2info[_i0].video.len_usable = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_var0 = 100;
-          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
-          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_visual0 = 100;
-          int * visual = (int *) malloc(_len_visual0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_visual0; _i0++) {
-            visual[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_video_cmap_len0 = 100;
-          int * video_cmap_len = (int *) malloc(_len_video_cmap_len0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_video_cmap_len0; _i0++) {
-            video_cmap_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_mode0 = 100;
           int * mode = (int *) malloc(_len_mode0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
             mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

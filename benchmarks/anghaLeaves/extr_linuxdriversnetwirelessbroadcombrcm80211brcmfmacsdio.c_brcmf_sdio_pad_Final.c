@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -108,60 +104,6 @@ int main(int argc, char *argv[]) {
             pad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_rdlen0 = 1;
-          int * rdlen = (int *) malloc(_len_rdlen0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_rdlen0; _i0++) {
-            rdlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          brcmf_sdio_pad(bus,pad,rdlen);
-          free(bus);
-          free(pad);
-          free(rdlen);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_bus0 = 65025;
-          struct brcmf_sdio * bus = (struct brcmf_sdio *) malloc(_len_bus0*sizeof(struct brcmf_sdio));
-          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].roundup = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].head_align = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pad0 = 65025;
-          int * pad = (int *) malloc(_len_pad0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pad0; _i0++) {
-            pad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rdlen0 = 65025;
-          int * rdlen = (int *) malloc(_len_rdlen0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_rdlen0; _i0++) {
-            rdlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          brcmf_sdio_pad(bus,pad,rdlen);
-          free(bus);
-          free(pad);
-          free(rdlen);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_bus0 = 100;
-          struct brcmf_sdio * bus = (struct brcmf_sdio *) malloc(_len_bus0*sizeof(struct brcmf_sdio));
-          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].roundup = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].head_align = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_pad0 = 100;
-          int * pad = (int *) malloc(_len_pad0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_pad0; _i0++) {
-            pad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rdlen0 = 100;
           int * rdlen = (int *) malloc(_len_rdlen0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rdlen0; _i0++) {
             rdlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

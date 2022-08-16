@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -117,58 +113,6 @@ int main(int argc, char *argv[]) {
         upper_policy[_i0].result_parameter.skip_policy_order = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_lower_policy0 = 1;
-          struct necp_kernel_ip_output_policy * lower_policy = (struct necp_kernel_ip_output_policy *) malloc(_len_lower_policy0*sizeof(struct necp_kernel_ip_output_policy));
-          for(int _i0 = 0; _i0 < _len_lower_policy0; _i0++) {
-            lower_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
-        lower_policy[_i0].session_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        lower_policy[_i0].order = ((-2 * (next_i()%2)) + 1) * next_i();
-        lower_policy[_i0].result_parameter.skip_policy_order = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = necp_kernel_ip_output_policy_results_overlap(upper_policy,lower_policy);
-          printf("%d\n", benchRet); 
-          free(upper_policy);
-          free(lower_policy);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_upper_policy0 = 65025;
-          struct necp_kernel_ip_output_policy * upper_policy = (struct necp_kernel_ip_output_policy *) malloc(_len_upper_policy0*sizeof(struct necp_kernel_ip_output_policy));
-          for(int _i0 = 0; _i0 < _len_upper_policy0; _i0++) {
-            upper_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
-        upper_policy[_i0].session_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        upper_policy[_i0].order = ((-2 * (next_i()%2)) + 1) * next_i();
-        upper_policy[_i0].result_parameter.skip_policy_order = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_lower_policy0 = 65025;
-          struct necp_kernel_ip_output_policy * lower_policy = (struct necp_kernel_ip_output_policy *) malloc(_len_lower_policy0*sizeof(struct necp_kernel_ip_output_policy));
-          for(int _i0 = 0; _i0 < _len_lower_policy0; _i0++) {
-            lower_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
-        lower_policy[_i0].session_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        lower_policy[_i0].order = ((-2 * (next_i()%2)) + 1) * next_i();
-        lower_policy[_i0].result_parameter.skip_policy_order = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = necp_kernel_ip_output_policy_results_overlap(upper_policy,lower_policy);
-          printf("%d\n", benchRet); 
-          free(upper_policy);
-          free(lower_policy);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_upper_policy0 = 100;
-          struct necp_kernel_ip_output_policy * upper_policy = (struct necp_kernel_ip_output_policy *) malloc(_len_upper_policy0*sizeof(struct necp_kernel_ip_output_policy));
-          for(int _i0 = 0; _i0 < _len_upper_policy0; _i0++) {
-            upper_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
-        upper_policy[_i0].session_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        upper_policy[_i0].order = ((-2 * (next_i()%2)) + 1) * next_i();
-        upper_policy[_i0].result_parameter.skip_policy_order = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_lower_policy0 = 100;
           struct necp_kernel_ip_output_policy * lower_policy = (struct necp_kernel_ip_output_policy *) malloc(_len_lower_policy0*sizeof(struct necp_kernel_ip_output_policy));
           for(int _i0 = 0; _i0 < _len_lower_policy0; _i0++) {
             lower_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();

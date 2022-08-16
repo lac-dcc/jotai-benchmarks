@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -96,54 +92,6 @@ int main(int argc, char *argv[]) {
             frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len___shared0 = 1;
-          void ** __shared = (void **) malloc(_len___shared0*sizeof(void *));
-          for(int _i0 = 0; _i0 < _len___shared0; _i0++) {
-          }
-          int benchRet = arch_gnttab_map_shared(frames,nr_gframes,max_nr_gframes,__shared);
-          printf("%d\n", benchRet); 
-          free(frames);
-          for(int i1 = 0; i1 < _len___shared0; i1++) {
-            int _len___shared1 = 1;
-              }
-          free(__shared);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          unsigned long nr_gframes = 255;
-          unsigned long max_nr_gframes = 255;
-          int _len_frames0 = 65025;
-          int * frames = (int *) malloc(_len_frames0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_frames0; _i0++) {
-            frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len___shared0 = 65025;
-          void ** __shared = (void **) malloc(_len___shared0*sizeof(void *));
-          for(int _i0 = 0; _i0 < _len___shared0; _i0++) {
-          }
-          int benchRet = arch_gnttab_map_shared(frames,nr_gframes,max_nr_gframes,__shared);
-          printf("%d\n", benchRet); 
-          free(frames);
-          for(int i1 = 0; i1 < _len___shared0; i1++) {
-            int _len___shared1 = 1;
-              }
-          free(__shared);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          unsigned long nr_gframes = 10;
-          unsigned long max_nr_gframes = 10;
-          int _len_frames0 = 100;
-          int * frames = (int *) malloc(_len_frames0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_frames0; _i0++) {
-            frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len___shared0 = 100;
           void ** __shared = (void **) malloc(_len___shared0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len___shared0; _i0++) {
           }

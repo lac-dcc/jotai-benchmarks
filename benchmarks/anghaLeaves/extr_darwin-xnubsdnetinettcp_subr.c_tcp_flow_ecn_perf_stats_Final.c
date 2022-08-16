@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -143,84 +139,6 @@ int main(int argc, char *argv[]) {
         ifs[_i0].txpackets = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_stat0 = 1;
-          struct if_tcp_ecn_perf_stat * stat = (struct if_tcp_ecn_perf_stat *) malloc(_len_stat0*sizeof(struct if_tcp_ecn_perf_stat));
-          for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
-            stat[_i0].rtt_avg = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].rtt_var = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_reorderpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_rxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          tcp_flow_ecn_perf_stats(ifs,stat);
-          free(ifs);
-          free(stat);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_ifs0 = 65025;
-          struct ifnet_stats_per_flow * ifs = (struct ifnet_stats_per_flow *) malloc(_len_ifs0*sizeof(struct ifnet_stats_per_flow));
-          for(int _i0 = 0; _i0 < _len_ifs0; _i0++) {
-            ifs[_i0].srtt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rttupdated = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rttvar = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].connreset = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].sack_recovery_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].dsack_recvd = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].dsack_sent = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].pawsdrop = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].reordered_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rcvoopack = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rxpackets = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].txpackets = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_stat0 = 65025;
-          struct if_tcp_ecn_perf_stat * stat = (struct if_tcp_ecn_perf_stat *) malloc(_len_stat0*sizeof(struct if_tcp_ecn_perf_stat));
-          for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
-            stat[_i0].rtt_avg = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].rtt_var = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_reorderpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_rxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          tcp_flow_ecn_perf_stats(ifs,stat);
-          free(ifs);
-          free(stat);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_ifs0 = 100;
-          struct ifnet_stats_per_flow * ifs = (struct ifnet_stats_per_flow *) malloc(_len_ifs0*sizeof(struct ifnet_stats_per_flow));
-          for(int _i0 = 0; _i0 < _len_ifs0; _i0++) {
-            ifs[_i0].srtt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rttupdated = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rttvar = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].connreset = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].sack_recovery_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].dsack_recvd = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].dsack_sent = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].pawsdrop = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].reordered_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rcvoopack = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].rxpackets = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifs[_i0].txpackets = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_stat0 = 100;
           struct if_tcp_ecn_perf_stat * stat = (struct if_tcp_ecn_perf_stat *) malloc(_len_stat0*sizeof(struct if_tcp_ecn_perf_stat));
           for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
             stat[_i0].rtt_avg = ((-2 * (next_i()%2)) + 1) * next_i();

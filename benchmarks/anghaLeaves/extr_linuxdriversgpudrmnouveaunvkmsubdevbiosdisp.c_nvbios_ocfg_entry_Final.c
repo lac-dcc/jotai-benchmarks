@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -114,86 +110,6 @@ int main(int argc, char *argv[]) {
             cnt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_len0 = 1;
-          int * len = (int *) malloc(_len_len0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
-            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = nvbios_ocfg_entry(bios,outp,idx,ver,hdr,cnt,len);
-          printf("%d\n", benchRet); 
-          free(bios);
-          free(ver);
-          free(hdr);
-          free(cnt);
-          free(len);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int outp = 255;
-          int idx = 255;
-          int _len_bios0 = 65025;
-          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
-          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
-            bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ver0 = 65025;
-          int * ver = (int *) malloc(_len_ver0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
-            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_hdr0 = 65025;
-          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cnt0 = 65025;
-          int * cnt = (int *) malloc(_len_cnt0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_cnt0; _i0++) {
-            cnt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_len0 = 65025;
-          int * len = (int *) malloc(_len_len0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
-            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = nvbios_ocfg_entry(bios,outp,idx,ver,hdr,cnt,len);
-          printf("%d\n", benchRet); 
-          free(bios);
-          free(ver);
-          free(hdr);
-          free(cnt);
-          free(len);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int outp = 10;
-          int idx = 10;
-          int _len_bios0 = 100;
-          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
-          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
-            bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_ver0 = 100;
-          int * ver = (int *) malloc(_len_ver0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
-            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_hdr0 = 100;
-          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_cnt0 = 100;
-          int * cnt = (int *) malloc(_len_cnt0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_cnt0; _i0++) {
-            cnt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_len0 = 100;
           int * len = (int *) malloc(_len_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_len0; _i0++) {
             len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

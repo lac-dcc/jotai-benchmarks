@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -95,46 +91,6 @@ int main(int argc, char *argv[]) {
             hsw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_stream0 = 1;
-          struct sst_hsw_stream * stream = (struct sst_hsw_stream *) malloc(_len_stream0*sizeof(struct sst_hsw_stream));
-          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].old_position = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          sst_hsw_stream_set_old_position(hsw,stream,val);
-          free(hsw);
-          free(stream);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int val = 255;
-          int _len_hsw0 = 65025;
-          struct sst_hsw * hsw = (struct sst_hsw *) malloc(_len_hsw0*sizeof(struct sst_hsw));
-          for(int _i0 = 0; _i0 < _len_hsw0; _i0++) {
-            hsw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_stream0 = 65025;
-          struct sst_hsw_stream * stream = (struct sst_hsw_stream *) malloc(_len_stream0*sizeof(struct sst_hsw_stream));
-          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].old_position = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          sst_hsw_stream_set_old_position(hsw,stream,val);
-          free(hsw);
-          free(stream);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int val = 10;
-          int _len_hsw0 = 100;
-          struct sst_hsw * hsw = (struct sst_hsw *) malloc(_len_hsw0*sizeof(struct sst_hsw));
-          for(int _i0 = 0; _i0 < _len_hsw0; _i0++) {
-            hsw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_stream0 = 100;
           struct sst_hsw_stream * stream = (struct sst_hsw_stream *) malloc(_len_stream0*sizeof(struct sst_hsw_stream));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
             stream[_i0].old_position = ((-2 * (next_i()%2)) + 1) * next_i();

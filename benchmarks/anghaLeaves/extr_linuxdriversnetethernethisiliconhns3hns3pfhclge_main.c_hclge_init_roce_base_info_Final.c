@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -114,86 +110,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_vport0 = 1;
-          struct hclge_vport * vport = (struct hclge_vport *) malloc(_len_vport0*sizeof(struct hclge_vport));
-          for(int _i0 = 0; _i0 < _len_vport0; _i0++) {
-              int _len_vport__i0__back0 = 1;
-          vport[_i0].back = (struct TYPE_8__ *) malloc(_len_vport__i0__back0*sizeof(struct TYPE_8__));
-          for(int _j0 = 0; _j0 < _len_vport__i0__back0; _j0++) {
-            vport[_i0].back->num_roce_msi = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].back->num_msi_left = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].back->hw.io_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].back->roce_base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        vport[_i0].roce.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = hclge_init_roce_base_info(vport);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_vport0; _aux++) {
-          free(vport[_aux].back);
-          }
-          free(vport);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_vport0 = 65025;
-          struct hclge_vport * vport = (struct hclge_vport *) malloc(_len_vport0*sizeof(struct hclge_vport));
-          for(int _i0 = 0; _i0 < _len_vport0; _i0++) {
-              int _len_vport__i0__back0 = 1;
-          vport[_i0].back = (struct TYPE_8__ *) malloc(_len_vport__i0__back0*sizeof(struct TYPE_8__));
-          for(int _j0 = 0; _j0 < _len_vport__i0__back0; _j0++) {
-            vport[_i0].back->num_roce_msi = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].back->num_msi_left = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].back->hw.io_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].back->roce_base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-        vport[_i0].roce.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].roce.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        vport[_i0].nic.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = hclge_init_roce_base_info(vport);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_vport0; _aux++) {
-          free(vport[_aux].back);
-          }
-          free(vport);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_vport0 = 100;
           struct hclge_vport * vport = (struct hclge_vport *) malloc(_len_vport0*sizeof(struct hclge_vport));
           for(int _i0 = 0; _i0 < _len_vport0; _i0++) {
               int _len_vport__i0__back0 = 1;

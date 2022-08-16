@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -115,62 +111,6 @@ int main(int argc, char *argv[]) {
         pdu[_i0].u.ret_submit.status = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_urb0 = 1;
-          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
-          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
-            urb[_i0].error_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          usbip_pack_ret_submit(pdu,urb,pack);
-          free(pdu);
-          free(urb);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int pack = 255;
-          int _len_pdu0 = 65025;
-          struct usbip_header * pdu = (struct usbip_header *) malloc(_len_pdu0*sizeof(struct usbip_header));
-          for(int _i0 = 0; _i0 < _len_pdu0; _i0++) {
-            pdu[_i0].u.ret_submit.error_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.status = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_urb0 = 65025;
-          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
-          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
-            urb[_i0].error_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          usbip_pack_ret_submit(pdu,urb,pack);
-          free(pdu);
-          free(urb);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int pack = 10;
-          int _len_pdu0 = 100;
-          struct usbip_header * pdu = (struct usbip_header *) malloc(_len_pdu0*sizeof(struct usbip_header));
-          for(int _i0 = 0; _i0 < _len_pdu0; _i0++) {
-            pdu[_i0].u.ret_submit.error_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.status = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_urb0 = 100;
           struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
           for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
             urb[_i0].error_count = ((-2 * (next_i()%2)) + 1) * next_i();

@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -163,116 +159,6 @@ int main(int argc, char *argv[]) {
             d6p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
           int _len_d7p0 = 1;
-          float * d7p = (float *) malloc(_len_d7p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d7p0; _i0++) {
-            d7p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          stbiw__jpg_DCT(d0p,d1p,d2p,d3p,d4p,d5p,d6p,d7p);
-          free(d0p);
-          free(d1p);
-          free(d2p);
-          free(d3p);
-          free(d4p);
-          free(d5p);
-          free(d6p);
-          free(d7p);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_d0p0 = 65025;
-          float * d0p = (float *) malloc(_len_d0p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d0p0; _i0++) {
-            d0p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d1p0 = 65025;
-          float * d1p = (float *) malloc(_len_d1p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d1p0; _i0++) {
-            d1p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d2p0 = 65025;
-          float * d2p = (float *) malloc(_len_d2p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d2p0; _i0++) {
-            d2p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d3p0 = 65025;
-          float * d3p = (float *) malloc(_len_d3p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d3p0; _i0++) {
-            d3p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d4p0 = 65025;
-          float * d4p = (float *) malloc(_len_d4p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d4p0; _i0++) {
-            d4p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d5p0 = 65025;
-          float * d5p = (float *) malloc(_len_d5p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d5p0; _i0++) {
-            d5p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d6p0 = 65025;
-          float * d6p = (float *) malloc(_len_d6p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d6p0; _i0++) {
-            d6p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d7p0 = 65025;
-          float * d7p = (float *) malloc(_len_d7p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d7p0; _i0++) {
-            d7p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          stbiw__jpg_DCT(d0p,d1p,d2p,d3p,d4p,d5p,d6p,d7p);
-          free(d0p);
-          free(d1p);
-          free(d2p);
-          free(d3p);
-          free(d4p);
-          free(d5p);
-          free(d6p);
-          free(d7p);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_d0p0 = 100;
-          float * d0p = (float *) malloc(_len_d0p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d0p0; _i0++) {
-            d0p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d1p0 = 100;
-          float * d1p = (float *) malloc(_len_d1p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d1p0; _i0++) {
-            d1p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d2p0 = 100;
-          float * d2p = (float *) malloc(_len_d2p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d2p0; _i0++) {
-            d2p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d3p0 = 100;
-          float * d3p = (float *) malloc(_len_d3p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d3p0; _i0++) {
-            d3p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d4p0 = 100;
-          float * d4p = (float *) malloc(_len_d4p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d4p0; _i0++) {
-            d4p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d5p0 = 100;
-          float * d5p = (float *) malloc(_len_d5p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d5p0; _i0++) {
-            d5p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d6p0 = 100;
-          float * d6p = (float *) malloc(_len_d6p0*sizeof(float));
-          for(int _i0 = 0; _i0 < _len_d6p0; _i0++) {
-            d6p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          }
-          int _len_d7p0 = 100;
           float * d7p = (float *) malloc(_len_d7p0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_d7p0; _i0++) {
             d7p[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));

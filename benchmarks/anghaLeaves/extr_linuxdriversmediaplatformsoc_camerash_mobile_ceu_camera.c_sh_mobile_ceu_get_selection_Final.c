@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -102,60 +98,6 @@ int main(int argc, char *argv[]) {
           }
           }
           int _len_sel0 = 1;
-          struct v4l2_selection * sel = (struct v4l2_selection *) malloc(_len_sel0*sizeof(struct v4l2_selection));
-          for(int _i0 = 0; _i0 < _len_sel0; _i0++) {
-            sel[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = sh_mobile_ceu_get_selection(icd,sel);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_icd0; _aux++) {
-          free(icd[_aux].host_priv);
-          }
-          free(icd);
-          free(sel);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_icd0 = 65025;
-          struct soc_camera_device * icd = (struct soc_camera_device *) malloc(_len_icd0*sizeof(struct soc_camera_device));
-          for(int _i0 = 0; _i0 < _len_icd0; _i0++) {
-              int _len_icd__i0__host_priv0 = 1;
-          icd[_i0].host_priv = (struct sh_mobile_ceu_cam *) malloc(_len_icd__i0__host_priv0*sizeof(struct sh_mobile_ceu_cam));
-          for(int _j0 = 0; _j0 < _len_icd__i0__host_priv0; _j0++) {
-            icd[_i0].host_priv->subrect = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_sel0 = 65025;
-          struct v4l2_selection * sel = (struct v4l2_selection *) malloc(_len_sel0*sizeof(struct v4l2_selection));
-          for(int _i0 = 0; _i0 < _len_sel0; _i0++) {
-            sel[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = sh_mobile_ceu_get_selection(icd,sel);
-          printf("%d\n", benchRet); 
-          for(int _aux = 0; _aux < _len_icd0; _aux++) {
-          free(icd[_aux].host_priv);
-          }
-          free(icd);
-          free(sel);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_icd0 = 100;
-          struct soc_camera_device * icd = (struct soc_camera_device *) malloc(_len_icd0*sizeof(struct soc_camera_device));
-          for(int _i0 = 0; _i0 < _len_icd0; _i0++) {
-              int _len_icd__i0__host_priv0 = 1;
-          icd[_i0].host_priv = (struct sh_mobile_ceu_cam *) malloc(_len_icd__i0__host_priv0*sizeof(struct sh_mobile_ceu_cam));
-          for(int _j0 = 0; _j0 < _len_icd__i0__host_priv0; _j0++) {
-            icd[_i0].host_priv->subrect = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          }
-          int _len_sel0 = 100;
           struct v4l2_selection * sel = (struct v4l2_selection *) malloc(_len_sel0*sizeof(struct v4l2_selection));
           for(int _i0 = 0; _i0 < _len_sel0; _i0++) {
             sel[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();

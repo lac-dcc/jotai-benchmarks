@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -133,64 +129,6 @@ int main(int argc, char *argv[]) {
         rx_status[_i0].enc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_phy_stats0 = 1;
-          struct rtl8723au_phy_stats * phy_stats = (struct rtl8723au_phy_stats *) malloc(_len_phy_stats0*sizeof(struct rtl8723au_phy_stats));
-          for(int _i0 = 0; _i0 < _len_phy_stats0; _i0++) {
-            phy_stats[_i0].cck_agc_rpt_ofdm_cfosho_a = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_stats[_i0].cck_sig_qual_ofdm_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_stats[_i0].sgi_en = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          rtl8xxxu_rx_parse_phystats(priv,rx_status,phy_stats,rxmcs);
-          free(priv);
-          free(rx_status);
-          free(phy_stats);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          long rxmcs = 255;
-          int _len_priv0 = 65025;
-          struct rtl8xxxu_priv * priv = (struct rtl8xxxu_priv *) malloc(_len_priv0*sizeof(struct rtl8xxxu_priv));
-          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rx_status0 = 65025;
-          struct ieee80211_rx_status * rx_status = (struct ieee80211_rx_status *) malloc(_len_rx_status0*sizeof(struct ieee80211_rx_status));
-          for(int _i0 = 0; _i0 < _len_rx_status0; _i0++) {
-            rx_status[_i0].signal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rx_status[_i0].enc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_phy_stats0 = 65025;
-          struct rtl8723au_phy_stats * phy_stats = (struct rtl8723au_phy_stats *) malloc(_len_phy_stats0*sizeof(struct rtl8723au_phy_stats));
-          for(int _i0 = 0; _i0 < _len_phy_stats0; _i0++) {
-            phy_stats[_i0].cck_agc_rpt_ofdm_cfosho_a = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_stats[_i0].cck_sig_qual_ofdm_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_stats[_i0].sgi_en = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          rtl8xxxu_rx_parse_phystats(priv,rx_status,phy_stats,rxmcs);
-          free(priv);
-          free(rx_status);
-          free(phy_stats);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          long rxmcs = 10;
-          int _len_priv0 = 100;
-          struct rtl8xxxu_priv * priv = (struct rtl8xxxu_priv *) malloc(_len_priv0*sizeof(struct rtl8xxxu_priv));
-          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_rx_status0 = 100;
-          struct ieee80211_rx_status * rx_status = (struct ieee80211_rx_status *) malloc(_len_rx_status0*sizeof(struct ieee80211_rx_status));
-          for(int _i0 = 0; _i0 < _len_rx_status0; _i0++) {
-            rx_status[_i0].signal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rx_status[_i0].enc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_phy_stats0 = 100;
           struct rtl8723au_phy_stats * phy_stats = (struct rtl8723au_phy_stats *) malloc(_len_phy_stats0*sizeof(struct rtl8723au_phy_stats));
           for(int _i0 = 0; _i0 < _len_phy_stats0; _i0++) {
             phy_stats[_i0].cck_agc_rpt_ofdm_cfosho_a = ((-2 * (next_i()%2)) + 1) * next_i();

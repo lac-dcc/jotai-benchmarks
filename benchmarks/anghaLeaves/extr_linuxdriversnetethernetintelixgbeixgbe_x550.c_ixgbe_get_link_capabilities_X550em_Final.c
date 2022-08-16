@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -189,72 +185,6 @@ int main(int argc, char *argv[]) {
             speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_autoneg0 = 1;
-          int * autoneg = (int *) malloc(_len_autoneg0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_autoneg0; _i0++) {
-            autoneg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ixgbe_get_link_capabilities_X550em(hw,speed,autoneg);
-          printf("%d\n", benchRet); 
-          free(hw);
-          free(speed);
-          free(autoneg);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_hw0 = 65025;
-          struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
-          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.speeds_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.media_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.nw_mng_if_sel = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.multispeed_fiber = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_speed0 = 65025;
-          int * speed = (int *) malloc(_len_speed0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_speed0; _i0++) {
-            speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_autoneg0 = 65025;
-          int * autoneg = (int *) malloc(_len_autoneg0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_autoneg0; _i0++) {
-            autoneg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = ixgbe_get_link_capabilities_X550em(hw,speed,autoneg);
-          printf("%d\n", benchRet); 
-          free(hw);
-          free(speed);
-          free(autoneg);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_hw0 = 100;
-          struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
-          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.speeds_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.media_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.nw_mng_if_sel = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.multispeed_fiber = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_speed0 = 100;
-          int * speed = (int *) malloc(_len_speed0*sizeof(int));
-          for(int _i0 = 0; _i0 < _len_speed0; _i0++) {
-            speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_autoneg0 = 100;
           int * autoneg = (int *) malloc(_len_autoneg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_autoneg0; _i0++) {
             autoneg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();

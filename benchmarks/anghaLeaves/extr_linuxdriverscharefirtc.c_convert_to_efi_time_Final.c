@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -112,72 +108,6 @@ int main(int argc, char *argv[]) {
         wtime[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_eft0 = 1;
-          struct TYPE_3__ * eft = (struct TYPE_3__ *) malloc(_len_eft0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_eft0; _i0++) {
-            eft[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].daylight = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].nanosecond = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].second = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].minute = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].hour = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].day = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].month = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].year = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          convert_to_efi_time(wtime,eft);
-          free(wtime);
-          free(eft);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_wtime0 = 65025;
-          struct rtc_time * wtime = (struct rtc_time *) malloc(_len_wtime0*sizeof(struct rtc_time));
-          for(int _i0 = 0; _i0 < _len_wtime0; _i0++) {
-            wtime[_i0].tm_isdst = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_eft0 = 65025;
-          struct TYPE_3__ * eft = (struct TYPE_3__ *) malloc(_len_eft0*sizeof(struct TYPE_3__));
-          for(int _i0 = 0; _i0 < _len_eft0; _i0++) {
-            eft[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].daylight = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].nanosecond = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].second = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].minute = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].hour = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].day = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].month = ((-2 * (next_i()%2)) + 1) * next_i();
-        eft[_i0].year = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          convert_to_efi_time(wtime,eft);
-          free(wtime);
-          free(eft);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_wtime0 = 100;
-          struct rtc_time * wtime = (struct rtc_time *) malloc(_len_wtime0*sizeof(struct rtc_time));
-          for(int _i0 = 0; _i0 < _len_wtime0; _i0++) {
-            wtime[_i0].tm_isdst = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
-        wtime[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_eft0 = 100;
           struct TYPE_3__ * eft = (struct TYPE_3__ *) malloc(_len_eft0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_eft0; _i0++) {
             eft[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();

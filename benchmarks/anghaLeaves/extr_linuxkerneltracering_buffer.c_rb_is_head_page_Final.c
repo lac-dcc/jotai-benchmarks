@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -109,58 +105,6 @@ int main(int argc, char *argv[]) {
             page[_i0].list = ((-2 * (next_i()%2)) + 1) * next_i();
           }
           int _len_list0 = 1;
-          struct list_head * list = (struct list_head *) malloc(_len_list0*sizeof(struct list_head));
-          for(int _i0 = 0; _i0 < _len_list0; _i0++) {
-            list[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = rb_is_head_page(cpu_buffer,page,list);
-          printf("%d\n", benchRet); 
-          free(cpu_buffer);
-          free(page);
-          free(list);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_cpu_buffer0 = 65025;
-          struct ring_buffer_per_cpu * cpu_buffer = (struct ring_buffer_per_cpu *) malloc(_len_cpu_buffer0*sizeof(struct ring_buffer_per_cpu));
-          for(int _i0 = 0; _i0 < _len_cpu_buffer0; _i0++) {
-            cpu_buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_page0 = 65025;
-          struct buffer_page * page = (struct buffer_page *) malloc(_len_page0*sizeof(struct buffer_page));
-          for(int _i0 = 0; _i0 < _len_page0; _i0++) {
-            page[_i0].list = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_list0 = 65025;
-          struct list_head * list = (struct list_head *) malloc(_len_list0*sizeof(struct list_head));
-          for(int _i0 = 0; _i0 < _len_list0; _i0++) {
-            list[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int benchRet = rb_is_head_page(cpu_buffer,page,list);
-          printf("%d\n", benchRet); 
-          free(cpu_buffer);
-          free(page);
-          free(list);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_cpu_buffer0 = 100;
-          struct ring_buffer_per_cpu * cpu_buffer = (struct ring_buffer_per_cpu *) malloc(_len_cpu_buffer0*sizeof(struct ring_buffer_per_cpu));
-          for(int _i0 = 0; _i0 < _len_cpu_buffer0; _i0++) {
-            cpu_buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_page0 = 100;
-          struct buffer_page * page = (struct buffer_page *) malloc(_len_page0*sizeof(struct buffer_page));
-          for(int _i0 = 0; _i0 < _len_page0; _i0++) {
-            page[_i0].list = ((-2 * (next_i()%2)) + 1) * next_i();
-          }
-          int _len_list0 = 100;
           struct list_head * list = (struct list_head *) malloc(_len_list0*sizeof(struct list_head));
           for(int _i0 = 0; _i0 < _len_list0; _i0++) {
             list[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();

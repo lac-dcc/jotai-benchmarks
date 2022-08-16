@@ -15,27 +15,23 @@
 const unsigned rand_primes[JOTAI_NUM_RANDS_] = {179, 103, 479, 647, 229, 37, 271, 557, 263, 607, 18743, 50359, 21929, 48757, 98179, 12907, 52937, 64579, 49957, 52567, 507163, 149939, 412157, 680861, 757751};
 
 int next_i() {
-  static counter = 0;
-  return (-2 * (counter % 2) + 1) * rand_primes[(++counter)%JOTAI_NUM_RANDS_];
+  int counter = 0;
+  return rand_primes[(++counter)%JOTAI_NUM_RANDS_];
 }
 
 float next_f() {
-  static counter = 0;
+  int counter = 0;
   return rand_primes[(++counter)%JOTAI_NUM_RANDS_] / 757751.0F;
 } 
 
 
 // Usage menu
 void usage() {
-    fprintf(stderr, "Usage:\n\
-    prog [OPTIONS] [ARGS]\n\
+    printf("%s", "Usage:\n\
+    prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr\n\
-       2            big-arr-10x\n\
 \n\
-    OPTIONS:\n\
-    -t              (NOT IMPLEMENTED YET) enable time measurement\n\n\
 ");
 
 }
@@ -97,58 +93,6 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int _len_wiphy0 = 1;
-          struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
-          for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
-              int _len_wiphy__i0__bands0 = 1;
-          wiphy[_i0].bands = (struct TYPE_2__ **) malloc(_len_wiphy__i0__bands0*sizeof(struct TYPE_2__ *));
-          for(int _j0 = 0; _j0 < _len_wiphy__i0__bands0; _j0++) {
-            int _len_wiphy__i0__bands1 = 1;
-            wiphy[_i0].bands[_j0] = (struct TYPE_2__ *) malloc(_len_wiphy__i0__bands1*sizeof(struct TYPE_2__));
-            for(int _j1 = 0; _j1 < _len_wiphy__i0__bands1; _j1++) {
-              wiphy[_i0].bands[_j0]->n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-            }
-          }
-          }
-          unsigned int benchRet = ieee80211_get_num_supported_channels(wiphy);
-          printf("%u\n", benchRet); 
-          for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
-          free(*(wiphy[_aux].bands));
-        free(wiphy[_aux].bands);
-          }
-          free(wiphy);
-        
-        break;
-    }
-    // big-arr
-    case 1:
-    {
-          int _len_wiphy0 = 65025;
-          struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
-          for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
-              int _len_wiphy__i0__bands0 = 1;
-          wiphy[_i0].bands = (struct TYPE_2__ **) malloc(_len_wiphy__i0__bands0*sizeof(struct TYPE_2__ *));
-          for(int _j0 = 0; _j0 < _len_wiphy__i0__bands0; _j0++) {
-            int _len_wiphy__i0__bands1 = 1;
-            wiphy[_i0].bands[_j0] = (struct TYPE_2__ *) malloc(_len_wiphy__i0__bands1*sizeof(struct TYPE_2__));
-            for(int _j1 = 0; _j1 < _len_wiphy__i0__bands1; _j1++) {
-              wiphy[_i0].bands[_j0]->n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-            }
-          }
-          }
-          unsigned int benchRet = ieee80211_get_num_supported_channels(wiphy);
-          printf("%u\n", benchRet); 
-          for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
-          free(*(wiphy[_aux].bands));
-        free(wiphy[_aux].bands);
-          }
-          free(wiphy);
-        
-        break;
-    }
-    // big-arr-10x
-    case 2:
-    {
-          int _len_wiphy0 = 100;
           struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
           for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
               int _len_wiphy__i0__bands0 = 1;
