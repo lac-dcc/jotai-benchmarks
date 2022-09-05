@@ -11,10 +11,9 @@
 /.venv
 
 # Old/temp. data and local output/results
-/output
 /archive
 /tmp
-/util/output
+
 
 # Common binary extensions
 *.o
