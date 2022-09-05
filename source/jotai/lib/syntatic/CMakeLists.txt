@@ -1,0 +1,3 @@
+add_library(SyntaticAnalysis SHARED SyntaticAnalysis.cpp)
+
+target_link_libraries(SyntaticAnalysis Expr Element)

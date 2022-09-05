@@ -1,0 +1,10 @@
+add_library(BaseVar SHARED BaseVar.cpp)
+add_library(PointerVar SHARED PointerVar.cpp)
+add_library(StructVar SHARED StructVar.cpp)
+add_library(RecursiveStructVar SHARED RecursiveStructVar.cpp)
+add_library(Constraint SHARED Constraint.cpp)
+add_library(Expr SHARED Expr.cpp)
+add_library(Element SHARED Element.cpp)
+
+target_link_libraries(Constraint Utils)
+target_link_libraries(Expr Constraint BaseVar)

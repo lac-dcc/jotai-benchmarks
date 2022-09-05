@@ -1,0 +1,17 @@
+
+__pycache__
+
+/archive
+/tmp
+
+# Default build folders
+/build*/
+/cmake-build*/
+/dist
+
+# Editors/IDEs
+/.idea
+/.vscode
+/.sublime-text
+/.sublime-project
+/.sublime-workspace

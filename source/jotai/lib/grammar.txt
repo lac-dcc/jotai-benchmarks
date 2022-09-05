@@ -1,0 +1,6 @@
+<constraint>  ::= <expr> { ',' <expr> }
+<expr>        ::= <skeleton> | <element> (== | != | > | < | >= | <=) <element>
+<skeleton>    ::= (linked | dlinked | binTree) '(' <variable> ',' <integer> ')'
+<element>     ::= <const> | (value | length) '(' <variable> ')'
+<variable>    ::= <var> { '[' (<integer> | <variable> | '_') ']' } | <var> { '.'<var> }
+<const>       ::= <integer> | <floating-point> | <char> | <string>
