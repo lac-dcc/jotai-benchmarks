@@ -7,9 +7,6 @@
 /.vscode*
 /.venv
 
-/output/*
-/util/*
-
 __pycache__
 .ipynb_checkpoints
 
