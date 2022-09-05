@@ -104,6 +104,10 @@ We have a few CSV files that we have produced for the benchmarks stored in the `
 
 Additionally, we have a `Scripts` folder with a few useful shell scripts that you can use to collect statistics for the Jotai programs.
 
+## Generating new benchmarks 
+If you want to experiment with Jotai’s tool to generate new benchmarks, the source code is available inside the source directory. The instructions on how to build and run Jotai are available [here](source/jotai/README.md). 
+
+
 ## Technical Report
 
 A draft paper describing the methodology to generate benchmarks is available [here](https://raw.githubusercontent.com/lac-dcc/jotai-benchmarks/main/assets/doc/LaC_TechReport022022.pdf). This document describes ongoing work; hence, its contents might change in the future. To cite it:
