@@ -55,14 +55,3 @@ Note that, if you are using Linux, you might need root access whenever you run a
 ## Step by Step
 - TODO
 
-# What is Jotai?
-Jotai is a benchmark generator for the C programming language. What this means
-is that Jotai takes a function written in C, and creates a runnable program that
-instanciates the parameters of the function, and calls it with them.
-
-# Why is Jotai?
-Having lots of runnable benchmarks can help us, for instance, in testing compiler
-optimizations, or training compilers, a task which requires large codebases.
-
-We are currently using the codebase available in the [Angha Project](http://cuda.dcc.ufmg.br/angha/home), which consists of over 1 million compilable C programs. We are looking into
-sets of functions called "leaf functions", which means they do not call other functions. 

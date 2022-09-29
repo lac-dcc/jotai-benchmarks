@@ -2,7 +2,8 @@
 
 Jotai is a large collection of executable benchmarks mined from open source
 repositories.
-Each benchmark consists of a single function written in C, plus a driver to run that function. These functions have been taken from the [AnghaBench](http://cuda.dcc.ufmg.br/angha/home) repository, and have been augmented with code to generate inputs for them.
+Each benchmark consists of a single function written in C, plus a driver to run that function.
+To know more about the benchmarks, you can watch this [video](https://youtu.be/_fWa2rTK3mY).
 
 ## Running
 
@@ -105,6 +106,8 @@ We have a few CSV files that we have produced for the benchmarks stored in the `
 Additionally, we have a `Scripts` folder with a few useful shell scripts that you can use to collect statistics for the Jotai programs.
 
 ## Generating new benchmarks 
+
+The Jotai functions have been taken from the [AnghaBench](http://cuda.dcc.ufmg.br/angha/home) repository, and have been augmented with code to generate inputs for them.
 If you want to experiment with Jotai’s tool to generate new benchmarks, the source code is available inside the source directory. The instructions on how to build and run Jotai are available [here](source/jotai/README.md). 
 
 
