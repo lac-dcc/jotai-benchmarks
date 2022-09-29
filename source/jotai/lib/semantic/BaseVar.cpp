@@ -21,7 +21,7 @@ std::string integerInit(std::string lower_bound, std::string upper_bound) {
   std::string lb = (lower_bound == "" ? std::to_string(JOTAI_INT_MIN) : lower_bound);
   std::string ub = (upper_bound == "" ? std::to_string(JOTAI_INT_MAX): upper_bound);
   if(lb == ub) return lb;
-  return lb + " + next_i()%(" + ub + " - " + lb + ")";
+  return lb + " + next_i()%(" + ub + " - (" + lb + "))";
 }
 
 std::string floatInit(std::string lower_bound, std::string upper_bound) {

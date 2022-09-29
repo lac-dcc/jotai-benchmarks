@@ -23,6 +23,7 @@ enum TokenType {
   TT_RPAREN,      // )
   TT_LBRACKET,    // [
   TT_RBRACKET,    // ]
+  TT_SINGLE_QUOTE,
 
   //Ties
   TT_EQUAL,       // ==
@@ -31,6 +32,13 @@ enum TokenType {
   TT_GREATER_EQ,  // >=
   TT_LESS,        // <
   TT_GREATER,     // >
+
+  //Arithmetic operators
+  TT_ADD,         // +
+  TT_SUB,         // -
+  TT_MUL,         // *
+  TT_DIV,         // /
+
 
   //Keywords
   TT_VALUE,       // value
@@ -62,6 +70,17 @@ inline std::string tt2str(TokenType type) {
       return "CHAR";
     case TT_STRING:
       return "STRING";
+
+    // Arithmetic operators
+    case TT_ADD:
+      return "ADD";
+    case TT_SUB:
+      return "SUB";
+    case TT_MUL:
+      return "MUL";
+    case TT_DIV:
+      return "DIV";
+
 
     //Symbols
     case TT_COMMA:

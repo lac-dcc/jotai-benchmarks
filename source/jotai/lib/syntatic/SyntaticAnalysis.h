@@ -27,6 +27,7 @@ private:
   void procExpr();
   void procSkeleton();
   Element procElement();
+  Element procArith();
   Lexeme procVariable();
   void procConst();
 };

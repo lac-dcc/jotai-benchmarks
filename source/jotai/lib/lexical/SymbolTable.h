@@ -21,6 +21,7 @@ private:
     {")", TT_RPAREN},
     {"[", TT_LBRACKET},
     {"]", TT_RBRACKET},
+    {"\'", TT_SINGLE_QUOTE},
 
     //Ties
     {"==", TT_EQUAL},
@@ -29,6 +30,12 @@ private:
     {">=", TT_GREATER_EQ},
     {"<", TT_LESS},
     {">", TT_GREATER},
+
+    //Arithmetic
+    {"+", TT_ADD},
+    {"-", TT_SUB},
+    {"*", TT_MUL},
+    {"/", TT_DIV},
 
     //Keywords
     {"value", TT_VALUE},

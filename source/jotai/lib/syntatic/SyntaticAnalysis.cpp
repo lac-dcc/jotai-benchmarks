@@ -47,8 +47,6 @@ void SyntaticAnalysis::showError() {
 // <constraint>  ::= <expr> { ',' <expr> }
 void SyntaticAnalysis::procConstraint() {
   if((m_current.type >= TT_INTEGER && m_current.type <= TT_STRING)
-      || m_current.type >= TT_VALUE && m_current.type <= TT_LINKED
-      || m_current.type >= TT_VALUE && m_current.type <= TT_DLINKED
       || m_current.type >= TT_VALUE && m_current.type <= TT_BTREE) {
     procExpr();
     while(m_current.type == TT_COMMA) {
@@ -60,15 +58,13 @@ void SyntaticAnalysis::procConstraint() {
   }
 }
 
-// <expr>        ::= <skeleton> | <element> (== | != | > | < | >= | <=) <element>
+// <expr>        ::= <skeleton> | <arith> (== | != | > | < | >= | <=) <arith>
 void SyntaticAnalysis::procExpr() {
-  if((m_current.type >= TT_LINKED && m_current.type <= TT_LINKED) ||
-    (m_current.type >= TT_DLINKED && m_current.type <= TT_DLINKED) ||
-    (m_current.type >= TT_BTREE && m_current.type <= TT_BTREE))
-  {
+  if(m_current.type >= TT_LINKED && m_current.type <= TT_BTREE) {
     procSkeleton();
-  } else {
-    Element lhs = procElement();
+  }
+  else {
+    Element lhs = procArith();
     TokenType comp = m_current.type;
     switch(m_current.type) {
       case TT_EQUAL:
@@ -92,7 +88,7 @@ void SyntaticAnalysis::procExpr() {
       default:
         showError();
     }
-    Element rhs = procElement();
+    Element rhs = procArith();
     Expr::apply(lhs,comp,rhs,C);
   }
 }
@@ -125,6 +121,44 @@ void SyntaticAnalysis::procSkeleton() {
     C->applySkeletonConstraint(skel_constraint(skel), var.token, len);
   }
 
+}
+
+// arith: <element> (+ | - | * | / ) <element> | element
+Element SyntaticAnalysis::procArith() {
+
+  Element lhs = procElement();
+    TokenType op = m_current.type;
+    switch(m_current.type) {
+      case TT_ADD:
+        eat(TT_ADD);
+        break;
+      case TT_SUB:
+        eat(TT_SUB);
+        break;
+      case TT_MUL:
+        eat(TT_MUL);
+        break;
+      case TT_DIV:
+        eat(TT_DIV);
+        break;
+      default:
+        break;
+    }
+
+    if(op >= TT_ADD && op <= TT_DIV)
+    {
+      Element rhs = procElement();
+
+      lhs.arith_constraint.type = rhs.type;
+      lhs.arith_constraint.token = rhs.token;
+      lhs.arith_constraint.op = op;
+      // std::cout << "inside op" << std::endl;
+    }
+
+    return lhs;
+
+  // return element que descreve o elemento da esquerda
+  // e salvar a operacao e o valor em um campo
 }
 
 // <element>     ::= <const> | (value | length) '(' <variable> ')'

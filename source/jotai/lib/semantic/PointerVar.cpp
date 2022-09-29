@@ -208,16 +208,26 @@ std::string PointerVar::getInit() {
   for(int i = 1; i < members.size(); i++) 
   {
     if(auto BV = dynamic_cast<BaseVar*>(members[i])) {
-      std::cout << BV->getInit() << "\n";
+      init += "  " + members[i]->name + " = " + BV->getInit() + ";\n";
     }
   }
 
   return init;
 }
 
-Var *PointerVar::findMember(std::string ind) {
-  if(ind == "_") return members[0];
-  return NULL;
+Var *PointerVar::findMember(std::string ind, std::string token, bool addToMembers) {
+  // if(ind == "_") return members[0];
+  
+  //  if(auto BV = dynamic_cast<BaseVar*>(members[0]))
+  // {
+  //   BaseVar *bv = new BaseVar(token, type);
+  //   if(addToMembers)
+  //     members.push_back(bv);
+  //   return bv;
+  // }
+
+  return members[0];
+
 }
 
 std::string PointerVar::getDealloc() {
@@ -234,7 +244,7 @@ std::string PointerVar::getDealloc() {
       std::string it = "i" + std::to_string(PV->depth);
       dealloc += "  for(int " + it + " = 0; " + it + " < " + getLenVar()
         + "; " + it + "++) {\n";
-      dealloc += "    int " + PV->getLenVar() + " = " + PV->getLen() + ";\n";
+      // dealloc += "    int " + PV->getLenVar() + " = " + PV->getLen() + ";\n";
       dealloc += "    " + PV->getDealloc();
       dealloc += "  }\n";
     }

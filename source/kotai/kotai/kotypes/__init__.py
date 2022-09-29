@@ -306,7 +306,7 @@ def runproc(proc_args: list[str], timeout: float,
 
     proc.kill()  # After this point, proc.returncode can't be None
     out, err = proc.communicate()  # Results
-
+    
     if out: logging.debug(f'{out=}')
     if err: logging.error(f'{err=}')
 

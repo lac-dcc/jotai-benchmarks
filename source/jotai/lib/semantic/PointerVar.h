@@ -25,7 +25,7 @@ public:
   std::string getPointerInit(Var *V, std::string len_var, int depth);
   void setLowerBound(std::string lower_bound);
   void setUpperBound(std::string upper_bound);
-  Var *findMember(std::string ind);
+  Var *findMember(std::string ind, std::string token, bool addToMembers);
 };
 
 #endif

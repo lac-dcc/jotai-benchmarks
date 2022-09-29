@@ -23,10 +23,11 @@ Lexeme LexicalAnalysis::nextToken() {
   state = 1;
   while(state < SYMBOLS_STATE) {
     int c = fgetc(m_input);
+    
     switch(state){
       case 1:
         if(c == '/') state = 2;
-        else if(isalpha(c) || c == '_') {
+        else if(isalpha(c) || c == '_' || c == 39) {
           lex.token += (char) c;
           state = 6;
         }
@@ -35,7 +36,8 @@ Lexeme LexicalAnalysis::nextToken() {
           state = 7;
         }
         else if(c == '(' || c == ')' || c == ',' || c == ';' || 
-                c == '.' || c == '*' || c == '[' || c == ']') {
+                c == '.' || c == '[' || c == ']' ||
+                c == '+' || c == '-' || c == '*' || c == '/') {
           lex.token += (char) c;
           state = SYMBOLS_STATE;
         }
@@ -64,6 +66,12 @@ Lexeme LexicalAnalysis::nextToken() {
       //COMMENTS
       case 2:
         if(c == '/') state = 3;
+        else if(c == ' ') 
+        {
+          lex.token += '/';
+          ungetc(c, m_input);
+          state = SYMBOLS_STATE;
+        }
         else if(c == '*') state = 4;
         break;
 
@@ -114,6 +122,15 @@ Lexeme LexicalAnalysis::nextToken() {
           } else {
             state = SYMBOLS_STATE;
           }
+        }
+        else if(c == '\\') {
+          lex.token += (char) c;
+          state = 6;
+        }
+        else if(c == 39) {
+          lex.token += (char) c;
+          lex.type = TT_CHAR;
+          state = FINAL_STATE;
         }
         else {
           lex.type = TT_INVALID_TOKEN;
