@@ -307,7 +307,7 @@ def _runJotai(pArgs: BenchInfo) -> BenchInfo:
 
         # Jotai's result
         jotaiResult, err = Jotai(constraintsPath, descriptorPath).runcmd()
-        print(jotaiResult)
+
         # If error: returns before creating the genbench file
         if err == failure:
             print('error ' + ket)
@@ -630,17 +630,17 @@ def _start(self: Application, ) -> SysExitCode:
                 return '[PrintDescriptors] No descriptors were generated'
 
             # ---------------------------- Gen Constraints. ---------------------------- #
-            # resKons = [r for r in pool.imap_unordered(_runBasicConstraints, resGenDesc, self.chunksize) if valid(r)]
-            # if not resKons:
-            #     return '[Konstrain] No constraints were generated'
+            resKons = [r for r in pool.imap_unordered(_runBasicConstraints, resGenDesc, self.chunksize) if valid(r)]
+            if not resKons:
+                return '[Konstrain] No constraints were generated'
 
-            # if('linked' in self.ketList or 'dlinked' in self.ketList or 'bintree' in self.ketList):
-            #     resLinked = [r for r in pool.imap_unordered(_runRecursiveConstraints, resKons, self.chunksize) if valid(r)]
-            # else:
-            #     resLinked = resKons
+            if('linked' in self.ketList or 'dlinked' in self.ketList or 'bintree' in self.ketList):
+                resLinked = [r for r in pool.imap_unordered(_runRecursiveConstraints, resKons, self.chunksize) if valid(r)]
+            else:
+                resLinked = resKons
 
             # ---------------------------- Gen test benchmark ---------------------------- #         
-            resJotai = [r for r in pool.imap_unordered(_runJotai, resGenDesc, self.chunksize) if valid(r)]
+            resJotai = [r for r in pool.imap_unordered(_runJotai, resKons, self.chunksize) if valid(r)]
             #print(resJotai)
             if not resJotai:
                 print( '[Jotai] No benchmarks with entry points were generated')
