@@ -12,4 +12,10 @@ You need to install docker on your machine. You can take a look at in [docker si
 
 # Run the Dockerfile
 
+In the docker directory run the code below:
+
     docker build -t jotai .
+
+The command above takes ~20-30 minutes on a good computer. After executing the command above you can access the container in your machine with the command:
+
+    docker run -it jotai
