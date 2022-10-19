@@ -8,7 +8,7 @@ Note that, if you are using Linux, you might need root access whenever you run a
 
 # What you need
 
-You need to install docker on your machine. You can take a look at in [docker site](https://docs.docker.com/desktop/install/linux-install/) site on how to install it.
+You need to install docker on your machine. You can take a look at in [docker website](https://docs.docker.com/desktop/install/linux-install/) on how to install it.
 
 # Run the Dockerfile
 
