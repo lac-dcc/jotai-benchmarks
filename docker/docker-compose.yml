@@ -1,0 +1,13 @@
+version: "1"
+
+services:
+  yali:
+    container_name: jotai
+    entrypoint: "/start.sh ${ROUNDS} ${VOLUME} ${MEMORYPROF} ${MODEL} ${TRAINDATASET} ${OPTLEVELTRAIN} ${NUMCLASSES} ${TESTDATASET} ${OPTLEVELTEST}"
+    logging:
+      driver: local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./Volume:${VOLUME}
