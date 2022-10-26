@@ -92,32 +92,6 @@ Create a link to the directory in which you built Jotai at the root of the repo.
 ln -sfiT ../jotai/build build && realpath -eL build/lib/Jotai
 </pre>
 
-
-### 5. (Re)locate valgrind
-
-During CFGgrind's setup, valgrind was built and installed with `sudo make install`, as per instructions. Therefore it should be the one executed when you run `valgrind`. It is understandable, however, if you don't have or want to use root privileges for this. If that is the case, [check](#ChangeCFGgrindPath)
-
-<pre>
-...
-class CFGgrind:
-
-    # ---------------------------- Static attrs. ---------------------------- #
-
-    exe: dict[str, Path] = {
-        'valgrind':        Path(<strong>'valgrind'</strong>),
-        'cfggrind_asmmap': Path('cfggrind_asmmap'),
-        'cfggrind_info':   Path('cfggrind_info'),
-    }
-
-    timeout: float = 3.0
-...
-</pre>
-<details>
-  <summary name="ChangeCFGgrindPath">🍪</summary>
-  
-  > In <code>kotai/plugin/CFGgrind.py</code>, change Path('valgrind') in the class dict `Jotai.exe` to your valgrind-with-cfggrind binary
-</details>
-
 ## Usage
 
 ### Options
