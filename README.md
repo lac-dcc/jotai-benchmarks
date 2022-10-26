@@ -7,7 +7,7 @@ To know more about the benchmarks, you can watch this [video](https://youtu.be/_
 
 ## Running
 
-Executing Jotai benchmarks is super easy: just compile and run!
+Executing Jotai benchmarks is quite easy: just compile and run!
 Each executable program receives a single argument: an integer that specifies
 which input will be used to run that program.
 Every benchmark has at least input 0 (e.g., `./file.exe 0`), but often they
