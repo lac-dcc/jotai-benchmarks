@@ -1,8 +1,6 @@
 
 # Kotai
 
-A rewrite of [@jcoelho96](https://github.com/jcoelho96)'s [Jotai](http://cuda.dcc.ufmg.br:8080/jcoelho/jotai) wrapper scripts
-
 ## Dependencies
 
 ### Required:
