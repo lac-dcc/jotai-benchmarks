@@ -1,4 +1,3 @@
-from kotai.kotypes import KonstrainExecType
 from kotai.logconf import sep, src_sep
 
 indent = '    '
@@ -32,7 +31,7 @@ float next_f() {
 } \n\n'''
 
 
-def usage(usageCases:list[tuple[int, KonstrainExecType]]):
+def usage(usageCases:list[tuple[int, str]]):
     return (f'''
 // Usage menu
 void usage() {{
@@ -67,7 +66,7 @@ GenBenchSwitchBegin: str = (
     f'{indent}switch(opt) ''{\n\n'
 )
 GenBenchSwitchEnd: str = (
-    f'\n{indent}''default:\n'
+    f'{indent}''default:\n'
     f'{indent*2}usage();\n'
     f'{indent*2}break;\n'
     f'\n{indent}}}\n'
@@ -92,3 +91,16 @@ def genSwitch(idx: int, out: str, ketDesc: str = '') -> str:
         f'{indent*2}break;\n'
         f'{indent}''}\n'
     )
+
+def genSwitchCFG(idx: int, out: str, ketDesc: str, cfgInfo: str) -> str:
+    return (
+        f"""\n{f'{indent}// {ketDesc}' if ketDesc else ''}\n"""
+        f'{indent}case {idx}:\n'
+        f'{indent}''{\n'
+        f'{cfgInfo}\n'
+        f"""{f''.join([f'{indent*2}{line}{chr(10)}' for line in out.split(chr(10))])}"""
+        f'{indent*2}break;\n'
+        f'{indent}''}\n\n'
+    )    
+
+

@@ -35,13 +35,15 @@ std::string StructVar::getInit() {
   std::string init = "";
   for(auto f: fields) {
     if(dynamic_cast<BaseVar*>(f)) 
-      init += f->name + " = ";
+      init += "  " + f->name + " = ";
     
     init += f->getInit();
     
     if(dynamic_cast<BaseVar*>(f)) 
       init += ";\n";
+
   }
+  init += '\n';
   return init;
 }
 

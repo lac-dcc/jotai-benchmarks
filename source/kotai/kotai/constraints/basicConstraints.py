@@ -1,4 +1,4 @@
-from kotai.kotypes import BenchInfo, Failure, ExitCode, KonstrainExecType, OptLevel, SysExitCode, success, failure
+from kotai.kotypes import BenchInfo, Failure, ExitCode, OptLevel, SysExitCode, success, failure
 
 def isInteger(param_type):
 	if '*' in param_type or '[' in param_type or 'struct' in param_type:
@@ -86,7 +86,7 @@ class Descriptor:
 		return desc
 
 
-def _getBasicConstraints(pArgs: BenchInfo, constraintType: KonstrainExecType) -> BenchInfo:
+def _getBasicConstraints(pArgs: BenchInfo, constraintType: str) -> BenchInfo:
 	
 	d = Descriptor(pArgs)
 	if constraintType == "int-bounds":

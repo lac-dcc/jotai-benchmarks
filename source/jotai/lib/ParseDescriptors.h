@@ -37,7 +37,7 @@ struct Descriptor {
 
   void parseStruct(std::string desc);
   void printFunctionCall();
-  void printVarInitWithFunctionCall();
+  void printVarInitWithFunctionCall(bool calc_runtime);
   bool hasParamOfType(std::string type);
   void printAllInputs();
 };

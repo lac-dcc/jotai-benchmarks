@@ -5,7 +5,7 @@ import pandas as pd
 import os
 from os.path import exists
 from pathlib import Path
-from kotai.kotypes import OptLevel, KonstrainExecType
+from kotai.kotypes import OptLevel
 from multiprocessing import Pool
 
 from functools import reduce
@@ -37,10 +37,10 @@ class GetBenchInfo():
 	)
 
 	# ----------------------------------------------------------------------- #
-	def __init__(self, inputDir: str, optLevelList: list[OptLevel], ketList: list[KonstrainExecType]):
+	def __init__(self, inputDir: str, optLevelList: list[OptLevel], ketList: list[str]):
 	    self.inputDir: str = inputDir
 	    self.optLevelList: list[OptLevel] = optLevelList
-	    self.ketList: list[KonstrainExecType] = ketList
+	    self.ketList: list[str] = ketList
 
 	# ----------------------------------------------------------------------- #
 
@@ -134,21 +134,22 @@ class GetBenchInfo():
 
 			desiredCols = ['name', 'static_instructions_' + group, 'dynamic_instructions_' + group]
 			res = [self.parseInfo(f) for f in files]
+
 			infoGroups[group] = [self.flattenCfgInfo(r, desiredCols, group) for r in res if r]
 			tmpdf[group] = pd.DataFrame(infoGroups[group], columns=desiredCols)
 
 
-			df = {}
-			for group, infoFiles in infoGroups.items():
-				df[group] = tmpdf[group].set_index(['name'], verify_integrity=True)
-				if not len(df[group]): continue
+		df = {}
+		for group, infoFiles in infoGroups.items():
+			df[group] = tmpdf[group].set_index(['name'], verify_integrity=True)
+			if not len(df[group]): continue
 
-				csvSeparator = ','
-				for group in patterns.keys():
-					try:
-						df[group].to_csv(Path(outputPrefix + f'CFGInfo_{group}.csv'), sep=csvSeparator, encoding='utf-8')
-					except Exception as e:
-						continue
+			csvSeparator = ','
+			for group in patterns.keys():
+				try:
+					df[group].to_csv(Path(outputPrefix + f'CFGInfo_{group}.csv'), sep=csvSeparator, encoding='utf-8')
+				except Exception as e:
+					continue
 		
 		caseStdoutFile = pd.read_csv(os.getcwd() +'/output/caseStdout.csv', sep=',')
 		caseStdoutFile = caseStdoutFile.rename(columns={'filename': 'name'})

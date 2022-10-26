@@ -58,10 +58,10 @@ def setLog(on: bool) -> None:
 
 # ---------------------------------- Konstrain ------------------------------ #
 
-KonstrainExecType = Literal['', 'all', 'int-bounds', 'big-arr', 'big-arr-10x', 'linked', 'dlinked', 'bintree', 'empty']
+# ConstrainExecType = Literal['', 'all', 'int-bounds', 'big-arr', 'big-arr-10x', 'linked', 'dlinked', 'bintree', 'empty']
 '''String literals representing the "ExecTypes" we accept from the user'''
 
-KonstrainExecTypes: Final[list[KonstrainExecType]] = [
+ConstrainExecTypes: list[str] = [
     'int-bounds',
     'big-arr',
     'big-arr-10x',
@@ -70,7 +70,7 @@ KonstrainExecTypes: Final[list[KonstrainExecType]] = [
     'bintree',
     'empty'
 ]
-'''List of all non-abstract (implemented) KonstrainExecTypes'''
+'''List of all non-abstract (implemented) ConstrainExecTypes'''
 
 
 # ------------------------------------ CComp -------------------------------- #
@@ -123,17 +123,19 @@ class CaseBenchInfo:
                  'switchNum',
                  'content',
                  'auxFunction',
+                 'CFGinfo'
                  )
 
     def __init__ (self,
                   switchNum: int,
                   content: str,
-                  auxFunction:str
+                  auxFunction:str,
                  ) -> None:
 
         self.switchNum: int = switchNum
         self.content: str   = content
         self.auxFunction: str = auxFunction
+
 
 class BenchInfo:
     __slots__ = (
@@ -141,6 +143,8 @@ class BenchInfo:
                  'fnName',
                  'ketList',
                  'optLevelList',
+                 'includeCFGInfo',
+                 'addTimeRoutine',
                  'exitCodes',
                  'descriptor',
                  'benchCases',
@@ -151,14 +155,16 @@ class BenchInfo:
     def __init__(self,
                  cFilePath: Path,
                  fnName: str                                                    | None = None,
-                 ketList: list[KonstrainExecType]                               | None = None,
+                 ketList: list[str]                                             | None = None,
                  optLevelList: list[OptLevel]                                   | None = None,
+                 includeCFGInfo: bool                                           | None = None, 
+                 addTimeRoutine: bool                                           | None = None, 
                  exitCodes: dict[Any, ExitCode]                                 | None = None,
                  descriptor: str                                                | None = None,
-                 benchCases: dict[Path, dict[Any, CaseBenchInfo]]               | None = None,
+                 benchCases: dict[Any, CaseBenchInfo]                           | None = None,
                  benchFunction: str                                             | None = None,
-                 caseStdout: dict[KonstrainExecType, str]                       | None = None,
-            ) -> None:
+                 caseStdout: dict[str, str]                                     | None = None,
+            ) -> None:      
 
         self.cFilePath: Path = cFilePath
         if _GUARD_fnName(fnName):               self.fnName = fnName
@@ -169,6 +175,12 @@ class BenchInfo:
 
         if _GUARD_optLevelList(optLevelList):   self.optLevelList = optLevelList
         else: self.optLevelList = []
+
+        if _GUARD_includeCFGInfo(includeCFGInfo):   self.includeCFGInfo = includeCFGInfo
+        else: self.includeCFGInfo = False
+
+        if _GUARD_addTimeRoutine(addTimeRoutine):   self.addTimeRoutine = addTimeRoutine
+        else: self.addTimeRoutine = False
 
         if _GUARD_exitCodes(exitCodes):         self.exitCodes = exitCodes
         else: self.exitCodes = {}
@@ -182,7 +194,7 @@ class BenchInfo:
         if _GUARD_benchFunction(benchFunction): self.benchFunction = benchFunction
         else: self.benchFunction = ''
 
-        if _GUARD_caseStdout(caseStdout):      self.caseStdout = caseStdout
+        if _GUARD_caseStdout(caseStdout):       self.caseStdout = caseStdout
         else: self.caseStdout = {}
 
 
@@ -191,7 +203,7 @@ class BenchInfo:
     def setExitCodes(self, exitCodes: dict[Any, ExitCode]) -> None:
         self.exitCodes |= exitCodes
 
-    def setBenchCases(self, benchCases: dict[Path, dict[KonstrainExecType, CaseBenchInfo]]) -> None:
+    def setBenchCases(self, benchCases: dict[str, CaseBenchInfo]) -> None:
         self.benchCases = benchCases
 
     def Err(self, key: Any, logmsg: str = '', level: LogLevel = 'debug'):
@@ -199,29 +211,22 @@ class BenchInfo:
         if logmsg: Log[level](logmsg)
         return self
 
-    def setCaseStdout(self, caseStdout: dict[KonstrainExecType, str]) -> None:
+    def setCaseStdout(self, caseStdout: dict[str, str]) -> None:
         self.caseStdout |= caseStdout
 
 
 def _GUARD_fnName          (result: str | None)                                                 -> TypeGuard[str]                                                   : return result != None
-def _GUARD_ketList         (result: list[KonstrainExecType] | None)                             -> TypeGuard[list[KonstrainExecType]]                               : return result != None
+def _GUARD_ketList         (result: list[str] | None)                                           -> TypeGuard[list[str]]                               : return result != None
 def _GUARD_optLevelList    (result: list[OptLevel] | None)                                      -> TypeGuard[list[OptLevel]]                                        : return result != None
+def _GUARD_includeCFGInfo  (result: bool | None)                                                -> TypeGuard[bool]                                                  : return result != None
+def _GUARD_addTimeRoutine  (result: bool | None)                                                -> TypeGuard[bool]                                                  : return result != None
 def _GUARD_exitCodes       (result: dict[Any, ExitCode] | None)                                 -> TypeGuard[dict[Any, ExitCode]]                                   : return result != None
 def _GUARD_descriptor      (result: str | None)                                                 -> TypeGuard[str]                                                   : return result != None
-def _GUARD_benchCases      (result: dict[Path, dict[Any, CaseBenchInfo]] | None)                -> TypeGuard[dict[Path, dict[Any, CaseBenchInfo]]]                  : return result != None
+def _GUARD_benchCases      (result: dict[Any, CaseBenchInfo] | None)                            -> TypeGuard[dict[Any, CaseBenchInfo]]                              : return result != None
 def _GUARD_benchFunction   (result: str | None)                                                 -> TypeGuard[str]                                                   : return result != None
 def _GUARD_auxFunction     (result: str | None)                                                 -> TypeGuard[str]                                                   : return result != None
-def _GUARD_caseStdout      (result: dict[KonstrainExecType, str] | None)                        -> TypeGuard[dict[KonstrainExecType, str]]                          : return result != None
-'''
-fnName: str = None,
-ketList: list[KonstrainExecType] = None,
-optLevelList: list[OptLevel] = None,
-exitCodes: dict[Any, ExitCode] = None,
-descriptor: str = None,
-benchCases: dict[Path, dict[KonstrainExecType, CaseBenchInfo]] = None,
-benchFunction: str = None,
-auxFunction: str = None,
-'''
+def _GUARD_caseStdout      (result: dict[str, str] | None)                                      -> TypeGuard[dict[str, str]]                          : return result != None
+
 
 # TypeGuard for BenchInfo
 def valid(result: BenchInfo | ExitCode) -> TypeGuard[BenchInfo] : return bool(result)

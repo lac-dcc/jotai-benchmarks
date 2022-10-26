@@ -26,7 +26,7 @@ class Jotai():
     )
 
     # ----------------------------------------------------------------------- #
-    def __init__(self, constraintsPath: Path, descriptorPath: Path,):
+    def __init__(self, constraintsPath: Path, descriptorPath: Path):
         self.constraintsPath: Path = constraintsPath
         self.descriptorPath:  Path = descriptorPath
     # ----------------------------------------------------------------------- #
@@ -37,6 +37,7 @@ class Jotai():
             f'{self.constraintsPath}',
             f'{self.descriptorPath}',
         ] + [*args]
+
         logging.info(f'Running jotai with {self.constraintsPath=}, '
                      f'{self.descriptorPath=}')
 

@@ -16,18 +16,18 @@ void Constraint::printVarInits(Descriptor D) {
   for(auto V: vars) {
     if(auto BV = dynamic_cast<BaseVar*>(V)) {
       std::cout << "  " << BV->type << " " << BV->name << " = " 
-        << V->getInit() << ";\n";
+        << V->getInit() << ";\n\n";
     }
   }
   //Init pointer and struct parameters
   for(auto V: vars) {
     if(auto PV = dynamic_cast<PointerVar*>(V)) {
-      std::cout << PV->getInit();
+      std::cout << PV->getInit() << "\n";
     } else if(auto SV = dynamic_cast<StructVar*>(V)) {
       std::cout << "  " << SV->type << " " << SV->name << ";\n";
       std::cout << SV->getInit();
     } else if(auto RV = dynamic_cast<RecursiveStructVar*>(V)) {
-      std::cout << RV->getInit();
+      std::cout << RV->getInit() << "\n";
     }
   }
 }

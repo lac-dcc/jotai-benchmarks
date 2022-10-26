@@ -4,7 +4,7 @@
 #include "syntatic/SyntaticAnalysis.h"
 #include "semantic/Constraint.h"
 #include "ParseDescriptors.h"
-
+#include <string.h>
 
 
 void printVars(Var *var, std::string indent="") {
@@ -31,9 +31,16 @@ void printVars(Var *var, std::string indent="") {
 }
 
 int main(int argc, char *argv[]) {
-  if(argc != 3) {
-    std::cout << "Usage: " << argv[0] << " [CONSTRAINTS FILE] [DESCRIPTOR FILE]" << std::endl;
-    exit(0);
+
+  bool calc_runtime  = false; 
+  
+  if(argc == 4 && strcmp("time", argv[3]) == 0)
+    calc_runtime = true;
+ 
+  else if(argc != 3)
+  {
+    std::cout << "Usage: " << argv[0] << " [CONSTRAINTS FILE] [DESCRIPTOR FILE] [time]" << std::endl;
+    exit(1);
   }
 
   srand48(888l);
@@ -49,7 +56,7 @@ int main(int argc, char *argv[]) {
     C.printRecursiveStructFunctions();
     std::cout << "/*RV_DELIM*/" ;
     C.printVarInits(D);
-    D.printVarInitWithFunctionCall();
+    D.printVarInitWithFunctionCall(calc_runtime);
     // D.printAllInputs();
     C.printVarDealocs(D);
   } catch(const std::string& error) {

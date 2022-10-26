@@ -161,7 +161,7 @@ std::string getTypePrint(std::string returntype)
     else
       return "not_primitive";
 }
-void Descriptor::printVarInitWithFunctionCall() {
+void Descriptor::printVarInitWithFunctionCall(bool calc_runtime) {
 
   std::string params = "";
   for(auto param: function->params)
@@ -172,18 +172,30 @@ void Descriptor::printVarInitWithFunctionCall() {
 
   std::string returntype = function->type;
   
-  // std::cout <<  "  " << "clock_t jotai_start_time = clock();\n";
+  if(calc_runtime)
+    std::cout <<  "  " << "clock_t jotai_start_time = clock();\n";
   
   if(returntype == "void")
   {
     std::cout << "  " << function->name << "(" << params << ");\n";
+    if(calc_runtime)
+    {
+      std::cout << "  " << "clock_t jotai_end_time = clock();\n";
+      std::cout << "  " << "double seconds_jotai = (double)(jotai_end_time - jotai_start_time) / CLOCKS_PER_SEC;\n";
+      std::cout << "  " << "printf(\"time: %lf\\n\", seconds_jotai);\n" ;
+    }
   }
 
   else if (returntype.find("struct") != std::string::npos)
   {
 
-    // std::cout << "  " << "printf(\"{{struct}} %p\\n\", &benchRet); \n";
     std::cout << "  " << returntype << " benchRet = " << function->name << "(" << params << ");\n";
+    if(calc_runtime)
+    {
+      std::cout << "  " << "clock_t jotai_end_time = clock();\n";
+      std::cout << "  " << "double seconds_jotai = (double)(jotai_end_time - jotai_start_time) / CLOCKS_PER_SEC;\n";
+      std::cout << "  " << "printf(\"time: %lf\\n\", seconds_jotai);\n" ;
+    }
 
     std::string stype = returntype.substr(0, returntype.find('*'));
     
@@ -226,6 +238,13 @@ void Descriptor::printVarInitWithFunctionCall() {
       pointerPrint += "*";
 
     std::cout << "  " << returntype << " benchRet = " << function->name << "(" << params << ");\n";
+    if(calc_runtime)
+    {
+      std::cout << "  " << "clock_t jotai_end_time = clock();\n";
+      std::cout << "  " << "double seconds_jotai = (double)(jotai_end_time - jotai_start_time) / CLOCKS_PER_SEC;\n";
+      std::cout << "  " << "printf(\"time: %lf\\n\", seconds_jotai);\n" ;
+    }
+
     std::string typePrint = getTypePrint(var_type);
 
     if(p_count)

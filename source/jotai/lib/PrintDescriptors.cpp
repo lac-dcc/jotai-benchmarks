@@ -60,7 +60,6 @@ public:
 
     if (not R->isCompleteDefinition()) return true;
 
-    // This is wrong, read the TODO
     llvm::outs() << "struct " + R->getNameAsString() + " |";
 
     std::string fields;

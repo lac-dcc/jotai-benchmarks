@@ -17,8 +17,8 @@ from kotai.plugin.PrintDescriptors import PrintDescriptors
 from kotai.plugin.Jotai import Jotai
 from kotai.plugin.CompileBenchmarks import Compile
 from kotai.plugin.RunBenchmarks import Run
-from kotai.templates.benchmark import GenBenchTemplatePrefix, randGenerator, GenBenchTemplateMainBegin, GenBenchTemplateMainEnd, genSwitch, GenBenchSwitchBegin, GenBenchSwitchEnd, usage
-from kotai.kotypes import BenchInfo, CaseBenchInfo, Failure, ExitCode, LogThen, OptLevel, OptLevels, SysExitCode, KonstrainExecType, KonstrainExecTypes, setLog, success, failure, valid
+from kotai.templates.benchmark import GenBenchTemplatePrefix, randGenerator, GenBenchTemplateMainBegin, GenBenchTemplateMainEnd, genSwitch, GenBenchSwitchBegin, GenBenchSwitchEnd, usage, genSwitchCFG
+from kotai.kotypes import BenchInfo, CaseBenchInfo, Failure, ExitCode, LogThen, OptLevel, OptLevels, SysExitCode, ConstrainExecTypes, setLog, success, failure, valid
 from kotai.logconf import logFmt, sep
 
 
@@ -35,9 +35,11 @@ class Application:
         self.nproc: int
         self.chunksize: int
         self.optLevels: list[OptLevel] = []
-        self.ketList: list[KonstrainExecType] = []
+        self.ketList: list[str] = []
         self.logfile: str
-        self.ubstats: str
+        self.includeCFGInfo: bool
+        self.addTimeRoutine: bool
+
 
         self.args = argparse.Namespace()
         cli = argparse.ArgumentParser(
@@ -50,10 +52,13 @@ class Application:
         cli.add_argument('-i', '--inputdir',  type=str, nargs='+', required=True)
         cli.add_argument('-j', '--nproc',     type=int, default=8)
         cli.add_argument('-J', '--chunksize', type=int, default=-1)
-        cli.add_argument('-K',         type=str, nargs='+', choices=KonstrainExecTypes, default='all')
-        cli.add_argument('--optLevel', type=str, nargs='+', choices=OptLevels,          default='O0')
-        cli.add_argument('-L', '--logfile', default='./output/jotai.log')
-        cli.add_argument('-u', '--ubstats', default='./output/ubstats.txt')
+        cli.add_argument('-K',                type=str, nargs='+', default='all')
+        cli.add_argument('-o', '--optLevel',  type=str, nargs='+', choices=OptLevels, default='O0')
+        cli.add_argument('-L', '--logfile',   default='./output/jotai.log')
+        cli.add_argument('-s', '--CFGinfo',   action='store_true', default=False)
+        cli.add_argument('-t', '--time',      action='store_true', default=False)
+
+
         cli.parse_args(namespace=self.args)
 
         # [-i]
@@ -70,9 +75,9 @@ class Application:
 
         # [-K]
         if 'all' in self.args.K:
-            self.ketList = KonstrainExecTypes
+            self.ketList = ConstrainExecTypes
         else:
-            self.ketList = (kets if (kets := [ket for ket in self.args.K if ket in KonstrainExecTypes])
+            self.ketList = (kets if (kets := [ket for ket in self.args.K])
                               else ['all'])
 
         # [--optLevel]
@@ -82,7 +87,8 @@ class Application:
             self.optLevels = (opts if (opts := [opt for opt in self.args.optLevel if opt in OptLevels])
                               else ['O0'])
 
-        self.ubstats = self.args.ubstats
+        self.includeCFGInfo = self.args.CFGinfo
+        self.addTimeRoutine = self.args.time
 
         if self.args.no_log:
             # [--no-log] Disable logging
@@ -183,7 +189,9 @@ def _genDescriptor(pArgs: BenchInfo) -> BenchInfo:
                      ketList=pArgs.ketList,
                      optLevelList=pArgs.optLevelList,
                      exitCodes={'descriptor': success},
-                     descriptor = msg)
+                     descriptor = msg,
+                     includeCFGInfo = pArgs.includeCFGInfo,
+                     addTimeRoutine = pArgs.addTimeRoutine)
 
 
 # Worker function mapped in a multiprocessing.Pool to generate basic constraints
@@ -295,8 +303,8 @@ def _runJotai(pArgs: BenchInfo) -> BenchInfo:
     descriptorPath  = cFileMetaDir / 'descriptor'
 
     jotaiSwitchCase = ''
-    genSwitchList: list[tuple[int, KonstrainExecType, str, ExitCode, str]] = []
-    usageCases: list[tuple[int, KonstrainExecType]] = []
+    genSwitchList: list[tuple[int, str, str, ExitCode, str]] = []
+    usageCases: list[tuple[int, str]] = []
 
     
     for idx, ket in enumerate(pArgs.ketList):
@@ -306,13 +314,19 @@ def _runJotai(pArgs: BenchInfo) -> BenchInfo:
         constraintsPath = cFileMetaDir / f'constraint_{ket}'
 
         # Jotai's result
-        jotaiResult, err = Jotai(constraintsPath, descriptorPath).runcmd()
+        if(pArgs.addTimeRoutine):
+            jotaiResult, err = Jotai(constraintsPath, descriptorPath).runcmd('time')
+        else:
+            jotaiResult, err = Jotai(constraintsPath, descriptorPath).runcmd()
 
         # If error: returns before creating the genbench file
         if err == failure:
             print('error ' + ket)
             pArgs.setExitCodes({ket: failure})
             continue
+        else:
+            pArgs.setExitCodes({ket: success})
+
 
         # If recursive, separate jotai results
         
@@ -330,7 +344,7 @@ def _runJotai(pArgs: BenchInfo) -> BenchInfo:
 
     genBuffer += usage(usageCases)
     genBuffer += pArgs.benchFunction
-    genBuffer += f'\n\n\n{sep}\n\n'
+    genBuffer += f'\n\n{sep}\n'
 
 
     if not genSwitchList:
@@ -347,12 +361,8 @@ def _runJotai(pArgs: BenchInfo) -> BenchInfo:
             aux_functions += aux_func
 
         switchCases += genSwitch(idx, out, ket)
-        if cFilePath in pArgs.benchCases:
-            pArgs.benchCases[cFilePath][ket] = CaseBenchInfo(idx, out, aux_func)
-        else:
-            ket: KonstrainExecType
-            cb = CaseBenchInfo(idx, out, aux_func)
-            pArgs.benchCases |= {cFilePath: {ket: cb}}
+        pArgs.benchCases[ket] = CaseBenchInfo(idx, out, aux_func)
+
 
     genBuffer += aux_functions
     genBuffer += GenBenchTemplateMainBegin
@@ -408,7 +418,7 @@ def _runWithFsanitize(pArgs: BenchInfo) -> BenchInfo:
     cFileMetaDir           = cFilePath.with_suffix('.d')
 
     ''' Runs binary compiled with Fsanitize'''
-    runResList: list[tuple[str, OptLevel, KonstrainExecType, ExitCode]] = []
+    runResList: list[tuple[str, OptLevel, str, ExitCode]] = []
     for opt in optLevelList:
         if opt in pArgs.exitCodes and pArgs.exitCodes[opt] == failure:
             continue
@@ -419,7 +429,7 @@ def _runWithFsanitize(pArgs: BenchInfo) -> BenchInfo:
             
             if ket in pArgs.exitCodes and pArgs.exitCodes[ket] == failure:
                 continue
-            result, err = Run(genBinPath, pArgs.fnName).runcmdFsanitize(str(pArgs.benchCases[cFilePath][ket].switchNum))
+            result, err = Run(genBinPath, pArgs.fnName).runcmdFsanitize(str(pArgs.benchCases[ket].switchNum))
         
             if err == failure:
                 print("run error")
@@ -461,9 +471,9 @@ def _runCFGgrind(pArgs: BenchInfo) -> BenchInfo:
     optLevelList           = pArgs.optLevelList
     cFileMetaDir           = cFilePath.with_suffix('.d')
 
-    caseStdout: dict[KonstrainExecType, str] = {}
+    caseStdout: dict[str, str] = {}
     ''' Runs valgrind-memcheck, cfgg-asmmap, valgrind-cfgg and cfgg-info '''
-    runResList: list[tuple[str, OptLevel, KonstrainExecType, ExitCode]] = []
+    runResList: list[tuple[str, OptLevel, str, ExitCode]] = []
     for opt in optLevelList:
         if opt in pArgs.exitCodes and pArgs.exitCodes[opt] == failure:
             continue
@@ -475,7 +485,7 @@ def _runCFGgrind(pArgs: BenchInfo) -> BenchInfo:
             if ket in pArgs.exitCodes and pArgs.exitCodes[ket] == failure:
                 continue
 
-            result, err = Run(genBinPath, pArgs.fnName).runcmd(str(pArgs.benchCases[cFilePath][ket].switchNum), ket)
+            result, err = Run(genBinPath, pArgs.fnName).runcmd(str(pArgs.benchCases[ket].switchNum), ket)
             if err == failure:
                 print('CFG error')
                 pArgs.setExitCodes({ket: failure})
@@ -486,9 +496,14 @@ def _runCFGgrind(pArgs: BenchInfo) -> BenchInfo:
             if ket not in caseStdout:
                 # print only primitive types
                 if result and '{{other_type}}' not in result:
-                    caseStdout[ket+opt] = result
-            
+                    if not pArgs.addTimeRoutine:
+                        caseStdout[ket+opt] = result
+                    else:
+                        result = result.split("\n",1)
+                        if len(result) > 1:
+                            caseStdout[ket+opt] = result[1]
 
+            
             runResList += [(pArgs.fnName, opt, ket, err)]
 
     if not runResList:
@@ -526,7 +541,7 @@ def _runWithKcc(pArgs: BenchInfo) -> BenchInfo:
     cFileMetaDir           = cFilePath.with_suffix('.d')
 
     ''' Runs binary compiled with Kcc'''
-    runResList: list[tuple[str, OptLevel, KonstrainExecType, ExitCode]] = []
+    runResList: list[tuple[str, OptLevel, str, ExitCode]] = []
     for opt in optLevelList:
         if opt in pArgs.exitCodes and pArgs.exitCodes[opt] == failure:
             continue
@@ -537,7 +552,7 @@ def _runWithKcc(pArgs: BenchInfo) -> BenchInfo:
             
             if ket in pArgs.exitCodes and pArgs.exitCodes[ket] == failure:
                 continue
-            result, err = Run(genBinPath, pArgs.fnName).runcmdKcc(str(pArgs.benchCases[cFilePath][ket].switchNum))
+            result, err = Run(genBinPath, pArgs.fnName).runcmdKcc(str(pArgs.benchCases[ket].switchNum))
             
             if err == failure:
                 print("kcc run error")
@@ -550,6 +565,31 @@ def _runWithKcc(pArgs: BenchInfo) -> BenchInfo:
         return pArgs.Err('Run', 'Run: Kcc Complete failure')
     return pArgs
 
+def _extractCFGInfo(pArgs: BenchInfo, ket: str):
+    cFilePath = pArgs.cFilePath
+    cFileMetaDir    = cFilePath.with_suffix('.d')
+
+    ket_opt_patterns = {}
+    cfg_info = {}
+    for o in pArgs.optLevelList:
+        ket_opt_patterns[o] = '*' + o + '_' + ket + '.info'
+    
+    info_ket_opt_Paths = {ket_opt: list(cFileMetaDir.glob(path)) for ket_opt, path in ket_opt_patterns.items()}
+    for ket_opt, paths in info_ket_opt_Paths.items():
+        desiredCols = ['static_instructions_' + ket_opt, 'dynamic_instructions_' + ket_opt]
+        res = [GetBenchInfo(cFilePath, pArgs.optLevelList, pArgs.ketList).parseInfo(p) for p in paths]
+        cfg_info[ket_opt] = [GetBenchInfo(cFilePath, pArgs.optLevelList, pArgs.ketList).flattenCfgInfo(r, desiredCols, ket_opt) for r in res if r]
+    
+    str_cfg_info = ''
+    for o in pArgs.optLevelList:
+        for item in cfg_info[o]:
+            for key, value in item.items():
+                str_cfg_info =  str_cfg_info + '          // ' + key + ' : ' + str(value) + '\n'
+        str_cfg_info += '          // ------------------------------- \n'
+
+
+    pArgs.benchCases[ket].CFGinfo = str_cfg_info
+
 
 # Generate final benchmark (filter out errors and undefined behaviour)
 def _createFinalBench(pArgs: BenchInfo) -> BenchInfo:
@@ -559,32 +599,41 @@ def _createFinalBench(pArgs: BenchInfo) -> BenchInfo:
     cFileMetaDir    = cFilePath.with_suffix('.d')
     switchBuffer = ""
     aux_function = ""
-    usageCases: list[tuple[int, KonstrainExecType]] = []
+    usageCases: list[tuple[int, str]] = []
 
     switch_count = 0
     aux_function_set = set()
+
+
     for ket in pArgs.ketList:
         if ket in pArgs.exitCodes and pArgs.exitCodes[ket] == failure:
             continue
 
-        pArgs.benchCases[cFilePath][ket].switchNum = switch_count
+        _extractCFGInfo(pArgs, ket)
+
+        pArgs.benchCases[ket].switchNum = switch_count
         usageCases += [(switch_count , ket)]
 
         
-        if(pArgs.benchCases[cFilePath][ket].auxFunction not in aux_function_set):
-            aux_function_set.add(pArgs.benchCases[cFilePath][ket].auxFunction)
-            aux_function += pArgs.benchCases[cFilePath][ket].auxFunction
+        if(pArgs.benchCases[ket].auxFunction not in aux_function_set):
+            aux_function_set.add(pArgs.benchCases[ket].auxFunction)
+            aux_function += pArgs.benchCases[ket].auxFunction
 
-        switchBuffer += genSwitch(pArgs.benchCases[cFilePath][ket].switchNum , pArgs.benchCases[cFilePath][ket].content, ket)
+        if pArgs.includeCFGInfo:
+            switchBuffer += genSwitchCFG(pArgs.benchCases[ket].switchNum , pArgs.benchCases[ket].content, ket, pArgs.benchCases[ket].CFGinfo)
+        else:
+            switchBuffer += genSwitch(pArgs.benchCases[ket].switchNum , pArgs.benchCases[ket].content, ket)
+        
         switch_count += 1
 
     genBuffer = GenBenchTemplatePrefix
     genBuffer += randGenerator
     genBuffer += usage(usageCases)
     genBuffer += pArgs.benchFunction
-    genBuffer += f'\n\n\n{sep}\n\n'
-    genBuffer += aux_function
-    genBuffer += f'\n\n\n{sep}\n\n'
+    genBuffer += f'\n\n{sep}\n\n'
+    if aux_function:
+        genBuffer += aux_function
+        genBuffer += f'\n\n{sep}\n\n'
     genBuffer += GenBenchTemplateMainBegin
     genBuffer += GenBenchSwitchBegin
     genBuffer += switchBuffer
@@ -601,18 +650,18 @@ def _createFinalBench(pArgs: BenchInfo) -> BenchInfo:
     except Exception as e:
         return pArgs.Err('JotaiFinal', f'{e}')
     
-    print("worked : " + str(cFilePath.name))
     return pArgs
 
 
 def _start(self: Application, ) -> SysExitCode:
 
+    
     #For each directory passed with -i/--inputdir, do:
     for benchDir in self.inputBenchmarks:
 
         #self.optLevelList
-        pArgs = [BenchInfo(cf, ketList=self.ketList, optLevelList=self.optLevels) for cf in benchDir.glob('*.c')]
-
+        pArgs = [BenchInfo(cf, ketList=self.ketList, optLevelList=self.optLevels, includeCFGInfo=self.includeCFGInfo, addTimeRoutine=self.addTimeRoutine) for cf in benchDir.glob('*.c')]
+    
         # [-c] Deletes 
         if self.args.clean:
             with Pool(self.nproc) as pool:
@@ -630,22 +679,23 @@ def _start(self: Application, ) -> SysExitCode:
                 return '[PrintDescriptors] No descriptors were generated'
 
             # ---------------------------- Gen Constraints. ---------------------------- #
-            resKons = [r for r in pool.imap_unordered(_runBasicConstraints, resGenDesc, self.chunksize) if valid(r)]
-            if not resKons:
-                return '[Konstrain] No constraints were generated'
+            resCons = [r for r in pool.imap_unordered(_runBasicConstraints, resGenDesc, self.chunksize) if valid(r)]
+            if not resCons:
+                return '[Constrain] No constraints were generated'
 
             if('linked' in self.ketList or 'dlinked' in self.ketList or 'bintree' in self.ketList):
-                resLinked = [r for r in pool.imap_unordered(_runRecursiveConstraints, resKons, self.chunksize) if valid(r)]
+                resLinked = [r for r in pool.imap_unordered(_runRecursiveConstraints, resCons, self.chunksize) if valid(r)]
             else:
-                resLinked = resKons
+                resLinked = resCons
 
             # ---------------------------- Gen test benchmark ---------------------------- #         
-            resJotai = [r for r in pool.imap_unordered(_runJotai, resKons, self.chunksize) if valid(r)]
+            resJotai = [r for r in pool.imap_unordered(_runJotai, resLinked, self.chunksize) if valid(r)]
             #print(resJotai)
             if not resJotai:
                 print( '[Jotai] No benchmarks with entry points were generated')
 
             # ---------------------------- Compile and run with Fsanitize ---------------------------- #
+
 
             resClangFsanitize = [r for r in pool.imap_unordered(_compileGenBenchFsanitize, resJotai, self.chunksize) if valid(r)]
             if not resClangFsanitize:
@@ -714,7 +764,7 @@ def _start(self: Application, ) -> SysExitCode:
                     for r in resFinal:
                         caseNumbers += [{
                         'filename' : str(r.cFilePath)
-                            } | { ket: r.benchCases[r.cFilePath][ket].switchNum if r.exitCodes[ket] != failure else 'NA'
+                            } | { ket: r.benchCases[ket].switchNum if r.exitCodes[ket] != failure else 'NA'
                             for ket in self.ketList
                         }]
                     sCaseWriter.writeheader()
