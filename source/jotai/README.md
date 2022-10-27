@@ -46,12 +46,3 @@ Once you have built jotai, you'll need to set up kotai. kotai is the script resp
 Building the LLVM project yourself might be a bit troublesome, and take some time. An alternative is using a [Docker](https://www.docker.com/resources/what-container) image that already has the LLVM project compiled inside it. 
 
 Note that this is different from using pre built binaries: the project is actually compiled in the operating system you get from the image, so you have access to all the libraries you get when you build LLVM!
-
-Note that, if you are using Linux, you might need root access whenever you run a docker command! Just add "sudo" before every docker command listed below.
-
-## What you need
-- TODO
-
-## Step by Step
-- TODO
-
