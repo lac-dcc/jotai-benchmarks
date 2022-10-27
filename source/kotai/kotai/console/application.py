@@ -40,23 +40,22 @@ class Application:
         self.includeCFGInfo: bool
         self.addTimeRoutine: bool
 
-
         self.args = argparse.Namespace()
         cli = argparse.ArgumentParser(
             prog='python -m kotai',
             description='Jotai options'
         )
-
-        cli.add_argument('-c', '--clean',     action='store_true', default=False)
-        cli.add_argument('--no-log',          action='store_true', default=False)
-        cli.add_argument('-i', '--inputdir',  type=str, nargs='+', required=True)
-        cli.add_argument('-j', '--nproc',     type=int, default=8)
-        cli.add_argument('-J', '--chunksize', type=int, default=-1)
-        cli.add_argument('-K',                type=str, nargs='+', default='all')
-        cli.add_argument('-o', '--optLevel',  type=str, nargs='+', choices=OptLevels, default='O0')
-        cli.add_argument('-L', '--logfile',   default='./output/jotai.log')
-        cli.add_argument('-s', '--CFGinfo',   action='store_true', default=False)
-        cli.add_argument('-t', '--time',      action='store_true', default=False)
+   
+        cli.add_argument('-i', '--inputdir',    type=str, nargs='+', required=True)
+        cli.add_argument('-j', '--nproc',       type=int, default=8)
+        cli.add_argument('-J', '--chunksize',   type=int, default=-1)
+        cli.add_argument('-K', '--constraints', type=str, nargs='+', default='all')
+        cli.add_argument('-o', '--optLevel',    type=str, nargs='+', choices=OptLevels, default='O0')
+        cli.add_argument('-s', '--CFGinfo',     action='store_true', default=False)
+        cli.add_argument('-t', '--time',        action='store_true', default=False)
+        cli.add_argument('-c', '--clean',       action='store_true', default=False)
+        cli.add_argument('--no-log',            action='store_true', default=False)
+        cli.add_argument('-L', '--logfile',     default='./output/jotai.log')
 
 
         cli.parse_args(namespace=self.args)
@@ -74,10 +73,10 @@ class Application:
                            else 64)
 
         # [-K]
-        if 'all' in self.args.K:
+        if 'all' in self.args.constraints:
             self.ketList = ConstrainExecTypes
         else:
-            self.ketList = (kets if (kets := [ket for ket in self.args.K])
+            self.ketList = (kets if (kets := [ket for ket in self.args.constraints])
                               else ['all'])
 
         # [--optLevel]
@@ -321,7 +320,7 @@ def _runJotai(pArgs: BenchInfo) -> BenchInfo:
 
         # If error: returns before creating the genbench file
         if err == failure:
-            print('error ' + ket)
+            # print('error ' + ket)
             pArgs.setExitCodes({ket: failure})
             continue
         else:
@@ -401,7 +400,7 @@ def _compileGenBenchFsanitize(pArgs: BenchInfo) -> BenchInfo:
         _, err = Compile(opt, ofile=genBinPath, ifile=genBenchPath).runcmdFsanitize()
 
         if err == failure:
-            print("compile error")
+            # print("compile error")
             pArgs.setExitCodes({opt: failure})
             continue
         optResList += [(opt, err), ]
@@ -432,7 +431,7 @@ def _runWithFsanitize(pArgs: BenchInfo) -> BenchInfo:
             result, err = Run(genBinPath, pArgs.fnName).runcmdFsanitize(str(pArgs.benchCases[ket].switchNum))
         
             if err == failure:
-                print("run error")
+                # print("run error")
                 pArgs.setExitCodes({ket: failure})
                 continue
 
@@ -487,7 +486,7 @@ def _runCFGgrind(pArgs: BenchInfo) -> BenchInfo:
 
             result, err = Run(genBinPath, pArgs.fnName).runcmd(str(pArgs.benchCases[ket].switchNum), ket)
             if err == failure:
-                print('CFG error')
+                # print('CFG error')
                 pArgs.setExitCodes({ket: failure})
                 #pArgs.setBenchCasesError(cFilePath, ket)
                 continue
@@ -525,7 +524,7 @@ def _compileKcc(pArgs: BenchInfo) -> BenchInfo:
         _, err = Compile(opt, ofile=genBinPath, ifile=genBenchPath).runcmdKcc()
 
         if err == failure:
-            print('kcc compile error')
+            # print('kcc compile error')
             pArgs.setExitCodes({opt: failure})
             continue
         optResList += [(opt, err), ]
@@ -555,7 +554,7 @@ def _runWithKcc(pArgs: BenchInfo) -> BenchInfo:
             result, err = Run(genBinPath, pArgs.fnName).runcmdKcc(str(pArgs.benchCases[ket].switchNum))
             
             if err == failure:
-                print("kcc run error")
+                # print("kcc run error")
                 pArgs.setExitCodes({ket: failure})
                 continue
 
@@ -716,7 +715,7 @@ def _start(self: Application, ) -> SysExitCode:
 
             resValgrind = [r for r in pool.imap_unordered(_runCFGgrind, resClang, self.chunksize) if valid(r)]
             if not resValgrind:
-                print('valgrind')
+                # print('valgrind')
                 return '[Valgrind] No binary executed successfully'
             # ---------------------------- Compile and run with Kcc ---------------------------- #  
 
@@ -770,7 +769,7 @@ def _start(self: Application, ) -> SysExitCode:
                     sCaseWriter.writeheader()
                     sCaseWriter.writerows(caseNumbers)
 
-                print(len(resFinal))
+                # print(len(resFinal))
 
             pool.close()
             pool.join()
