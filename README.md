@@ -108,7 +108,8 @@ Additionally, we have a `Scripts` folder with a few useful shell scripts that yo
 ## Generating new benchmarks 
 
 The Jotai functions have been taken from the [AnghaBench](http://cuda.dcc.ufmg.br/angha/home) repository, and have been augmented with code to generate inputs for them.
-If you want to experiment with Jotai’s tool to generate new benchmarks, the source code is available inside the source directory. The instructions on how to build and run Jotai are available [here](source/jotai/README.md). 
+If you want to experiment with Jotai’s tool to generate new benchmarks, the source code is available inside the source directory. The instructions on how to build and run Jotai are available [here](source/jotai/README.md).
+We also have a [video-tutorial](https://youtu.be/uLVR5N45lm0) about it.
 
 
 ## Technical Report
