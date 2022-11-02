@@ -43,6 +43,16 @@ We have a domain specific language to specify these constraints.
 We are preparing a report about it, but if you want to know more, just write us
 an email.
 
+## CompilerGym
+
+An ensemble of [18,761](https://compilergym.com/llvm/api.html#compiler_gym.envs.llvm.datasets.JotaiBenchDataset) benchmarks from the Jotai collection is available in the
+[CompilerGym](https://github.com/facebookresearch/CompilerGym) library.
+CompilerGym is a library of reinforcement learning environments for compilation
+tasks.
+Currently, Jotai is the largest suite of executable benchmarks publicly
+available in CompilerGym.
+To use these benchmarks, check CompilerGym's [user guide](https://compilergym.com/index.html).
+
 ### Deriving Statistics
 
 Most of the Jotai functions run for a very short time.
@@ -82,7 +92,6 @@ While producing these programs, we decided to stick to the following
 - **Compile-and-run**: each benchmark comes in a separate file as an independent compilation unit, with all the drivers necessary to run it. All that must be done is to compile it and it will (hopefully) run.
 - **Well-defined**: every benchmark must run till termination if compiled with the commands: `clang -g -O1 -fsanitize=address,undefined,signed-integer-overflow -fno-sanitize-recover=all`
 - **Deterministic**: random inputs are produced from the same seed using a library of our own craft; hence, execution should be portable across different platforms.
-- **Profilable**: we tried as much as possible to generate at least two different inputs per program, so that they could be used as the target of profile guided optimizations.
 - **Harmless**: benchmark do not invoke third-party functions. Thus, every instruction is [visible](https://homepages.dcc.ufmg.br/~fernando/publications/papers/AlvaresJCL21.pdf), and the benchmarks cannot exploit security vulnerabilities in the host system. The sole exception is that we have a small folder with programs that invoke functions from `math.h`.
 - **Extensible**: we are working on a DSL for the generation of random inputs. In this way, users of Jotai can produce more inputs to the benchmarks without having to hardcode the drivers.
 - **Observable**: we would like to have functions that return values (done!) or at least be able to print the values of local variables, like Whiro does (not done!)
