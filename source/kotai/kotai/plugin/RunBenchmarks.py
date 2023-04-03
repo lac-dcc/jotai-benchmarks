@@ -89,7 +89,7 @@ class Run:
             '-m', 'json',
             f'{self.cfgOutFilePath}'
         ] 
-        #print(f'cfgg_info: {proc_args}')
+        # print(f'cfgg_info: {proc_args}')
         return runproc(proc_args, timeout, ofpath=self.cfggInfoOutPath)
 
 
@@ -99,11 +99,11 @@ class Run:
             # print("map error")
             return cfggMapRes
 
-        valgrindMemcheckRes = self._run_valgrind_memcheck(Run.timeout, *args)
-        if valgrindMemcheckRes.err == failure:
-            # print(valgrindMemcheckRes)
-            # print(f"memcheck")
-            return valgrindMemcheckRes
+        # valgrindMemcheckRes = self._run_valgrind_memcheck(Run.timeout, *args)
+        # if valgrindMemcheckRes.err == failure:
+        #     # print(valgrindMemcheckRes)
+        #     # print(f"memcheck")
+        #     return valgrindMemcheckRes
 
         valgrindRes = self._run_valgrind(Run.timeout, *args)
         if valgrindRes.err == failure:
