@@ -706,29 +706,30 @@ def _run_all(pArgs: BenchInfo):
         # print('valgrind')
         return '[Valgrind] No binary executed successfully'
     
-    # print(str(cFileMetaDir))
-    # for bin in glob.iglob(str(cFileMetaDir) + '/*fsanitize_O*', recursive=True):
-    #     os.remove(bin)
+    print(str(cFileMetaDir))
+    for bin in glob.iglob(str(cFileMetaDir) + '/*fsanitize_O*', recursive=True):
+        os.remove(bin)
     # ---------------------------- Compile and run with Kcc ---------------------------- #  
 
-    resCompileKcc = _compileKcc(resValgrind)
+    # resCompileKcc = _compileKcc(resValgrind)
 
-    if not resCompileKcc:
-        return '[Kcc] No benchmarks with entry points compiled successfully'
+    # if not resCompileKcc:
+    #     return '[Kcc] No benchmarks with entry points compiled successfully'
 
-    resRunKcc = _runWithKcc(resCompileKcc)
-    if not resRunKcc:
-        return '[kcc] No binary executed successfully'
+    # resRunKcc = _runWithKcc(resCompileKcc)
+    # if not resRunKcc:
+    #     return '[kcc] No binary executed successfully'
     
-    for ket in pArgs.ketList:
-        for bin in glob.iglob(str(cFileMetaDir) + '/*' + ket, recursive=True):
-            os.remove(bin)
+    # for ket in pArgs.ketList:
+    #     for bin in glob.iglob(str(cFileMetaDir) + '/*' + ket, recursive=True):
+    #         os.remove(bin)
 
     # ---------------------------- Gen final benchmark ---------------------------- #
 
-    resFinal = _createFinalBench(resRunKcc)
+    resFinal = _createFinalBench(resValgrind)
     if not resFinal:
         return '[Final benchmark] No file created'
+    return resFinal
 
             
 
@@ -823,6 +824,7 @@ def _start(self: Application, ) -> SysExitCode:
             # else:
             resFinal = [r for r in pool.imap_unordered(_run_all, pArgs, self.chunksize) if valid(r)]
             if not resFinal:
+                print('nothing')
                 return '[Final benchmark] No file created'
             else:
             # ---------------------------- Gen output file ---------------------------- #
@@ -864,7 +866,7 @@ def _start(self: Application, ) -> SysExitCode:
             pool.join()
 
     print('\n\nResults: \n')
-    # GetBenchInfo(self.args.inputdir, self.optLevels, self.ketList).runcmd()
+    GetBenchInfo(self.args.inputdir, self.optLevels, self.ketList).runcmd()
     return success
 
 
